@@ -1,0 +1,33 @@
+Techmod:
+
+Generowanie rud (essence, titanium)(duże veiny ale żadkie, jak w GT)
+Smelting stali (mutliblock blast furnace)
+Smelting tytanu (multiblock furnace na RF)
+Processing essencji (multiblock)
+Generowanie energii RF (koła wodne, windmille, generatory termalne, para, hydrogen engine, diesel engine, essence generator)
+Zaawansowany processing rud: Crusher -> Vibrating screen -> washer -> Smelting 
+Gray matter fabricator (zjada dużo RF, esencje i tytan, produkuje szarą mase (nanity))
+Raw Matter - występuje w 4 typach (life, metal, air, liquid), każdy służy do produkcji innych surowców
+Matter decomposer (zjada gray matter i energię, produkuje Raw Matter)
+Matter Fabricator(zjada raw matter i energię, produkuje wskazany surowiec)
+Electrolytic separator(robi z wody hydrogen)
+Plasma Fabricator(zjada duuuuzo RF i hydrogen, robi plasmę)
+Plasma Generator(zjada plasmę i produkuje duuuuuuuuuuuuzo RF)
+Ray Gun
+Camo block (da się przejść), robiony z camo paste robiony z barwników
+
+Todo:
+Emittowanie światła z heatera
+zapisywanie progressu w essence processorze
+Copper/Tin
+Copper/Tin oregen
+Copper/Tin smelting
+Copper/Tin dusty
+Bronze
+Animacja essence processora
+Progress bar essence processor
+Camo block crafting
+essence processor crafting
+heater crafting
+Essence powered pulverizer
+Essence powered furnace
