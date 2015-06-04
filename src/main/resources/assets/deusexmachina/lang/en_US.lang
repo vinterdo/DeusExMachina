@@ -1,0 +1,5 @@
+item.deusexmachina:essence.name=Essence
+item.deusexmachina:essenceContainer.name=Essence Container
+tile.deusexmachina:essenceOre.name=Essence Ore
+tile.deusexmachina:camoBlock.name=Camo Block
+tile.deusexmachina:essenceProcessor.name=Essence Processor

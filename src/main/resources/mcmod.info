@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DeusExMachina",
+  "name": "Deus ex Machina",
+  "description": "Cross technology and magic mod.",
+  "version": "0.1",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Vinterdo"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
