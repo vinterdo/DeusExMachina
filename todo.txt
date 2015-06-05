@@ -15,19 +15,9 @@ Plasma Fabricator(zjada duuuuzo RF i hydrogen, robi plasmę)
 Plasma Generator(zjada plasmę i produkuje duuuuuuuuuuuuzo RF)
 Ray Gun
 Camo block (da się przejść), robiony z camo paste robiony z barwników
+crafting chest (chest z craftingiem)
 
 Todo:
-Emittowanie światła z heatera
-zapisywanie progressu w essence processorze
-Copper/Tin
-Copper/Tin oregen
-Copper/Tin smelting
-Copper/Tin dusty
-Bronze
-Animacja essence processora
-Progress bar essence processor
-Camo block crafting
-essence processor crafting
-heater crafting
 Essence powered pulverizer
 Essence powered furnace
+Multiblock furnace

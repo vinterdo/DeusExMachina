@@ -17,10 +17,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityEssenceProcessor extends TileEntityDEM implements IInventory
+public class TileEntityEssenceMacerator extends TileEntityDEM implements IInventory
 {
-	protected ItemStack[] stacks = new ItemStack[9];
+	protected ItemStack[] stacks = new ItemStack[8];
 	protected int progress;
+	protected int power;
 	
 	public int getProgress()
 	{
@@ -32,72 +33,20 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		progress = val;
 	}
 	
+	public int getPower()
+	{
+		return power;
+	}
+	
+	public void setPower(int val)
+	{
+		power = val;
+	}
+	
 	@Override
 	public void updateEntity()
 	{
-		if(!worldObj.isRemote)
-		{
-			TileEntity te = worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-			
-			int essences = 0, capsules = 0;
-			for(int i =0; i < 3; i++)
-			{
-				if(stacks[i] != null && stacks[i].getItem() == ModItems.essenceContainer)
-				{
-					capsules += stacks[i].stackSize;
-				}
-				if(stacks[i + 3] != null && stacks[i + 3].getItem() == Item.getItemFromBlock(ModBlocks.essenceOre))
-				{
-					essences += stacks[i + 3].stackSize;
-				}
-			}
-			
-			if(te != null && te instanceof TileEntityHeater && ((TileEntityHeater)te).isWorking() && essences > 0 && capsules > 0)
-			{
-				progress++;
-				
-				if(progress >= 100)
-				{
-					progress -= 100;
-					for(int i =0; i < 3; i++)
-					{
-						if(stacks[6 + i] == null)
-						{
-							stacks[6 + i] = new ItemStack(ModItems.essence);
-							substractItems();
-							return;
-						}
-						else if(stacks[6 + i].getItem() == ModItems.essence && stacks[6 + i].stackSize < 64)
-						{
-							stacks[6 + i].stackSize++;
-							substractItems();
-							return;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private void substractItems() {
-		boolean done = false;
-		for(int j =0; j < 3 && !done; j++)
-		{
-			if(stacks[j] != null && stacks[j].getItem() == ModItems.essenceContainer)
-			{
-				stacks[j].stackSize -= 1;
-				done = true;
-			}
-		}
-		done = false;
-		for(int j =0; j < 3 && !done; j++)
-		{
-			if(stacks[j + 3] != null && stacks[j + 3].getItem() == Item.getItemFromBlock(ModBlocks.essenceOre))
-			{
-				stacks[j + 3].stackSize -= 1;
-				done = true;
-			}
-		}
+		// TODO: item processing
 	}
 	
 	@Override
@@ -175,7 +124,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 	@Override
 	public String getInventoryName() 
 	{
-		return ModBlocks.essenceProcessor.getUnlocalizedName() + ".name";
+		return ModBlocks.essenceMacerator.getUnlocalizedName() + ".name";
 	}
 
 	@Override
@@ -187,7 +136,6 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 	@Override
 	public int getInventoryStackLimit() 
 	{
-		// TODO Auto-generated method stub
 		return 64;
 	}
 
@@ -210,12 +158,8 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemStack) 
 	{
-		if(slot < 3 && itemStack.getItem() == ModItems.essenceContainer) return true;
-		if(slot >= 3 && slot < 6 && itemStack.getItem() instanceof ItemBlock) 
-		{
-			Block block = ((ItemBlock)itemStack.getItem()).field_150939_a;
-			return block == ModBlocks.essenceOre;
-		}
+		if(slot < 3) return true;
+		if(slot == 3 && itemStack.getItem() == ModItems.essence) return true;
 		return false;
 	}
 	
@@ -224,7 +168,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		super.readFromNBT(tag);
 		
 		NBTTagList stackTag = tag.getTagList("stacks", 10);
-		stacks = new ItemStack[9];
+		stacks = new ItemStack[8];
 		
 		for(int i =0 ; i < stackTag.tagCount(); i++)
 		{
@@ -234,6 +178,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		}
 		
 		progress = tag.getInteger("progress");
+		power = tag.getInteger("power");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag)
@@ -241,7 +186,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		super.writeToNBT(tag);
 		
 		NBTTagList stackTag = new NBTTagList();
-		for(int i=0; i < 9; i++)
+		for(int i=0; i < 8; i++)
 		{
 			if(stacks[i] != null)
 			{
@@ -255,6 +200,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		tag.setTag("stacks", stackTag);
 		
 		tag.setInteger("progress", progress);
+		tag.setInteger("power", power);
 	}
 	
 	public void writeToPacket(ByteBuf buf)
@@ -265,7 +211,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 	
 	public void readFromPacket(ByteBuf buf)
 	{
-		for(int i=0 ; i < 9; i++)
+		for(int i=0 ; i < 8; i++)
 			stacks[i] = ByteBufUtils.readItemStack(buf);
 	}
 

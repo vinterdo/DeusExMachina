@@ -67,4 +67,18 @@ public class BlockHeater extends BlockTileEntityDEM
 			return super.getIcon(world, x, y, z, side);
 		}
 	}
+	
+	public int getLightValue(IBlockAccess world,int  x,int y,int z)
+	{
+    	TileEntityHeater te = (TileEntityHeater)world.getTileEntity(x, y, z);
+    	if (te!=null)
+    	{
+        	if (te.isWorking())
+        	{
+        		return 14;
+        	}
+    	}
+    	return 0;
+    }
+
 }

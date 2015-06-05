@@ -43,6 +43,7 @@ public class TileEntityHeater extends TileEntityDEM implements IInventory
 			if(burningTime == 0)
 			{	
 				this.worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord - 1, zCoord - 1 , xCoord + 1, yCoord + 1, zCoord + 1);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}
 		}
 		else
@@ -55,6 +56,7 @@ public class TileEntityHeater extends TileEntityDEM implements IInventory
 					decrStackSize(i, 1);
 					burningTime += burn;
 					this.worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord - 1, zCoord - 1 , xCoord + 1, yCoord + 1, zCoord + 1);
+					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				}
 			}
 		}

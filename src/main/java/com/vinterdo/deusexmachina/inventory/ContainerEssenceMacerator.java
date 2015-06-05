@@ -6,6 +6,7 @@ import java.util.List;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
+import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
 
 import cpw.mods.fml.relauncher.Side;
@@ -18,29 +19,30 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ContainerEssenceProcessor extends ContainerDEM
+public class ContainerEssenceMacerator extends ContainerDEM
 {
 	int lastProgress = -1;
-	TileEntityEssenceProcessor te;
+	int lastPower = -1;
+	TileEntityEssenceMacerator te;
 	
-	public ContainerEssenceProcessor(InventoryPlayer playerInv, TileEntityDEM te)
+	public ContainerEssenceMacerator(InventoryPlayer playerInv, TileEntityDEM te)
 	{
 		super(te);
-		this.te = (TileEntityEssenceProcessor)te;
+		this.te = (TileEntityEssenceMacerator)te;
 		
 		for(int i =0; i < 3; i++)
 		{
-			this.addSlotToContainer(new SlotItemOnly((IInventory) te, i, 25, 14 + i * 21, ModItems.essenceContainer));
-		}
-		for(int i =3; i < 6; i++)
-		{
-			this.addSlotToContainer(new SlotItemOnly((IInventory) te, i, 45, 14 + (i - 3) * 21, Item.getItemFromBlock(ModBlocks.essenceOre)));
-		}
-		for(int i =6; i < 9; i++)
-		{
-			this.addSlotToContainer(new SlotOutput((IInventory) te, i, 134, 14 + (i - 6) * 21));
+			this.addSlotToContainer(new Slot((IInventory) te, i, 25, 14 + i * 21));
 		}
 		
+		this.addSlotToContainer(new SlotItemOnly((IInventory) te, 3, 45, 35, ModItems.essence));
+		
+		for(int i =4; i < 7; i++)
+		{
+			this.addSlotToContainer(new SlotOutput((IInventory) te, i, 134, 14 + (i - 4) * 21));
+		}
+
+		this.addSlotToContainer(new SlotOutput((IInventory) te, 7, 113, 35));
 		
 		addPlayerSlots(playerInv, 8, 84);
 	}
@@ -57,6 +59,15 @@ public class ContainerEssenceProcessor extends ContainerDEM
 			}
 			lastProgress = te.getProgress();
 		}
+		
+		if(lastPower != te.getPower())
+		{
+			for(ICrafting crafter : (List<ICrafting>)crafters)
+			{
+				crafter.sendProgressBarUpdate(this, 1, te.getPower());
+			}
+			lastProgress = te.getPower();
+		}
 	}
 	
 	@Override
@@ -68,12 +79,16 @@ public class ContainerEssenceProcessor extends ContainerDEM
 		{
 			te.setProgress(value);
 		}
+		if(id == 1)
+		{
+			te.setPower(value);
+		}
 	}
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer player) 
 	{
-		return ((IInventory)te).isUseableByPlayer(player); // TODO - fix
+		return ((IInventory)te).isUseableByPlayer(player); 
 	}
 	
 
@@ -88,26 +103,24 @@ public class ContainerEssenceProcessor extends ContainerDEM
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (target < 9)
+            if (target < 7)
             {
-                if (!this.mergeItemStack(itemstack1, 9, 45, true))
+                if (!this.mergeItemStack(itemstack1, 7, 43, true))
                 {
                     return null;
                 }
             }
             else 
             {	
-            	if(itemstack1.getItem() == ModItems.essenceContainer)
+            	if(itemstack1.getItem() == ModItems.essence)
             	{
-	            	if (!this.mergeItemStack(itemstack1, 0, 3, false))
+	            	if (!this.mergeItemStack(itemstack1, 3, 4, false))
 	                	return null;
             	}
             	
-            	if(itemstack1.getItem() == Item.getItemFromBlock(ModBlocks.essenceOre))
-            	{
-	            	if (!this.mergeItemStack(itemstack1, 3, 6, false))
-	                	return null;
-            	}
+	            if (!this.mergeItemStack(itemstack1, 0, 3, false))
+	                return null;
+            	
             }
 
             if (itemstack1.stackSize == 0)
