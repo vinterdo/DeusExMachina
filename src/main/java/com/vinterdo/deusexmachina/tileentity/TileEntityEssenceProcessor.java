@@ -22,6 +22,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 	protected ItemStack[] stacks = new ItemStack[9];
 	protected int progress;
 	
+	
 	public int getProgress()
 	{
 		return progress;
@@ -85,7 +86,8 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		{
 			if(stacks[j] != null && stacks[j].getItem() == ModItems.essenceContainer)
 			{
-				stacks[j].stackSize -= 1;
+				decrStackSize(j, 1);
+				//stacks[j].stackSize -= 1;
 				done = true;
 			}
 		}
@@ -94,7 +96,8 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 		{
 			if(stacks[j + 3] != null && stacks[j + 3].getItem() == Item.getItemFromBlock(ModBlocks.essenceOre))
 			{
-				stacks[j + 3].stackSize -= 1;
+				decrStackSize(j+3, 1);
+				//stacks[j + 3].stackSize -= 1;
 				done = true;
 			}
 		}

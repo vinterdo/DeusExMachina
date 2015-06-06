@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 public class ContainerEssenceProcessor extends ContainerDEM
 {
 	int lastProgress = -1;
+	int lastPower = -1;
 	TileEntityEssenceProcessor te;
 	
 	public ContainerEssenceProcessor(InventoryPlayer playerInv, TileEntityDEM te)

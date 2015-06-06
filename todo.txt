@@ -21,3 +21,45 @@ Todo:
 Essence powered pulverizer
 Essence powered furnace
 Multiblock furnace
+Essence processor - zmiana receptury na copper
+Essence capsule --"--
+Heater z żelaza
+Essence macerator receptura
+
+
+Progressing:
+wydobycie esencji, copperu i tinu
+robimy essence processor, heater i kapsułki
+W essencje procesorze przetwarzamy kapsułki i essence ory na essencję
+Robimy essence macerator
+W essence maceratorze robimy dusty i potem bronze dust
+Przepalamy brąz (normalny piecyk)
+Robimy blast furnace 
+Robimy stal
+Ze stali robimy gray matter fabricator (zjada żelazo/copper/tin/stal oraz esencję, produkuje Gray Matter (ciecz))
+Robimy gray matter crafter (crafting z tankiem na gray matter, używa gray matteru do receptur)
+W gray matter crafterze robimy Gray Matter Core
+Kładziemy gray matter core i dokładamy mu komponenty, budując Deusa
+Robimy Steam Boiler (multiblock, zjada wodę i paliwo, produkuje parę)
+Dostarczamy parę z boilera do deusa
+Robimy Gray Matter Infused Diamon (gray matter crafter)
+Robimy Data Core (Infused Diamond, esencja, stal)
+Dajemy data core do Deusa, po pewnym czacie Deus zapisuje dane na corze (musi mieć dostarczaną parę, jaki core dostaniemy zalezy od surowców które mu damy)
+Robimy Data bank (skrzynka z możliwością wsadzania tylko data corów), kładziemy go koło Gray Matter Craftera
+W Data banku umieszczamy nasz Data Core, odblokowuje to możliwość zrobienia któregoś nowego bloku w Crafterze
+
+Data Cory:
+
+Matter shatterer - używa Gray Matteru i energii (pary) do rozbijania surowców na Life Fluid, Matter Fluid, Metal Fluid i Ether Fluid
+Matter Composer - używa Energii i fluidów do tworzenia materii 
+Essence liquifier - robi ciekłą esencję z esencji
+Essence generator - używa ciekłej Essencji do robienia energii
+Node Generator - używa thaumcraftowego nodea zjadając z niego aspekty do generowania energii
+Hyperenergetic furnace - duży, bardzo szybki multiblockowy piec
+Plant Incubator - sadzimy 1 roślinkę w środku, jej wzrost jest bardzo mocno przyspieszony
+Ether Condensator - powoli generuje Ether Fluid, zjada energię
+Matter Metalizer - zjada cobbla i energię, powoli generuje Metal Fluid
+Crusher, Vibrating Screen, washer -> potraja output z niektórych orów, żre dużo energii
+Null Matter fabricator - robi Null Matter fluid z esencji i ender pereł
+Null matter stabilizer - robi Null Matter ingoty z fluidu, używa Gray Mattera
+Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. 

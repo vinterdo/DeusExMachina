@@ -1,12 +1,18 @@
 package com.vinterdo.deusexmachina.tileentity;
 
 import io.netty.buffer.ByteBuf;
+import cofh.thermalexpansion.util.crafting.PulverizerManager;
+import cofh.thermalexpansion.util.crafting.PulverizerManager.RecipePulverizer;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.recipes.RecipeMacerator;
+import com.vinterdo.deusexmachina.reference.ModIds;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -22,6 +28,16 @@ public class TileEntityEssenceMacerator extends TileEntityDEM implements IInvent
 	protected ItemStack[] stacks = new ItemStack[8];
 	protected int progress;
 	protected int power;
+	
+	protected int progressTarget;
+	
+	public float getProgressPercent()
+	{
+		return (float)progress / (float)progressTarget;
+	}
+	
+	public static final int progressMultipler = 100;
+	public static final int essencePower = 100;
 	
 	public int getProgress()
 	{
@@ -43,10 +59,148 @@ public class TileEntityEssenceMacerator extends TileEntityDEM implements IInvent
 		power = val;
 	}
 	
+	public int getProgressTarget()
+	{
+		return progressTarget;
+	}
+	
+	public void setProgressTarget(int val)
+	{
+		progressTarget = val;
+	}
+	
 	@Override
 	public void updateEntity()
 	{
-		// TODO: item processing
+		if(!worldObj.isRemote)
+		{
+			if(power > 0)
+			{
+				if(Loader.isModLoaded(ModIds.TE))
+				{
+					processOresTE();
+				}
+				else
+				{
+					processOresVanilla();
+				}
+			}
+			else
+			{
+				if(stacks[3] != null && stacks[3].getItem() == ModItems.essence && ((stacks[7] != null && stacks[7].stackSize < stacks[7].getMaxStackSize()) || stacks[7] == null))
+				{
+					decrStackSize(3, 1);
+					
+					if(stacks[7] != null)
+					{
+						stacks[7].stackSize++;
+					}
+					else
+					{
+						stacks[7] = new ItemStack(ModItems.essenceContainer);
+					}
+					power += essencePower;
+				}
+			}
+		}
+	}
+
+	private void processOresVanilla() 
+	{
+		for(int i=0; i < 3; i++)
+		{
+			if(stacks[i] != null)
+			{
+				RecipeMacerator recipe = RecipeMacerator.getRecipe(stacks[i]);
+				if(recipe != null && isSpaceInOutput(recipe.getOutput()))
+				{
+					progressTarget = recipe.getEnergy();
+					power--;
+					progress+= progressMultipler;
+					if(progress > recipe.getEnergy())
+					{
+						addItemToOutput(recipe.getOutput());
+						consumeItem(i);
+						progress = 0;
+					}
+					return;
+				}
+			}
+		}
+	}
+
+	@Optional.Method(modid = ModIds.TE)
+	private void processOresTE() 
+	{
+		for(int i=0; i < 3; i++)
+		{
+			if(stacks[i] != null)
+			{
+				RecipePulverizer recipe = PulverizerManager.getRecipe(stacks[i]);
+				if(recipe != null && isSpaceInOutput(recipe.getPrimaryOutput()))
+				{
+					progressTarget = recipe.getEnergy();
+					power--;
+					progress+= progressMultipler;
+					if(progress > recipe.getEnergy())
+					{
+						addItemToOutput(recipe.getPrimaryOutput());
+						consumeItem(i);
+						progress = 0;
+					}
+					return;
+				}
+			}
+		}
+	}
+	
+	private void consumeItem(int slot)
+	{
+		decrStackSize(slot, 1);
+	}
+	
+	private void addItemToOutput(ItemStack stack)
+	{
+		for(int i=0; i < 3; i++)
+		{
+			if(stacks[i +  4] == null)
+			{
+				stacks[i+4] = stack;
+				return;
+			}
+			else if(stacks[i + 4].getItem() == stack.getItem())
+			{
+				if(stacks[i+4].stackSize + stack.stackSize < stacks[i+4].getMaxStackSize())
+				{
+					stacks[i+4].stackSize += stack.stackSize;
+					return;
+				}
+				else
+				{
+					int rest = stacks[i+4].stackSize + stack.stackSize - stacks[i+4].getMaxStackSize();
+					stacks[i+4].stackSize = stacks[i+4].getMaxStackSize();
+					stack.stackSize = rest;
+				}
+			}
+		}
+	}
+	
+	private boolean isSpaceInOutput(ItemStack input)
+	{
+		if(!(stacks[7] == null || (stacks[7].getItem() == ModItems.essenceContainer && stacks[7].stackSize < stacks[7].getMaxStackSize())))
+		{
+			return false;
+		}
+		
+		int spaceLeft = 0;
+		
+		for(int i=0; i < 3; i++)
+		{
+			if(stacks[i + 4] == null) spaceLeft += input.getMaxStackSize();
+			else if(stacks[i + 4].getItem() == input.getItem()) spaceLeft += stacks[i + 4].getMaxStackSize() - stacks[i + 4].stackSize;
+		}
+		
+		return spaceLeft > input.stackSize;
 	}
 	
 	@Override

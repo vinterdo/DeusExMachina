@@ -35,8 +35,8 @@ public class GuiEssenceMacerator extends GuiDEM
 
         if (this.te.getProgress() > 0)
         {
-            int i1 = (int) (this.te.getProgress() / (100f / 45f));
-            this.drawTexturedModalRect(guiLeft + 62, guiTop + 38, 176, 0, i1 + 1, 16);
+            int i1 = (int) (this.te.getProgressPercent() * 45f);
+            this.drawTexturedModalRect(guiLeft + 64, guiTop + 38, 176, 0, i1 + 1, 16);
         }
 	}
 }

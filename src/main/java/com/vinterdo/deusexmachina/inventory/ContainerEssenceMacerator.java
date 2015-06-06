@@ -23,6 +23,7 @@ public class ContainerEssenceMacerator extends ContainerDEM
 {
 	int lastProgress = -1;
 	int lastPower = -1;
+	int lastProgressTarget = -1;
 	TileEntityEssenceMacerator te;
 	
 	public ContainerEssenceMacerator(InventoryPlayer playerInv, TileEntityDEM te)
@@ -68,6 +69,15 @@ public class ContainerEssenceMacerator extends ContainerDEM
 			}
 			lastProgress = te.getPower();
 		}
+		
+		if(lastProgressTarget != te.getProgressTarget())
+		{
+			for(ICrafting crafter : (List<ICrafting>)crafters)
+			{
+				crafter.sendProgressBarUpdate(this, 2, te.getProgressTarget());
+			}
+			lastProgressTarget = te.getProgressTarget();
+		}
 	}
 	
 	@Override
@@ -79,9 +89,13 @@ public class ContainerEssenceMacerator extends ContainerDEM
 		{
 			te.setProgress(value);
 		}
-		if(id == 1)
+		else if(id == 1)
 		{
 			te.setPower(value);
+		}
+		else if(id == 2)
+		{
+			te.setProgressTarget(value);
 		}
 	}
 	
