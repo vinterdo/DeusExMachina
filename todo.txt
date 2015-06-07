@@ -1,34 +1,17 @@
 Techmod:
 
-Generowanie rud (essence, titanium)(duże veiny ale żadkie, jak w GT)
-Smelting stali (mutliblock blast furnace)
-Smelting tytanu (multiblock furnace na RF)
-Processing essencji (multiblock)
-Generowanie energii RF (koła wodne, windmille, generatory termalne, para, hydrogen engine, diesel engine, essence generator)
-Zaawansowany processing rud: Crusher -> Vibrating screen -> washer -> Smelting 
-Gray matter fabricator (zjada dużo RF, esencje i tytan, produkuje szarą mase (nanity))
-Raw Matter - występuje w 4 typach (life, metal, air, liquid), każdy służy do produkcji innych surowców
-Matter decomposer (zjada gray matter i energię, produkuje Raw Matter)
-Matter Fabricator(zjada raw matter i energię, produkuje wskazany surowiec)
-Electrolytic separator(robi z wody hydrogen)
-Plasma Fabricator(zjada duuuuzo RF i hydrogen, robi plasmę)
-Plasma Generator(zjada plasmę i produkuje duuuuuuuuuuuuzo RF)
-Ray Gun
-Camo block (da się przejść), robiony z camo paste robiony z barwników
 crafting chest (chest z craftingiem)
+Camo block
 
 Todo:
-Essence powered pulverizer
 Essence powered furnace
 Multiblock furnace
-Essence processor - zmiana receptury na copper
-Essence capsule --"--
-Heater z żelaza
 Essence macerator receptura
 
 
 Progressing:
 wydobycie esencji, copperu i tinu
+Robimy bronze
 robimy essence processor, heater i kapsułki
 W essencje procesorze przetwarzamy kapsułki i essence ory na essencję
 Robimy essence macerator
@@ -63,3 +46,14 @@ Crusher, Vibrating Screen, washer -> potraja output z niektórych orów, żre du
 Null Matter fabricator - robi Null Matter fluid z esencji i ender pereł
 Null matter stabilizer - robi Null Matter ingoty z fluidu, używa Gray Mattera
 Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. 
+Electrolytic separator (tworzy hydrogen z wody i energii)
+Essence Factory (duży multiblock do przetwarzania esencji)
+Refinery (multiblock przetwarzający Oil w Fuel (wymaga buildcrafta lub innego modu dodającego fuel i oil))
+Windmill (generowanie rf)
+Water Wheel (generowanie rf)
+Solar Thermal Turbine (produkuje rf)
+Plasma fabricator (zjada hydrogen i energię, robi plasmę - ta wymaga plasma conduitów do transportu)
+Plasma Reactor - zjada plasmę, robi rfy
+Ray gun - im fajerin mah lejzor!
+Assemby Line - działa jak Cyclic Assembler, tylko szybciej, multiblock
+Mana Generator - wymaga botanii, robi RFy z many

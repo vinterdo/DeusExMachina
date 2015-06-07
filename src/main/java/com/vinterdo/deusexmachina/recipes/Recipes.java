@@ -19,7 +19,7 @@ public class Recipes
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.essenceContainer, 8), "gig", "g g", "gig", 'g', "blockGlass", 'i', "ingotBronze"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.essenceProcessor, 1), "bbb", "beb", "bbb", 'b', "ingotBronze", 'e', "containerEssence"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.heater, 1), "sss", "scs", "sss", 's', "ingotSteel", 'c', Items.coal));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.heater, 1), "sss", "scs", "sss", 's', "ingotIron", 'c', Items.coal));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.camoBlock, 1), "ddd", "dsd", "ddd", 's', "ingotSteel", 'd', Blocks.dirt));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.bronzeDust, 3), "dustCopper", "dustCopper", "dustCopper", "dustTin"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.bronzeIngot, 1), "ingotCopper", "ingotCopper", "ingotCopper", "ingotTin"));
@@ -30,5 +30,11 @@ public class Recipes
 		GameRegistry.addSmelting(ModBlocks.copperOre, new ItemStack(ModItems.copperIngot), 1);
 		GameRegistry.addSmelting(ModBlocks.tinOre, new ItemStack(ModItems.tinIngot), 1);
 		
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModBlocks.copperOre), new ItemStack(ModItems.copperDust, 2), 4000));
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModBlocks.tinOre), new ItemStack(ModItems.tinDust, 2), 4000));
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModItems.copperIngot), new ItemStack(ModItems.copperDust, 1), 4000));
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModItems.tinIngot), new ItemStack(ModItems.tinDust, 1), 4000));
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModItems.steelIngot), new ItemStack(ModItems.steelDust, 1), 6000));
+		RecipeMacerator.addRecipe(new RecipeMacerator(new ItemStack(ModItems.bronzeIngot), new ItemStack(ModItems.bronzeDust, 1), 5000));
 	}
 }

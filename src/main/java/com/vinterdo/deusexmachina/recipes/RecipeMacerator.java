@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.recipes;
 import java.util.ArrayList;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class RecipeMacerator 
 {
@@ -12,13 +13,18 @@ public class RecipeMacerator
 	{
 		for(RecipeMacerator ch : recipes)
 		{
-			if(ch.input.getItem() == input.getItem())
+			if(OreDictionary.itemMatches(ch.input, input, true))
 			{
 				return ch;
 			}
 		}
 		
 		return null;
+	}
+	
+	public static void addRecipe(RecipeMacerator recipe)
+	{
+		recipes.add(recipe);
 	}
 	
 	private ItemStack input;

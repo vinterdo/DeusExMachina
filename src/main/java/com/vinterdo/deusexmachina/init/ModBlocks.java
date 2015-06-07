@@ -2,6 +2,8 @@ package com.vinterdo.deusexmachina.init;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import com.vinterdo.deusexmachina.block.BlockBlastFurnace;
+import com.vinterdo.deusexmachina.block.BlockBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.block.BlockCamo;
 import com.vinterdo.deusexmachina.block.BlockCopperOre;
 import com.vinterdo.deusexmachina.block.BlockDEM;
@@ -27,6 +29,9 @@ public class ModBlocks
 	public static final BlockTileEntityDEM  heater = new BlockHeater();
 	public static final BlockTileEntityDEM  essenceMacerator = new BlockEssenceMacerator();
 	
+	public static final BlockTileEntityDEM  blastFurnaceMaster = new BlockBlastFurnaceMaster();
+	public static final BlockTileEntityDEM  blastFurnace = new BlockBlastFurnace();
+	
 	public static void init()
 	{
 		GameRegistry.registerBlock(essenceOre, "essenceOre");
@@ -36,6 +41,10 @@ public class ModBlocks
 		GameRegistry.registerBlock(heater, "heater");
 		GameRegistry.registerBlock(copperOre, "copperOre");
 		GameRegistry.registerBlock(tinOre, "tinOre");
+		
+
+		GameRegistry.registerBlock(blastFurnace, "blastFurnace");
+		GameRegistry.registerBlock(blastFurnaceMaster, "blastFurnaceMaster");
 		
 
 		OreDictionary.registerOre("oreCopper", copperOre);

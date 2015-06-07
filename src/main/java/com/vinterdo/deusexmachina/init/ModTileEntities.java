@@ -3,6 +3,8 @@ package com.vinterdo.deusexmachina.init;
 import net.minecraft.tileentity.TileEntity;
 
 import com.vinterdo.deusexmachina.reference.Reference;
+import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnace;
+import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
 import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
@@ -19,6 +21,8 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TileEntityEssenceProcessor.class, Reference.MOD_ID + ":" + "essenceProcessor");
 		GameRegistry.registerTileEntity(TileEntityHeater.class, Reference.MOD_ID + ":" + "heater");
 		GameRegistry.registerTileEntity(TileEntityEssenceMacerator.class, Reference.MOD_ID + ":" + "essenceMacerator");
+		GameRegistry.registerTileEntity(TileEntityBlastFurnace.class, Reference.MOD_ID + ":" + "blastFurnace");
+		GameRegistry.registerTileEntity(TileEntityBlastFurnaceMaster.class, Reference.MOD_ID + ":" + "blastFurnaceMaster");
 	
 	}
 }
