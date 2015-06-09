@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.block;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
+import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
 import com.vinterdo.deusexmachina.tileentity.TileEntityHeater;
@@ -67,4 +68,22 @@ public class BlockBlastFurnaceMaster extends BlockTileEntityDEM
 		super.breakBlock(world, x, y, z, par5, par6);
 	}
 	
+	@Override
+    public int getRenderType() 
+	{
+            return -1;
+    }
+    
+    //It's not an opaque cube, so you need this.
+    @Override
+    public boolean isOpaqueCube() 
+    {
+            return false;
+    }
+    
+    //It's not a normal block, so you need this too.
+    public boolean renderAsNormalBlock() 
+    {
+            return false;
+    }
 }

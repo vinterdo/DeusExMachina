@@ -58,4 +58,9 @@ public class BlockCamo extends BlockTileEntityDEM
 		}
 	}
 	
+	@Override
+    public boolean isOpaqueCube() 
+    {
+            return false;
+    }
 }

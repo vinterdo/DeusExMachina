@@ -142,7 +142,6 @@ public class TileEntityHeater extends TileEntityDEM implements IInventory
 	@Override
 	public int getInventoryStackLimit() 
 	{
-		// TODO Auto-generated method stub
 		return 64;
 	}
 

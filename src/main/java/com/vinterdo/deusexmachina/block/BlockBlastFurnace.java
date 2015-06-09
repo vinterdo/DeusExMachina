@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.block;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
+import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
@@ -20,6 +21,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
 
 public class BlockBlastFurnace extends BlockTileEntityDEM
 {
@@ -76,4 +79,19 @@ public class BlockBlastFurnace extends BlockTileEntityDEM
 		if(te!= null) 
 			te.tryForming();
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) 
+	{
+			TileEntityBlastFurnace teMe = (TileEntityBlastFurnace) world.getTileEntity(x - ForgeDirection.getOrientation(side).offsetX, y - ForgeDirection.getOrientation(side).offsetY, z - ForgeDirection.getOrientation(side).offsetZ);
+			
+			return !teMe.isFormed();
+	}
+	
+    @Override
+    public boolean isOpaqueCube() 
+    {
+            return false;
+    }
 }

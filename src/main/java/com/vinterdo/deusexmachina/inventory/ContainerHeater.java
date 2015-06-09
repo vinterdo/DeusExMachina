@@ -28,8 +28,6 @@ public class ContainerHeater extends ContainerDEM
 			}
 		}
 		
-		
-		
 		addPlayerSlots(playerInv, 8, 84);
 	}
 	

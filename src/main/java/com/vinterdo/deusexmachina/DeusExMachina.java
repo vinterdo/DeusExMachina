@@ -67,7 +67,7 @@ public class DeusExMachina
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		
+		proxy.registerRenderThings();
 	}
 	
 	@Mod.EventHandler

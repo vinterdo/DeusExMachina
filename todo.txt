@@ -1,12 +1,12 @@
 Techmod:
 
 crafting chest (chest z craftingiem)
-Camo block
 
 Todo:
-Essence powered furnace
-Multiblock furnace
-Essence macerator receptura
+sprawdzić synchronizacje z servem
+Drop itemów z maszyn
+Zasilanie blasta heaterami
+Blast furnace działanie
 
 
 Progressing:
