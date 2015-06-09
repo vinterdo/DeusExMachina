@@ -206,7 +206,7 @@ public class TileEntityBlastFurnaceMaster extends TileEntityMultiblockMaster imp
 		
 		return true;
 	}
-
+	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount)
     {

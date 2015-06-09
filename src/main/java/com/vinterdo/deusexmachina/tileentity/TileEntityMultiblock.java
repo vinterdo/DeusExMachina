@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.utility.LogHelper;
+
 import cpw.mods.fml.common.network.ByteBufUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -17,6 +19,13 @@ public class TileEntityMultiblock extends TileEntityDEM
 	public TileEntityMultiblockMaster getMaster()
 	{
 		return master;
+	}
+	
+	@Override
+	public void updateEntity()
+	{
+		super.updateEntity();
+		//LogHelper.info(master == null);
 	}
 	
 	public void setMaster(TileEntityMultiblockMaster te)
@@ -44,6 +53,7 @@ public class TileEntityMultiblock extends TileEntityDEM
 	
 	public void readFromPacket(ByteBuf buf)
 	{
+		LogHelper.info("asd");
 		super.readFromPacket(buf);
 		if(ByteBufUtils.readVarShort(buf) == 0 ? false : true)
 		{
@@ -53,6 +63,13 @@ public class TileEntityMultiblock extends TileEntityDEM
 			
 			master = (TileEntityMultiblockMaster) worldObj.getTileEntity(x, y, z);
 		}
+		else
+		{
+			master = null;
+		}
+		
+
+		worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord, zCoord - 1, xCoord + 1, yCoord - 4, zCoord + 1);
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)

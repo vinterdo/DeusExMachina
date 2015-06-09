@@ -86,6 +86,7 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 			for(TileEntityMultiblock te : members)
 			{
 				te.master = null;
+				worldObj.markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
 			}
 		}
 		formed = false;
