@@ -1,100 +1,72 @@
 package com.vinterdo.deusexmachina.tileentity;
 
 import io.netty.buffer.ByteBuf;
-
-import java.util.ArrayList;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.world.EnumSkyBlock;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
+import cpw.mods.fml.common.IFuelHandler;
 
-public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMaster implements IInventory
+public class TEHeater extends TEDEM implements IInventory
 {
-
-	protected ItemStack[] stacks = new ItemStack[3]; // 0 - matter, 1 - essence - 2 capsules
-	protected int essence;
-	protected int matter;
-	
-	protected int essenceStorage = 10000;
-	protected int matterStorage = 10000;
-	
-	protected int progress;
-	protected int progressTarget;
-	
+	protected ItemStack[] stacks = new ItemStack[9];
+	protected int burningTime = 0;
 	
 	@Override
+	public int getSizeInventory() 
+	{
+		return stacks.length;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int slot) 
+	{
+		return this.stacks[slot];
+	}
+	
 	public void updateEntity()
-	{
-		super.updateEntity();
-		
-	}
+    {
+		if(burningTime > 0)
+		{
+			--burningTime;
+			if(burningTime == 0)
+			{	
+				this.worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord - 1, zCoord - 1 , xCoord + 1, yCoord + 1, zCoord + 1);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			}
+		}
+		else
+		{
+			for(int i=0; i < 9; i++)
+			{
+				int burn = TileEntityFurnace.getItemBurnTime(stacks[i]);
+				if(burn > 0) 
+				{
+					decrStackSize(i, 1);
+					burningTime += burn;
+					this.worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord - 1, zCoord - 1 , xCoord + 1, yCoord + 1, zCoord + 1);
+					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+				}
+			}
+		}
+    }
 	
+	public boolean isWorking()
+	{
+		return burningTime > 0;
+	}
 
-	@Override
-	public void tryForming()
-	{
-		members = new ArrayList<TileEntityMultiblock>();
-		for(int x =0; x < 5; x++)
-		{
-			for(int y =0; y < 2; y++)
-			{
-				for(int z =0; z < 5; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y -1, zCoord + z - 2);
-					
-					if(te instanceof TileEntityGrayMatterFabricator)
-					{
-						members.add((TileEntityMultiblock)te);
-					}
-				}
-			}
-		}
-		super.tryForming();
-	}
-	
-	@Override
-	public boolean isProperMultiblock()
-	{
-		for(int x =0; x < 5; x++)
-		{
-			for(int y =0; y < 2; y++)
-			{
-				for(int z =0; z < 5; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y -1, zCoord + z - 2);
-					if(te == null)
-					{
-						return false;
-					}
-					else if(te instanceof TileEntityGrayMatterFabricator)
-					{
-						TileEntityMultiblock tem = (TileEntityMultiblock)te;
-						if(tem.getMaster() != null) 
-							return false;
-					}
-					else if(te != this)
-					{
-						return false;
-					}
-					
-				}
-			}
-		}
-		
-		return true;
-	}
-	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount)
     {
@@ -126,19 +98,7 @@ public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMa
             return null;
         }
     }
-	
-	@Override
-	public int getSizeInventory() 
-	{
-		return stacks.length;
-	}
-	
-	@Override
-	public ItemStack getStackInSlot(int slot) 
-	{
-		return this.stacks[slot];
-	}
-	
+
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot)
     {
@@ -170,7 +130,7 @@ public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMa
 	@Override
 	public String getInventoryName() 
 	{
-		return ModBlocks.grayMatterFabricatorMaster.getUnlocalizedName() + ".name";
+		return ModBlocks.heater.getUnlocalizedName() + ".name";
 	}
 
 	@Override
@@ -204,23 +164,17 @@ public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMa
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemStack) 
 	{
-		if(slot == 0 && itemStack.getItem() == ModItems.steelIngot) // todo : add other materials
-			return true;
-		if(slot == 1 && itemStack.getItem() == ModItems.essence) // todo : add other materials
-				return true;
-		
-		return false;
+		return TileEntityFurnace.getItemBurnTime(itemStack) > 0;
 	}
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
 
-        this.progress = tag.getShort("progress");
-        this.progressTarget = tag.getShort("progressTarget");
+        this.burningTime = tag.getShort("BurnTime");
 		
 		NBTTagList stackTag = tag.getTagList("stacks", 10);
-		stacks = new ItemStack[3];
+		stacks = new ItemStack[9];
 		
 		for(int i =0 ; i < stackTag.tagCount(); i++)
 		{
@@ -234,11 +188,10 @@ public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMa
 	{
 		super.writeToNBT(tag);
 		
-		tag.setShort("progress", (short)this.progress);
-		tag.setShort("progressTarget", (short)this.progressTarget);
+		tag.setShort("BurnTime", (short)this.burningTime);
 		
 		NBTTagList stackTag = new NBTTagList();
-		for(int i=0; i < 3; i++)
+		for(int i=0; i < 9; i++)
 		{
 			if(stacks[i] != null)
 			{
@@ -254,44 +207,13 @@ public class TileEntityGrayMatterFabricatorMaster extends TileEntityMultiblockMa
 	
 	public void writeToPacket(ByteBuf buf)
 	{
-		super.writeToPacket(buf);
 		for(ItemStack stack : stacks)
 			ByteBufUtils.writeItemStack(buf, stack);
 	}
 	
 	public void readFromPacket(ByteBuf buf)
 	{
-		boolean oldFormed = formed;
-		super.readFromPacket(buf);
-		if(oldFormed != formed)
-			worldObj.markBlockRangeForRenderUpdate(xCoord - 2, yCoord, zCoord - 2, xCoord + 2, yCoord - 1, zCoord + 2);
-		
-		for(int i=0 ; i < 3; i++)
+		for(int i=0 ; i < 6; i++)
 			stacks[i] = ByteBufUtils.readItemStack(buf);
-	}
-	
-	public int getProgress()
-	{
-		return progress;
-	}
-	
-	public void setProgress(int val)
-	{
-		progress = val;
-	}
-	
-	public int getProgressTarget()
-	{
-		return progressTarget;
-	}
-	
-	public void setProgressTarget(int val)
-	{
-		progressTarget = val;
-	}
-	
-	public float getProgressPercent()
-	{
-		return (float)progress / (float)progressTarget;
 	}
 }

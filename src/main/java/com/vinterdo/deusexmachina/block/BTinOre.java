@@ -2,9 +2,9 @@ package com.vinterdo.deusexmachina.block;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 
-public class BlockTinOre extends BlockDEM
+public class BTinOre extends BDEM
 {
-	public BlockTinOre()
+	public BTinOre()
 	{
 		super();
 		this.setBlockName("tinOre");

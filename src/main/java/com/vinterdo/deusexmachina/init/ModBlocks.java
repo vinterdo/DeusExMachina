@@ -2,19 +2,19 @@ package com.vinterdo.deusexmachina.init;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.vinterdo.deusexmachina.block.BlockBlastFurnace;
-import com.vinterdo.deusexmachina.block.BlockBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.block.BlockCamo;
-import com.vinterdo.deusexmachina.block.BlockCopperOre;
-import com.vinterdo.deusexmachina.block.BlockDEM;
-import com.vinterdo.deusexmachina.block.BlockEssenceMacerator;
-import com.vinterdo.deusexmachina.block.BlockEssenceOre;
-import com.vinterdo.deusexmachina.block.BlockEssenceProcessor;
-import com.vinterdo.deusexmachina.block.BlockGrayMatterFabricator;
-import com.vinterdo.deusexmachina.block.BlockGrayMatterFabricatorMaster;
-import com.vinterdo.deusexmachina.block.BlockHeater;
-import com.vinterdo.deusexmachina.block.BlockTileEntityDEM;
-import com.vinterdo.deusexmachina.block.BlockTinOre;
+import com.vinterdo.deusexmachina.block.BBlastFurnace;
+import com.vinterdo.deusexmachina.block.BBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.block.BCamo;
+import com.vinterdo.deusexmachina.block.BCopperOre;
+import com.vinterdo.deusexmachina.block.BDEM;
+import com.vinterdo.deusexmachina.block.BEssenceMacerator;
+import com.vinterdo.deusexmachina.block.BEssenceOre;
+import com.vinterdo.deusexmachina.block.BEssenceProcessor;
+import com.vinterdo.deusexmachina.block.BGrayMatterFabricator;
+import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
+import com.vinterdo.deusexmachina.block.BHeater;
+import com.vinterdo.deusexmachina.block.BTileEntityDEM;
+import com.vinterdo.deusexmachina.block.BTinOre;
 import com.vinterdo.deusexmachina.reference.Reference;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -22,20 +22,20 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks 
 {
-	public static final BlockDEM essenceOre = new BlockEssenceOre();
-	public static final BlockDEM tinOre = new BlockTinOre();
-	public static final BlockDEM copperOre = new BlockCopperOre();
+	public static final BDEM essenceOre = new BEssenceOre();
+	public static final BDEM tinOre = new BTinOre();
+	public static final BDEM copperOre = new BCopperOre();
 	
-	public static final BlockTileEntityDEM essenceProcessor = new BlockEssenceProcessor();
-	public static final BlockTileEntityDEM  camoBlock = new BlockCamo();
-	public static final BlockTileEntityDEM  heater = new BlockHeater();
-	public static final BlockTileEntityDEM  essenceMacerator = new BlockEssenceMacerator();
+	public static final BTileEntityDEM essenceProcessor = new BEssenceProcessor();
+	public static final BTileEntityDEM  camoBlock = new BCamo();
+	public static final BTileEntityDEM  heater = new BHeater();
+	public static final BTileEntityDEM  essenceMacerator = new BEssenceMacerator();
 	
-	public static final BlockTileEntityDEM  blastFurnaceMaster = new BlockBlastFurnaceMaster();
-	public static final BlockTileEntityDEM  blastFurnace = new BlockBlastFurnace();
+	public static final BTileEntityDEM  blastFurnaceMaster = new BBlastFurnaceMaster();
+	public static final BTileEntityDEM  blastFurnace = new BBlastFurnace();
 	
-	public static final BlockTileEntityDEM  grayMatterFabricatorMaster = new BlockGrayMatterFabricatorMaster();
-	public static final BlockTileEntityDEM  grayMatterFabricator = new BlockGrayMatterFabricator();
+	public static final BTileEntityDEM  grayMatterFabricatorMaster = new BGrayMatterFabricatorMaster();
+	public static final BTileEntityDEM  grayMatterFabricator = new BGrayMatterFabricator();
 	
 	public static void init()
 	{

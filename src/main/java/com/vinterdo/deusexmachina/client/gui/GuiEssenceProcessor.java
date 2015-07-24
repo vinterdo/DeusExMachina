@@ -3,19 +3,19 @@ package com.vinterdo.deusexmachina.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class GuiEssenceProcessor extends GuiDEM
 {
-	TileEntityEssenceProcessor te;
+	TEEssenceProcessor te;
 	public GuiEssenceProcessor(InventoryPlayer playerInv, TileEntity te) 
 	{	
-		super(new ContainerEssenceProcessor(playerInv, (TileEntityDEM)te), "essenceProcessor");
-		this.te = (TileEntityEssenceProcessor)te;
+		super(new ContainerEssenceProcessor(playerInv, (TEDEM)te), "essenceProcessor");
+		this.te = (TEEssenceProcessor)te;
 	}
 
 	@Override

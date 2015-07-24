@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityCamoBlock extends TileEntityDEM
+public class TECamoBlock extends TEDEM
 {
 	private ItemStack[] camoStacks = new ItemStack[6];
 	

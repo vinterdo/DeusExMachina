@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
-import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,12 +26,12 @@ public class ContainerGrayMatterFabricator extends ContainerDEM
 	int lastProgress = -1;
 	int lastPower = -1;
 	int lastProgressTarget = -1;
-	TileEntityGrayMatterFabricatorMaster te;
+	TEGrayMatterFabricatorMaster te;
 	
-	public ContainerGrayMatterFabricator(InventoryPlayer playerInv, TileEntityDEM _te)
+	public ContainerGrayMatterFabricator(InventoryPlayer playerInv, TEDEM _te)
 	{
 		super(_te);
-		te = (TileEntityGrayMatterFabricatorMaster) _te;
+		te = (TEGrayMatterFabricatorMaster) _te;
 		
 		this.addSlotToContainer(new Slot((IInventory) te, 0, 25, 14 + 0 * 21));
 		this.addSlotToContainer(new Slot((IInventory) te, 1, 60 + 0 * 20, 56 ));

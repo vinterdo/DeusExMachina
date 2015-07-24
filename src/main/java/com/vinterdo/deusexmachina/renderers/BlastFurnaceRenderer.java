@@ -3,7 +3,7 @@ package com.vinterdo.deusexmachina.renderers;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import assets.deusexmachina.models.ModelBlock;
@@ -51,7 +51,7 @@ public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) 
 	{
-        if(((TileEntityBlastFurnaceMaster)te).isFormed())
+        if(((TEBlastFurnaceMaster)te).isFormed())
         {
         	GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y - 1.5F, (float) z + 0.5F);

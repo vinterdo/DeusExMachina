@@ -12,11 +12,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityMultiblock extends TileEntityDEM
+public class TEMultiblock extends TEDEM
 {
-	protected TileEntityMultiblockMaster master;
+	protected TEMultiblockMaster master;
 	
-	public TileEntityMultiblockMaster getMaster()
+	public TEMultiblockMaster getMaster()
 	{
 		return master;
 	}
@@ -28,7 +28,7 @@ public class TileEntityMultiblock extends TileEntityDEM
 		//LogHelper.info(master == null);
 	}
 	
-	public void setMaster(TileEntityMultiblockMaster te)
+	public void setMaster(TEMultiblockMaster te)
 	{
 		master = te;
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -61,7 +61,7 @@ public class TileEntityMultiblock extends TileEntityDEM
 			int y = ByteBufUtils.readVarInt(buf, 5);
 			int z = ByteBufUtils.readVarInt(buf, 5);
 			
-			master = (TileEntityMultiblockMaster) worldObj.getTileEntity(x, y, z);
+			master = (TEMultiblockMaster) worldObj.getTileEntity(x, y, z);
 		}
 		else
 		{

@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class BlockMultitexturedTileEntity extends BlockTileEntityDEM
+public abstract class BMultitexturedTileEntity extends BTileEntityDEM
 {
 	protected IIcon[] icons = new IIcon[6];
 	

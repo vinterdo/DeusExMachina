@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class TileEntityDEM extends TileEntity
+public abstract class TEDEM extends TileEntity
 {
 	@Override
 	public Packet getDescriptionPacket()

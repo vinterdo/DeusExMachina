@@ -3,8 +3,8 @@ package com.vinterdo.deusexmachina.renderers;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import assets.deusexmachina.models.ModelBlock;
@@ -53,7 +53,7 @@ public class GrayMatterFabricatorRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) 
 	{
-        if(((TileEntityGrayMatterFabricatorMaster)te).isFormed())
+        if(((TEGrayMatterFabricatorMaster)te).isFormed())
         {
         	GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y +0.5F, (float) z + 0.5F);

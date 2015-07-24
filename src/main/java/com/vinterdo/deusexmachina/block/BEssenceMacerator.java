@@ -7,12 +7,12 @@ import net.minecraft.world.World;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
-public class BlockEssenceMacerator extends BlockMultitexturedTileEntity
+public class BEssenceMacerator extends BMultitexturedTileEntity
 {
-	public BlockEssenceMacerator()
+	public BEssenceMacerator()
 	{
 		super();
 		this.setBlockName("essenceMacerator");
@@ -23,7 +23,7 @@ public class BlockEssenceMacerator extends BlockMultitexturedTileEntity
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
 	{
-		return new TileEntityEssenceMacerator();
+		return new TEEssenceMacerator();
 	}
 	
 	@Override

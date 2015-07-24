@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityEssenceProcessor extends TileEntityDEM implements IInventory
+public class TEEssenceProcessor extends TEDEM implements IInventory
 {
 	protected ItemStack[] stacks = new ItemStack[9];
 	protected int progress;
@@ -53,7 +53,7 @@ public class TileEntityEssenceProcessor extends TileEntityDEM implements IInvent
 				}
 			}
 			
-			if(te != null && te instanceof TileEntityHeater && ((TileEntityHeater)te).isWorking() && essences > 0 && capsules > 0)
+			if(te != null && te instanceof TEHeater && ((TEHeater)te).isWorking() && essences > 0 && capsules > 0)
 			{
 				progress++;
 				

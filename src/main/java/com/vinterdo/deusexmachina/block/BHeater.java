@@ -3,8 +3,8 @@ package com.vinterdo.deusexmachina.block;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
-import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
-import com.vinterdo.deusexmachina.tileentity.TileEntityHeater;
+import com.vinterdo.deusexmachina.tileentity.TECamoBlock;
+import com.vinterdo.deusexmachina.tileentity.TEHeater;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,10 +18,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockHeater extends BlockTileEntityDEM
+public class BHeater extends BTileEntityDEM
 {
 	IIcon workingIcon;
-	public BlockHeater()
+	public BHeater()
 	{
 		super();
 		this.setBlockName("heater");
@@ -32,7 +32,7 @@ public class BlockHeater extends BlockTileEntityDEM
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
 	{
-		return new TileEntityHeater();
+		return new TEHeater();
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class BlockHeater extends BlockTileEntityDEM
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
 	{
-		TileEntityHeater te = (TileEntityHeater)world.getTileEntity(x, y, z);
+		TEHeater te = (TEHeater)world.getTileEntity(x, y, z);
 		if(te.isWorking())
 		{
 			return workingIcon;
@@ -70,7 +70,7 @@ public class BlockHeater extends BlockTileEntityDEM
 	
 	public int getLightValue(IBlockAccess world,int  x,int y,int z)
 	{
-    	TileEntityHeater te = (TileEntityHeater)world.getTileEntity(x, y, z);
+    	TEHeater te = (TEHeater)world.getTileEntity(x, y, z);
     	if (te!=null)
     	{
         	if (te.isWorking())

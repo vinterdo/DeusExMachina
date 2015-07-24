@@ -3,19 +3,19 @@ package com.vinterdo.deusexmachina.client.gui;
 import com.vinterdo.deusexmachina.inventory.ContainerBlastFurnace;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class GuiBlastFurnace extends GuiDEM
 {
-	TileEntityBlastFurnaceMaster te;
+	TEBlastFurnaceMaster te;
 	public GuiBlastFurnace(InventoryPlayer playerInv, TileEntity te) 
 	{
-		super(new ContainerBlastFurnace(playerInv, (TileEntityDEM)te), "blastFurnace");
-		this.te = (TileEntityBlastFurnaceMaster) te;
+		super(new ContainerBlastFurnace(playerInv, (TEDEM)te), "blastFurnace");
+		this.te = (TEBlastFurnaceMaster) te;
 	}
 
 	@Override 

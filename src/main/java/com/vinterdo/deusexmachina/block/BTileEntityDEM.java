@@ -1,23 +1,24 @@
 package com.vinterdo.deusexmachina.block;
 
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import com.vinterdo.deusexmachina.reference.Reference;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
 
-public class BlockDEM extends Block
+public abstract class BTileEntityDEM extends BlockContainer
 {
-
-	public BlockDEM(Material material) 
+	public BTileEntityDEM (Material material) 
 	{
 		super(material);
 	}
 	
-	public BlockDEM()
+	public BTileEntityDEM ()
 	{
 		super(Material.rock);
 	}
@@ -39,4 +40,6 @@ public class BlockDEM extends Block
 	{
 		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
 	}
+
+
 }

@@ -13,9 +13,9 @@ import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 
-public class TileEntityMultiblockMaster extends TileEntityDEM
+public class TEMultiblockMaster extends TEDEM
 {
-	protected ArrayList<TileEntityMultiblock> members;
+	protected ArrayList<TEMultiblock> members;
 	protected boolean formed = false;
 	boolean shouldReform = false;
 	
@@ -39,10 +39,10 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 	public void tryForming()
 	{
 		// in override add every member of proper multiblock
-		if(members == null) members = new ArrayList<TileEntityMultiblock>();
+		if(members == null) members = new ArrayList<TEMultiblock>();
 		if(isProperMultiblock())
 		{
-			for(TileEntityMultiblock te : members)
+			for(TEMultiblock te : members)
 			{
 				te.setMaster(this);
 			}
@@ -63,15 +63,15 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 		return true;
 	}
 	
-	public void addMember(TileEntityMultiblock te)
+	public void addMember(TEMultiblock te)
 	{
 		if(members == null)
-			members = new ArrayList<TileEntityMultiblock>();
+			members = new ArrayList<TEMultiblock>();
 		
 		members.add(te);
 	}
 	
-	public void removeMember(TileEntityMultiblock te)
+	public void removeMember(TEMultiblock te)
 	{
 		if(members != null)
 			members.remove(te);
@@ -83,7 +83,7 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 	{
 		if(members != null)
 		{
-			for(TileEntityMultiblock te : members)
+			for(TEMultiblock te : members)
 			{
 				te.master = null;
 				worldObj.markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
@@ -120,16 +120,6 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 		if(formed)
 		{
 			shouldReform = true;
-			/*int[] arrX = tag.getIntArray("childsX");
-			int[] arrY = tag.getIntArray("childsY");
-			int[] arrZ = tag.getIntArray("childsZ");
-			
-			members = new ArrayList<TileEntityMultiblock>(arrX.length);
-			
-			for(int i=0; i < arrX.length; i++)
-			{
-				members.set(i, (TileEntityMultiblock) worldObj.getTileEntity(arrX[i], arrY[i], arrZ[i]));
-			}*/
 		}
 	}
 	
@@ -137,28 +127,6 @@ public class TileEntityMultiblockMaster extends TileEntityDEM
 	{
 		super.writeToNBT(tag);
 		tag.setBoolean("formed", formed);
-		
-		if(formed)
-		{
-			/*int[] arr = new int[members.size()];
-			for(int i=0; i<members.size(); i++)
-			{
-				arr[i] = members.get(i).xCoord;
-			}
-			tag.setIntArray("childsX", arr);
-			
-			for(int i=0; i<members.size(); i++)
-			{
-				arr[i] = members.get(i).yCoord;
-			}
-			tag.setIntArray("childsY", arr);
-			
-			for(int i=0; i<members.size(); i++)
-			{
-				arr[i] = members.get(i).zCoord;
-			}
-			tag.setIntArray("childsZ", arr);*/
-		}
 	}
 	
 }

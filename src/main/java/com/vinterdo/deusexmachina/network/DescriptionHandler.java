@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.proxy.CommonProxy;
 import com.vinterdo.deusexmachina.reference.Reference;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
@@ -39,9 +39,9 @@ public class DescriptionHandler extends SimpleChannelInboundHandler<FMLProxyPack
 		z = buf.readInt();
 		
 		TileEntity te = ((CommonProxy) DeusExMachina.proxy).getClientPlayer().worldObj.getTileEntity(x, y, z);
-		if(te instanceof TileEntityDEM)
+		if(te instanceof TEDEM)
 		{
-			((TileEntityDEM)te).readFromPacket(buf);
+			((TEDEM)te).readFromPacket(buf);
 		}
 	}
 

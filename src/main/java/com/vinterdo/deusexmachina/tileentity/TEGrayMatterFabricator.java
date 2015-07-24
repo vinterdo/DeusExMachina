@@ -4,44 +4,44 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class TileEntityGrayMatterFabricator extends TileEntityMultiblock implements IInventory
+public class TEGrayMatterFabricator extends TEMultiblock implements IInventory
 {
 
 	@Override
 	public int getSizeInventory() 
 	{
-		return master == null ? 0 : ((TileEntityGrayMatterFabricatorMaster)master).getSizeInventory();
+		return master == null ? 0 : ((TEGrayMatterFabricatorMaster)master).getSizeInventory();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot) 
 	{
-		return master == null ? null : ((TileEntityGrayMatterFabricatorMaster)master).getStackInSlot(slot);
+		return master == null ? null : ((TEGrayMatterFabricatorMaster)master).getStackInSlot(slot);
 	}
 
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) 
 	{
-		return master == null ? null : ((TileEntityGrayMatterFabricatorMaster)master).decrStackSize(slot, amount);
+		return master == null ? null : ((TEGrayMatterFabricatorMaster)master).decrStackSize(slot, amount);
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) 
 	{
-		return master == null ? null : ((TileEntityGrayMatterFabricatorMaster)master).getStackInSlotOnClosing(slot);
+		return master == null ? null : ((TEGrayMatterFabricatorMaster)master).getStackInSlotOnClosing(slot);
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) 
 	{
 		if(master != null)
-			((TileEntityGrayMatterFabricatorMaster)master).setInventorySlotContents(slot, stack);
+			((TEGrayMatterFabricatorMaster)master).setInventorySlotContents(slot, stack);
 	}
 
 	@Override
 	public String getInventoryName() 
 	{
-		return master == null ? "" : ((TileEntityGrayMatterFabricatorMaster)master).getInventoryName();
+		return master == null ? "" : ((TEGrayMatterFabricatorMaster)master).getInventoryName();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class TileEntityGrayMatterFabricator extends TileEntityMultiblock impleme
 	@Override
 	public int getInventoryStackLimit() 
 	{
-		return master == null ? 0 : ((TileEntityGrayMatterFabricatorMaster)master).getInventoryStackLimit();
+		return master == null ? 0 : ((TEGrayMatterFabricatorMaster)master).getInventoryStackLimit();
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class TileEntityGrayMatterFabricator extends TileEntityMultiblock impleme
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack item) 
 	{
-		return master == null ? false : ((TileEntityGrayMatterFabricatorMaster)master).isItemValidForSlot(slot, item);
+		return master == null ? false : ((TEGrayMatterFabricatorMaster)master).isItemValidForSlot(slot, item);
 	}
 
 }

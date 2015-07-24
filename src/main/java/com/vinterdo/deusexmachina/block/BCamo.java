@@ -1,7 +1,7 @@
 package com.vinterdo.deusexmachina.block;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
+import com.vinterdo.deusexmachina.tileentity.TECamoBlock;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,9 +14,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCamo extends BlockTileEntityDEM 
+public class BCamo extends BTileEntityDEM 
 {
-	public BlockCamo()
+	public BCamo()
 	{
 		super();
 		this.setBlockName("camoBlock");
@@ -27,7 +27,7 @@ public class BlockCamo extends BlockTileEntityDEM
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) 
 	{
-		return new TileEntityCamoBlock();
+		return new TECamoBlock();
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class BlockCamo extends BlockTileEntityDEM
 	{
 		if(!world.isRemote)
 		{
-			TileEntityCamoBlock te = (TileEntityCamoBlock)world.getTileEntity(x, y, z);
+			TECamoBlock te = (TECamoBlock)world.getTileEntity(x, y, z);
 			ItemStack stack = player.getCurrentEquippedItem();
 			te.setCamo(stack, side);			
 		}
@@ -45,7 +45,7 @@ public class BlockCamo extends BlockTileEntityDEM
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
 	{
-		TileEntityCamoBlock te = (TileEntityCamoBlock)world.getTileEntity(x, y, z);
+		TECamoBlock te = (TECamoBlock)world.getTileEntity(x, y, z);
 		ItemStack stack = te.getCamo(side);
 		if(stack != null && stack.getItem() instanceof ItemBlock)
 		{

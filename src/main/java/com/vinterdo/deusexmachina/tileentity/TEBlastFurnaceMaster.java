@@ -19,7 +19,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class TileEntityBlastFurnaceMaster extends TileEntityMultiblockMaster implements IInventory
+public class TEBlastFurnaceMaster extends TEMultiblockMaster implements IInventory
 {
 
 	protected ItemStack[] stacks = new ItemStack[9]; // 0..2 - input, 3..5 - fuel 6..8 - output
@@ -156,7 +156,7 @@ public class TileEntityBlastFurnaceMaster extends TileEntityMultiblockMaster imp
 	@Override
 	public void tryForming()
 	{
-		members = new ArrayList<TileEntityMultiblock>();
+		members = new ArrayList<TEMultiblock>();
 		for(int x =0; x < 3; x++)
 		{
 			for(int y =0; y < 4; y++)
@@ -165,9 +165,9 @@ public class TileEntityBlastFurnaceMaster extends TileEntityMultiblockMaster imp
 				{
 					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 3, zCoord + z - 1);
 					
-					if(te instanceof TileEntityBlastFurnace)
+					if(te instanceof TEBlastFurnace)
 					{
-						members.add((TileEntityMultiblock)te);
+						members.add((TEMultiblock)te);
 					}
 				}
 			}
@@ -189,9 +189,9 @@ public class TileEntityBlastFurnaceMaster extends TileEntityMultiblockMaster imp
 					{
 						return false;
 					}
-					else if(te instanceof TileEntityBlastFurnace)
+					else if(te instanceof TEBlastFurnace)
 					{
-						TileEntityMultiblock tem = (TileEntityMultiblock)te;
+						TEMultiblock tem = (TEMultiblock)te;
 						if(tem.getMaster() != null) 
 							return false;
 					}

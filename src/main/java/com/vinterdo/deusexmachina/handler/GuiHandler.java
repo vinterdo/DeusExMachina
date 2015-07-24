@@ -10,7 +10,7 @@ import com.vinterdo.deusexmachina.inventory.ContainerEssenceMacerator;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -33,15 +33,15 @@ public class GuiHandler implements IGuiHandler
 		switch(GuiIDs.values()[ID])
 		{
 		case ESSENCE_PROCESSOR:
-			return new ContainerEssenceProcessor(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new ContainerEssenceProcessor(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case HEATER:
-			return new ContainerHeater(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new ContainerHeater(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case ESSENCE_MACERATOR:
-			return new ContainerEssenceMacerator(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new ContainerEssenceMacerator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case GRAY_MATTER_FABRICATOR:
-			return new ContainerGrayMatterFabricator(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new ContainerGrayMatterFabricator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case BLAST_FURNACE:
-			return new ContainerBlastFurnace(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new ContainerBlastFurnace(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		
 		}
 		
@@ -54,15 +54,15 @@ public class GuiHandler implements IGuiHandler
 		switch(GuiIDs.values()[ID])
 		{
 		case ESSENCE_PROCESSOR:
-			return new GuiEssenceProcessor(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new GuiEssenceProcessor(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case HEATER:
-			return new GuiHeater(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new GuiHeater(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case ESSENCE_MACERATOR:
-			return new GuiEssenceMacerator(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new GuiEssenceMacerator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case GRAY_MATTER_FABRICATOR:
-			return new GuiGrayMatterFabricator(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new GuiGrayMatterFabricator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case BLAST_FURNACE:
-			return new GuiBlastFurnace(player.inventory, (TileEntityDEM)world.getTileEntity(x, y, z));
+			return new GuiBlastFurnace(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		
 		}
 		

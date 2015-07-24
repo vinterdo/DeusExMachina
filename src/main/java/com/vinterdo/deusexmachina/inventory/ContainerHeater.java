@@ -2,8 +2,8 @@ package com.vinterdo.deusexmachina.inventory;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 public class ContainerHeater extends ContainerDEM
 {
 	
-	public ContainerHeater(InventoryPlayer playerInv, TileEntityDEM te)
+	public ContainerHeater(InventoryPlayer playerInv, TEDEM te)
 	{
 		super(te);
 		

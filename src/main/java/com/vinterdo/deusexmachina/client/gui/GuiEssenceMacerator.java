@@ -4,20 +4,20 @@ import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceMacerator;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class GuiEssenceMacerator extends GuiDEM
 {
-	TileEntityEssenceMacerator te;
+	TEEssenceMacerator te;
 	public GuiEssenceMacerator(InventoryPlayer playerInv, TileEntity te) 
 	{	
-		super(new ContainerEssenceMacerator(playerInv, (TileEntityDEM)te), "essenceMacerator");
-		this.te = (TileEntityEssenceMacerator)te;
+		super(new ContainerEssenceMacerator(playerInv, (TEDEM)te), "essenceMacerator");
+		this.te = (TEEssenceMacerator)te;
 	}
 
 	@Override

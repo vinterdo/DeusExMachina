@@ -4,12 +4,10 @@ import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
 import com.vinterdo.deusexmachina.init.ModBlocks;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnace;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityCamoBlock;
-import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityHeater;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnace;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TECamoBlock;
+import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.relauncher.Side;
@@ -26,12 +24,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 
-public class BlockGrayMatterFabricator extends BlockTileEntityDEM
+public class BBlastFurnace extends BTileEntityDEM
 {
-	public BlockGrayMatterFabricator()
+	public BBlastFurnace()
 	{
 		super();
-		this.setBlockName("grayMatterFabricator");
+		this.setBlockName("blastFurnace");
 		this.setHardness(5.0F);
 		this.setCreativeTab(CreativeTabDEM.DEM_TAB);
 	}
@@ -39,7 +37,7 @@ public class BlockGrayMatterFabricator extends BlockTileEntityDEM
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
 	{
-		return new TileEntityGrayMatterFabricator();
+		return new TEBlastFurnace();
 	}
 	
 	@Override
@@ -47,10 +45,11 @@ public class BlockGrayMatterFabricator extends BlockTileEntityDEM
 	{
 		if(!world.isRemote)
 		{
-			TileEntityGrayMatterFabricator te = (TileEntityGrayMatterFabricator)world.getTileEntity(x, y, z);
+			TEBlastFurnace te = (TEBlastFurnace)world.getTileEntity(x, y, z);
+			// TODO: add opening masters GUI : player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.BLAST_FURNACE.ordinal(), world, x, y, z);
 			if(te.isFormed()) 
 			{
-				player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.GRAY_MATTER_FABRICATOR.ordinal(), world, te.getMaster().xCoord, te.getMaster().yCoord, te.getMaster().zCoord);
+				player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.BLAST_FURNACE.ordinal(), world, te.getMaster().xCoord, te.getMaster().yCoord, te.getMaster().zCoord);
 				return true;
 			}
 			else
@@ -71,9 +70,9 @@ public class BlockGrayMatterFabricator extends BlockTileEntityDEM
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block par5, int par6)
 	{
-		TileEntityGrayMatterFabricatorMaster te = (TileEntityGrayMatterFabricatorMaster) ((TileEntityGrayMatterFabricator)world.getTileEntity(x, y, z)).getMaster();
+		TEBlastFurnaceMaster te = (TEBlastFurnaceMaster) ((TEBlastFurnace)world.getTileEntity(x, y, z)).getMaster();
 		if(te!= null) 
-			te.removeMember((TileEntityGrayMatterFabricator)world.getTileEntity(x, y, z));
+			te.removeMember((TEBlastFurnace)world.getTileEntity(x, y, z));
 
 		super.breakBlock(world, x, y, z, par5, par6);
 		
@@ -85,7 +84,7 @@ public class BlockGrayMatterFabricator extends BlockTileEntityDEM
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) 
 	{
-			TileEntityGrayMatterFabricator teMe = (TileEntityGrayMatterFabricator) world.getTileEntity(x - ForgeDirection.getOrientation(side).offsetX, y - ForgeDirection.getOrientation(side).offsetY, z - ForgeDirection.getOrientation(side).offsetZ);
+			TEBlastFurnace teMe = (TEBlastFurnace) world.getTileEntity(x - ForgeDirection.getOrientation(side).offsetX, y - ForgeDirection.getOrientation(side).offsetY, z - ForgeDirection.getOrientation(side).offsetZ);
 			
 			return !teMe.isFormed();
 	}

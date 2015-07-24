@@ -2,12 +2,12 @@ package com.vinterdo.deusexmachina.block;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 
-public class BlockCopperOre extends BlockDEM
+public class BEssenceOre extends BDEM
 {
-	public BlockCopperOre()
+	public BEssenceOre()
 	{
 		super();
-		this.setBlockName("copperOre");
+		this.setBlockName("essenceOre");
 		this.setHardness(4.0F);
 		this.setCreativeTab(CreativeTabDEM.DEM_TAB);
 	}

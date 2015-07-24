@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,12 +24,12 @@ public class ContainerEssenceMacerator extends ContainerDEM
 	int lastProgress = -1;
 	int lastPower = -1;
 	int lastProgressTarget = -1;
-	TileEntityEssenceMacerator te;
+	TEEssenceMacerator te;
 	
-	public ContainerEssenceMacerator(InventoryPlayer playerInv, TileEntityDEM te)
+	public ContainerEssenceMacerator(InventoryPlayer playerInv, TEDEM te)
 	{
 		super(te);
-		this.te = (TileEntityEssenceMacerator)te;
+		this.te = (TEEssenceMacerator)te;
 		
 		for(int i =0; i < 3; i++)
 		{

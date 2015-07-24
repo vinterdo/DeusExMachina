@@ -4,44 +4,44 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class TileEntityBlastFurnace extends TileEntityMultiblock implements IInventory
+public class TEBlastFurnace extends TEMultiblock implements IInventory
 {
 
 	@Override
 	public int getSizeInventory() 
 	{
-		return master == null ? 0 : ((TileEntityBlastFurnaceMaster)master).getSizeInventory();
+		return master == null ? 0 : ((TEBlastFurnaceMaster)master).getSizeInventory();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot) 
 	{
-		return master == null ? null : ((TileEntityBlastFurnaceMaster)master).getStackInSlot(slot);
+		return master == null ? null : ((TEBlastFurnaceMaster)master).getStackInSlot(slot);
 	}
 
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) 
 	{
-		return master == null ? null : ((TileEntityBlastFurnaceMaster)master).decrStackSize(slot, amount);
+		return master == null ? null : ((TEBlastFurnaceMaster)master).decrStackSize(slot, amount);
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) 
 	{
-		return master == null ? null : ((TileEntityBlastFurnaceMaster)master).getStackInSlotOnClosing(slot);
+		return master == null ? null : ((TEBlastFurnaceMaster)master).getStackInSlotOnClosing(slot);
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) 
 	{
 		if(master != null)
-			((TileEntityBlastFurnaceMaster)master).setInventorySlotContents(slot, stack);
+			((TEBlastFurnaceMaster)master).setInventorySlotContents(slot, stack);
 	}
 
 	@Override
 	public String getInventoryName() 
 	{
-		return master == null ? "" : ((TileEntityBlastFurnaceMaster)master).getInventoryName();
+		return master == null ? "" : ((TEBlastFurnaceMaster)master).getInventoryName();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class TileEntityBlastFurnace extends TileEntityMultiblock implements IInv
 	@Override
 	public int getInventoryStackLimit() 
 	{
-		return master == null ? 0 : ((TileEntityBlastFurnaceMaster)master).getInventoryStackLimit();
+		return master == null ? 0 : ((TEBlastFurnaceMaster)master).getInventoryStackLimit();
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class TileEntityBlastFurnace extends TileEntityMultiblock implements IInv
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack item) 
 	{
-		return master == null ? false : ((TileEntityBlastFurnaceMaster)master).isItemValidForSlot(slot, item);
+		return master == null ? false : ((TEBlastFurnaceMaster)master).isItemValidForSlot(slot, item);
 	}
 
 }

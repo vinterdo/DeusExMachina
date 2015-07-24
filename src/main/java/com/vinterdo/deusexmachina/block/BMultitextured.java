@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockMultitextured extends BlockDEM
+public class BMultitextured extends BDEM
 {
 	protected IIcon[] icons = new IIcon[6];
 	

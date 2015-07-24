@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -22,12 +22,12 @@ public class ContainerEssenceProcessor extends ContainerDEM
 {
 	int lastProgress = -1;
 	int lastPower = -1;
-	TileEntityEssenceProcessor te;
+	TEEssenceProcessor te;
 	
-	public ContainerEssenceProcessor(InventoryPlayer playerInv, TileEntityDEM te)
+	public ContainerEssenceProcessor(InventoryPlayer playerInv, TEDEM te)
 	{
 		super(te);
-		this.te = (TileEntityEssenceProcessor)te;
+		this.te = (TEEssenceProcessor)te;
 		
 		for(int i =0; i < 3; i++)
 		{

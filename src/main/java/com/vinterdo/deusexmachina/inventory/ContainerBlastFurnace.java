@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
-import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,12 +25,12 @@ public class ContainerBlastFurnace extends ContainerDEM
 	int lastProgress = -1;
 	int lastPower = -1;
 	int lastProgressTarget = -1;
-	TileEntityBlastFurnaceMaster te;
+	TEBlastFurnaceMaster te;
 	
-	public ContainerBlastFurnace(InventoryPlayer playerInv, TileEntityDEM _te)
+	public ContainerBlastFurnace(InventoryPlayer playerInv, TEDEM _te)
 	{
 		super(_te);
-		te = (TileEntityBlastFurnaceMaster) _te;
+		te = (TEBlastFurnaceMaster) _te;
 		
 		for(int i =0; i < 3; i++)
 		{

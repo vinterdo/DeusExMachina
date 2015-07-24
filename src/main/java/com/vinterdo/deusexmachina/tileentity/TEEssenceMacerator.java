@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityEssenceMacerator extends TileEntityDEM implements IInventory
+public class TEEssenceMacerator extends TEDEM implements IInventory
 {
 	protected ItemStack[] stacks = new ItemStack[8];
 	protected int progress;

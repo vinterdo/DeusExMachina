@@ -1,6 +1,6 @@
 package com.vinterdo.deusexmachina.inventory;
 
-import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
+import com.vinterdo.deusexmachina.tileentity.TEDEM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 
 public abstract class ContainerDEM extends Container
 {
-	protected final TileEntityDEM te;
+	protected final TEDEM te;
 	
-	protected ContainerDEM(TileEntityDEM _te)
+	protected ContainerDEM(TEDEM _te)
 	{
 		te = _te;
 	}
