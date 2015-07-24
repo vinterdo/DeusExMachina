@@ -57,3 +57,8 @@ Plasma Reactor - zjada plasmę, robi rfy
 Ray gun - im fajerin mah lejzor!
 Assemby Line - działa jak Cyclic Assembler, tylko szybciej, multiblock
 Mana Generator - wymaga botanii, robi RFy z many
+Void Digger - kopie surowce 'z niczego' - wymaga bardzo dużo energii
+Charger - daje RF wszystkim maszynom z pewnego obszaru bezprzewodowo
+Item viewer - daje możliwość przeglądania inventory każdej maszyny z pewnego obszaru
+System tarcz (a'la mffs)
+Void oil pump
