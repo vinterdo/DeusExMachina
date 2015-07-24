@@ -4,10 +4,12 @@ import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import assets.deusexmachina.models.ModelBlock;
 import assets.deusexmachina.models.ModelFurnace;
+import assets.deusexmachina.models.ModelGrayMatterFabricator;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -18,14 +20,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
+public class GrayMatterFabricatorRenderer extends TileEntitySpecialRenderer
 {
-	private final ModelFurnace model;
+	private final ModelGrayMatterFabricator model;
 	private final ModelBlock modelBlock;
     
-    public BlastFurnaceRenderer() 
+    public GrayMatterFabricatorRenderer() 
     {
-            this.model = new ModelFurnace();
+            this.model = new ModelGrayMatterFabricator();
             this.modelBlock = new ModelBlock();
     }
     
@@ -51,11 +53,11 @@ public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) 
 	{
-        if(((TileEntityBlastFurnaceMaster)te).isFormed())
+        if(((TileEntityGrayMatterFabricatorMaster)te).isFormed())
         {
         	GL11.glPushMatrix();
-            GL11.glTranslatef((float) x + 0.5F, (float) y - 1.5F, (float) z + 0.5F);
-            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/ModelFurnace.png"));
+            GL11.glTranslatef((float) x + 0.5F, (float) y +0.5F, (float) z + 0.5F);
+            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/GrayMatterFabricator.png"));
             Minecraft.getMinecraft().renderEngine.bindTexture(textures);                  
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
@@ -65,7 +67,7 @@ public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
         {
         	GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/BlockBlastFurnace.png"));
+            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/BlockGrayMatterFabricator.png"));
             Minecraft.getMinecraft().renderEngine.bindTexture(textures);                  
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);

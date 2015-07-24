@@ -8,6 +8,7 @@ import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TileEntityDEM;
 import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TileEntityEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,32 +21,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class ContainerBlastFurnace extends ContainerDEM
+public class ContainerGrayMatterFabricator extends ContainerDEM
 {
 	int lastProgress = -1;
 	int lastPower = -1;
 	int lastProgressTarget = -1;
-	TileEntityBlastFurnaceMaster te;
+	TileEntityGrayMatterFabricatorMaster te;
 	
-	public ContainerBlastFurnace(InventoryPlayer playerInv, TileEntityDEM _te)
+	public ContainerGrayMatterFabricator(InventoryPlayer playerInv, TileEntityDEM _te)
 	{
 		super(_te);
-		te = (TileEntityBlastFurnaceMaster) _te;
+		te = (TileEntityGrayMatterFabricatorMaster) _te;
 		
-		for(int i =0; i < 3; i++)
-		{
-			this.addSlotToContainer(new Slot((IInventory) te, i, 25, 14 + i * 21));
-		}
-		for(int i =0; i < 3; i++)
-		{
-			this.addSlotToContainer(new SlotFuel((IInventory) te, i + 3, 60 + i * 20, 56 ));
-		}
-		for(int i =0; i < 3; i++)
-		{
-			this.addSlotToContainer(new SlotOutput((IInventory) te, i + 6, 134, 14 + i * 21));
-		}
-		
-		
+		this.addSlotToContainer(new Slot((IInventory) te, 0, 25, 14 + 0 * 21));
+		this.addSlotToContainer(new Slot((IInventory) te, 1, 60 + 0 * 20, 56 ));
+		this.addSlotToContainer(new SlotOutput((IInventory) te, 2, 134, 14 + 0 * 21));
 		
 		addPlayerSlots(playerInv, 8, 84);
 	}
@@ -62,21 +52,11 @@ public class ContainerBlastFurnace extends ContainerDEM
 			}
 			lastProgress = te.getProgress();
 		}
-		
-		if(lastPower != te.getPower())
-		{
-			for(ICrafting crafter : (List<ICrafting>)crafters)
-			{
-				crafter.sendProgressBarUpdate(this, 1, te.getPower());
-			}
-			lastPower = te.getPower();
-		}
-		
 		if(lastProgressTarget != te.getProgressTarget())
 		{
 			for(ICrafting crafter : (List<ICrafting>)crafters)
 			{
-				crafter.sendProgressBarUpdate(this, 2, te.getProgressTarget());
+				crafter.sendProgressBarUpdate(this, 1, te.getProgressTarget());
 			}
 			lastProgressTarget = te.getProgressTarget();
 		}
@@ -92,10 +72,6 @@ public class ContainerBlastFurnace extends ContainerDEM
 			te.setProgress(value);
 		}
 		else if(id == 1)
-		{
-			te.setPower(value);
-		}
-		else if(id == 2)
 		{
 			te.setProgressTarget(value);
 		}
@@ -119,7 +95,7 @@ public class ContainerBlastFurnace extends ContainerDEM
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (target < 9)
+            if (target < 3)
             {
                 if (!this.mergeItemStack(itemstack1, 9, 45, true))
                 {
@@ -128,14 +104,14 @@ public class ContainerBlastFurnace extends ContainerDEM
             }
             else 
             {	
-            	if(TileEntityFurnace.isItemFuel(itemstack1))
+            	if(itemstack1.getItem() == ModItems.steelIngot)
             	{
-	            	if (!this.mergeItemStack(itemstack1, 3, 6, false))
+	            	if (!this.mergeItemStack(itemstack1, 0, 1, false))
 	                	return null;
             	}
-            	else
+            	else if(itemstack1.getItem() == ModItems.essence)
             	{
-            		if (!this.mergeItemStack(itemstack1, 0, 3, false))
+            		if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     	return null;
             	}
             }

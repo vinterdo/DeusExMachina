@@ -10,6 +10,8 @@ import com.vinterdo.deusexmachina.block.BlockDEM;
 import com.vinterdo.deusexmachina.block.BlockEssenceMacerator;
 import com.vinterdo.deusexmachina.block.BlockEssenceOre;
 import com.vinterdo.deusexmachina.block.BlockEssenceProcessor;
+import com.vinterdo.deusexmachina.block.BlockGrayMatterFabricator;
+import com.vinterdo.deusexmachina.block.BlockGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BlockHeater;
 import com.vinterdo.deusexmachina.block.BlockTileEntityDEM;
 import com.vinterdo.deusexmachina.block.BlockTinOre;
@@ -32,6 +34,9 @@ public class ModBlocks
 	public static final BlockTileEntityDEM  blastFurnaceMaster = new BlockBlastFurnaceMaster();
 	public static final BlockTileEntityDEM  blastFurnace = new BlockBlastFurnace();
 	
+	public static final BlockTileEntityDEM  grayMatterFabricatorMaster = new BlockGrayMatterFabricatorMaster();
+	public static final BlockTileEntityDEM  grayMatterFabricator = new BlockGrayMatterFabricator();
+	
 	public static void init()
 	{
 		GameRegistry.registerBlock(essenceOre, "essenceOre");
@@ -45,6 +50,9 @@ public class ModBlocks
 
 		GameRegistry.registerBlock(blastFurnace, "blastFurnace");
 		GameRegistry.registerBlock(blastFurnaceMaster, "blastFurnaceMaster");
+
+		GameRegistry.registerBlock(grayMatterFabricator, "grayMatterFabricator");
+		GameRegistry.registerBlock(grayMatterFabricatorMaster, "grayMatterFabricatorMaster");
 		
 
 		OreDictionary.registerOre("oreCopper", copperOre);

@@ -1,7 +1,9 @@
 package com.vinterdo.deusexmachina.proxy;
 
 import com.vinterdo.deusexmachina.renderers.BlastFurnaceRenderer;
+import com.vinterdo.deusexmachina.renderers.GrayMatterFabricatorRenderer;
 import com.vinterdo.deusexmachina.tileentity.TileEntityBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TileEntityGrayMatterFabricatorMaster;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.Minecraft;
@@ -19,5 +21,6 @@ public class ClientProxy extends CommonProxy
 	public void registerRenderThings()
 	{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlastFurnaceMaster.class, new BlastFurnaceRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrayMatterFabricatorMaster.class, new GrayMatterFabricatorRenderer());
 	}
 }

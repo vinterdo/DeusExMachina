@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 
-public class ModelGrayMatterCrafter extends ModelBase
+public class ModelGrayMatterFabricator extends ModelBase
 {
   //fields
     ModelRenderer Column1;
@@ -24,7 +24,7 @@ public class ModelGrayMatterCrafter extends ModelBase
     ModelRenderer Shape14;
     ModelRenderer Shape15;
   
-  public ModelGrayMatterCrafter()
+  public ModelGrayMatterFabricator()
   {
     textureWidth = 512;
     textureHeight = 256;

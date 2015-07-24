@@ -4,12 +4,12 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelBlockBlastFurnace extends ModelBase
+public class ModelBlock extends ModelBase
 {
   //fields
     ModelRenderer Shape1;
   
-  public ModelBlockBlastFurnace()
+  public ModelBlock()
   {
     textureWidth = 64;
     textureHeight = 32;
