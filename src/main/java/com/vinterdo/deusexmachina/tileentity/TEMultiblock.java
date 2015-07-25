@@ -25,7 +25,6 @@ public class TEMultiblock extends TEDEM
 	public void updateEntity()
 	{
 		super.updateEntity();
-		//LogHelper.info(master == null);
 	}
 	
 	public void setMaster(TEMultiblockMaster te)
@@ -53,7 +52,6 @@ public class TEMultiblock extends TEDEM
 	
 	public void readFromPacket(ByteBuf buf)
 	{
-		LogHelper.info("asd");
 		super.readFromPacket(buf);
 		if(ByteBufUtils.readVarShort(buf) == 0 ? false : true)
 		{
@@ -76,26 +74,12 @@ public class TEMultiblock extends TEDEM
 	{
 		super.readFromNBT(tag);
 		
-		/*if(tag.hasKey("masterX"))
-		{
-			int x = tag.getInteger("masterX");
-			int y = tag.getInteger("masterY");
-			int z = tag.getInteger("masterZ");
-			
-			master = (TileEntityMultiblockMaster) worldObj.getTileEntity(x, y, z);
-		}*/
 	}
 	
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);
 		
-		/*if(master != null)
-		{
-			tag.setInteger("masterX", master.xCoord);
-			tag.setInteger("masterY", master.yCoord);
-			tag.setInteger("masterZ", master.zCoord);
-		}*/
 	}
 	
 }

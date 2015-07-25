@@ -9,6 +9,7 @@ import thaumcraft.api.aspects.AspectList;
 import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
 import com.vinterdo.deusexmachina.init.ModBlocks;
+import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.init.ModTileEntities;
 import com.vinterdo.deusexmachina.network.DescriptionHandler;
@@ -41,10 +42,10 @@ public class DeusExMachina
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		LogHelper.log(Level.INFO, "start");
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 		ModItems.init();
+		ModFluids.init();
 		ModBlocks.init();
 		ModTileEntities.init();
 		Recipes.init();

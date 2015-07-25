@@ -49,11 +49,6 @@ public class TEMultiblockMaster extends TEDEM
 			
 			formed = true;
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-			LogHelper.info("formed");
-		}
-		else
-		{
-			LogHelper.info("failed forming");
 		}
 	}
 	

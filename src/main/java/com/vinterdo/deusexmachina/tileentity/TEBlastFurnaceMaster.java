@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.helpers.Helper;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.utility.LogHelper;
@@ -40,71 +41,76 @@ public class TEBlastFurnaceMaster extends TEMultiblockMaster implements IInvento
 		{
 			if(burningTime > 0)
 			{
-				burningTime -= 1;
-				
-				for(int i = 0; i < 3; i++)
-				{
-					if(stacks[i] != null)
-					{
-						if(stacks[i].getItem() == ModItems.steelDust)
-						{
-							progressTarget = SMELT_TIME_STEEL;
-							int spaceLeft = 0;
-							for(int j=0; j < 3; j++)
-							{
-								spaceLeft += (stacks[j + 6] == null) ? 64 : stacks[j + 6].getMaxStackSize() - stacks[j + 6].stackSize;
-							}
-							
-							if(spaceLeft > 0)
-							{
-								progress += PROGRESS_MULT;
-								if(progress > SMELT_TIME_STEEL)
-								{
-									smeltSteel(i);
-									progress -= SMELT_TIME_STEEL;
-								}
-							}
-						}
-						else if(FurnaceRecipes.smelting().getSmeltingResult(stacks[i]) != null)
-						{
-							progressTarget = SMELT_TIME;
-							
-							int spaceLeft = 0;
-							for(int j=0; j < 3; j++)
-							{
-								spaceLeft += (stacks[j + 6] == null) ? 64 : stacks[j + 6].getMaxStackSize() - stacks[j + 6].stackSize;
-							}
-							
-							ItemStack target = FurnaceRecipes.smelting().getSmeltingResult(stacks[i]);
-							if(target.stackSize == 0) target.stackSize = 1;
-							
-							if(spaceLeft - target.stackSize > 0)
-							{
-								progress += PROGRESS_MULT;
-								if(progress > SMELT_TIME)
-								{
-									addItemToOutput(target);
-									this.decrStackSize(i, 1);
-									progress -= SMELT_TIME;
-								}
-							}
-						}
-					}
-				}
+				smeltItems();
 			}
 			else
 			{
-				for(int i=0; i < 3; i++)
+				burnFuel();
+			}
+		}
+	}
+
+	private void burnFuel() 
+	{
+		for(int i=0; i < 3; i++)
+		{
+			if(stacks[i + 3] != null && TileEntityFurnace.isItemFuel(stacks[i+3]))
+			{
+				burningTime += TileEntityFurnace.getItemBurnTime(stacks[i + 3]);
+				this.decrStackSize(i + 3, 1);
+			}
+		}
+	}
+
+	private void smeltItems() 
+	{
+		burningTime -= 1;
+		
+		for(int i = 0; i < 3; i++)
+		{
+			if(stacks[i] != null)
+			{
+				if(stacks[i].getItem() == ModItems.steelDust || FurnaceRecipes.smelting().getSmeltingResult(stacks[i]) != null)
 				{
-					if(stacks[i + 3] != null && TileEntityFurnace.isItemFuel(stacks[i+3]))
+					ItemStack target;
+					if(stacks[i].getItem() == ModItems.steelDust)
 					{
-						burningTime += TileEntityFurnace.getItemBurnTime(stacks[i + 3]);
-						this.decrStackSize(i + 3, 1);
+						progressTarget = SMELT_TIME_STEEL;
+						target = new ItemStack(ModItems.steelIngot, 1);
 					}
+					else
+					{
+						progressTarget = SMELT_TIME;
+						target = FurnaceRecipes.smelting().getSmeltingResult(stacks[i]).copy();
+						if(target.stackSize == 0) target.stackSize = 1;
+					}
+					
+					int spaceLeft = calcSpaceLeft(target);
+					
+					if(spaceLeft - target.stackSize > 0)
+					{
+						progress += PROGRESS_MULT;
+						if(progress > progressTarget)
+						{
+							addItemToOutput(target);
+							this.decrStackSize(i, 1);
+							progress -= progressTarget;
+						}
+					}
+					break;
 				}
 			}
 		}
-		//LogHelper.info(isFormed());
+	}
+
+	private int calcSpaceLeft(ItemStack target) 
+	{
+		int spaceLeft = 0;
+		for(int j=0; j < 3; j++)
+		{
+			spaceLeft += (stacks[j + 6] == null) ? 64 : (Helper.areItemStacksStackable(stacks[j+6],target)) ? stacks[j + 6].getMaxStackSize() - stacks[j + 6].stackSize : 0;
+		}
+		return spaceLeft;
 	}
 	
 	private void addItemToOutput(ItemStack stack)
@@ -118,7 +124,7 @@ public class TEBlastFurnaceMaster extends TEMultiblockMaster implements IInvento
 			}
 			else if(stacks[i + 6].getItem() == stack.getItem())
 			{
-				if(stacks[i+6].stackSize + stack.stackSize < stacks[i+6].getMaxStackSize())
+				if(stacks[i+6].stackSize + stack.stackSize <= stacks[i+6].getMaxStackSize())
 				{
 					stacks[i+6].stackSize += stack.stackSize;
 					return;
@@ -133,25 +139,6 @@ public class TEBlastFurnaceMaster extends TEMultiblockMaster implements IInvento
 		}
 	}
 	
-	
-	private void smeltSteel(int i) 
-	{
-		this.decrStackSize(i, 1);
-		for(int j=0; j < 3; j++)
-		{
-			if(stacks[j + 6] == null)
-			{
-				stacks[j + 6] = new ItemStack(ModItems.steelIngot);
-				return;
-			}
-			else if((stacks[j+6] != null && stacks[j+6].stackSize < stacks[j + 6].getMaxStackSize() && stacks[j + 6].getItem() == ModItems.steelIngot))
-			{
-				stacks[j + 6].stackSize++;
-				return;
-			}
-		}
-		
-	}
 
 	@Override
 	public void tryForming()
