@@ -24,15 +24,10 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements IInventory, IFluidHandler
+public class TEGrayMatterCrafterMaster extends TEMultiblockMaster implements IInventory, IFluidHandler
 {
 
-	protected ItemStack[] stacks = new ItemStack[3]; // 0 - matter, 1 - essence - 2 capsules
-	protected int essence;
-	protected int matter;
-	
-	protected int essenceStorage = 10000;
-	protected int matterStorage = 10000;
+	protected ItemStack[] stacks = new ItemStack[3]; 
 	
 	protected int progress;
 	protected int progressTarget;
@@ -45,7 +40,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	public void updateEntity()
 	{
 		super.updateEntity();
-		
 	}
 	
 
@@ -53,15 +47,15 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	public void tryForming()
 	{
 		members = new ArrayList<TEMultiblock>();
-		for(int x =0; x < 5; x++)
+		for(int x =0; x < 3; x++)
 		{
-			for(int y =0; y < 2; y++)
+			for(int y =0; y < 3; y++)
 			{
-				for(int z =0; z < 5; z++)
+				for(int z =0; z < 3; z++)
 				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y -1, zCoord + z - 2);
+					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y -2, zCoord + z - 1);
 					
-					if(te instanceof TEGrayMatterFabricator)
+					if(te instanceof TEGrayMatterCrafter)
 					{
 						members.add((TEMultiblock)te);
 					}
@@ -74,18 +68,18 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public boolean isProperMultiblock()
 	{
-		for(int x =0; x < 5; x++)
+		for(int x =0; x < 3; x++)
 		{
-			for(int y =0; y < 2; y++)
+			for(int y =0; y < 3; y++)
 			{
-				for(int z =0; z < 5; z++)
+				for(int z =0; z < 3; z++)
 				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y -1, zCoord + z - 2);
+					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y -2, zCoord + z - 1);
 					if(te == null)
 					{
 						return false;
 					}
-					else if(te instanceof TEGrayMatterFabricator)
+					else if(te instanceof TEGrayMatterCrafter)
 					{
 						TEMultiblock tem = (TEMultiblock)te;
 						if(tem.getMaster() != null) 
@@ -178,7 +172,7 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public String getInventoryName() 
 	{
-		return ModBlocks.grayMatterFabricatorMaster.getUnlocalizedName() + ".name";
+		return ModBlocks.grayMatterCrafterMaster.getUnlocalizedName() + ".name";
 	}
 
 	@Override
@@ -212,10 +206,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemStack) 
 	{
-		if(slot == 0 && itemStack.getItem() == ModItems.steelIngot) // todo : add other materials
-			return true;
-		if(slot == 1 && itemStack.getItem() == ModItems.essence) // todo : add other materials
-				return true;
 		
 		return false;
 	}
@@ -314,7 +304,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) 
 	{
-		//
 		return null;
 	}
 
@@ -322,7 +311,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) 
 	{
-		//
 		return null;
 	}
 
@@ -337,7 +325,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) 
 	{
-		//
 		return false;
 	}
 
@@ -345,7 +332,6 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) 
 	{
-		//
 		return null;
 	}
 }

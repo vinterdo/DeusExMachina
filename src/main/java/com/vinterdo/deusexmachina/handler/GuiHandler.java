@@ -3,11 +3,13 @@ package com.vinterdo.deusexmachina.handler;
 import com.vinterdo.deusexmachina.client.gui.GuiBlastFurnace;
 import com.vinterdo.deusexmachina.client.gui.GuiEssenceMacerator;
 import com.vinterdo.deusexmachina.client.gui.GuiEssenceProcessor;
+import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterCrafter;
 import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterFabricator;
 import com.vinterdo.deusexmachina.client.gui.GuiHeater;
 import com.vinterdo.deusexmachina.inventory.ContainerBlastFurnace;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceMacerator;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
+import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.tileentity.TEDEM;
@@ -24,7 +26,8 @@ public class GuiHandler implements IGuiHandler
 		HEATER,
 		ESSENCE_MACERATOR,
 		BLAST_FURNACE, 
-		GRAY_MATTER_FABRICATOR;
+		GRAY_MATTER_FABRICATOR,
+		GRAY_MATTER_CRAFTER;
 	}
 
 	@Override
@@ -42,6 +45,8 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerGrayMatterFabricator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case BLAST_FURNACE:
 			return new ContainerBlastFurnace(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
+		case GRAY_MATTER_CRAFTER:
+			return new ContainerGrayMatterCrafter(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		
 		}
 		
@@ -61,6 +66,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiEssenceMacerator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case GRAY_MATTER_FABRICATOR:
 			return new GuiGrayMatterFabricator(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
+		case GRAY_MATTER_CRAFTER:
+			return new GuiGrayMatterCrafter(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		case BLAST_FURNACE:
 			return new GuiBlastFurnace(player.inventory, (TEDEM)world.getTileEntity(x, y, z));
 		
