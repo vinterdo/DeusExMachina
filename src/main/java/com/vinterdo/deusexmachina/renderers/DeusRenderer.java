@@ -21,18 +21,21 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
+import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 
+import assets.deusexmachina.models.ModelBlock;
 import assets.deusexmachina.models.ModelDeus;
 
 @SideOnly(Side.CLIENT)
 public class DeusRenderer extends TileEntitySpecialRenderer
 {
-    private static final ResourceLocation skyLocation = new ResourceLocation("textures/environment/end_sky.png");
-    private static final ResourceLocation endPortalLocation = new ResourceLocation("textures/entity/end_portal.png");
+    private static final ResourceLocation skyLocation = new ResourceLocation(Reference.MOD_ID + ":textures/effects/end_sky.png");
+    private static final ResourceLocation endPortalLocation = new ResourceLocation(Reference.MOD_ID + ":textures/effects/end_portal.png");
     private static final Random random = new Random(31100L);
     FloatBuffer floatBuffer = GLAllocation.createDirectFloatBuffer(16);
     
     private final ModelDeus model = new ModelDeus();
+	private final ModelBlock modelBlock = new ModelBlock();
     
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) 
     {
@@ -55,18 +58,34 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
     {
-    	GL11.glPushMatrix();
-        GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
-        ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/ModelDeus.png"));
-        Minecraft.getMinecraft().renderEngine.bindTexture(textures);                  
-        GL11.glPushMatrix();
-        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-    	this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        GL11.glPopMatrix();
-        GL11.glPopMatrix();
-    	
-    	
-        renderEnd(x + 0.5, y - 2, z + 0.5);
+    	if(((TEDeusMaster)te).isFormed())
+        {
+        	GL11.glPushMatrix();
+            GL11.glTranslatef((float) x + 0.5F, (float) y - 7.5F, (float) z + 0.5F);
+            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/ModelDeus.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(textures);                  
+            GL11.glPushMatrix();
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        	this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        	
+            GL11.glPopMatrix();
+            GL11.glPopMatrix();
+        	
+            renderEnd(x + 0.5, y - 9, z + 0.5);
+        }
+        else
+        {
+        	GL11.glPushMatrix();
+            GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+            ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/BlockDeus.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(textures);                  
+            GL11.glPushMatrix();
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        	this.modelBlock.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        	
+            GL11.glPopMatrix();
+            GL11.glPopMatrix();
+        }
     }
 
 	private void renderEnd(double x, double y, double z) 
@@ -148,25 +167,25 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 
             tessellator.setColorRGBA_F(f11 * f7, f12 * f7, f13 * f7, 1.0F);
             
-            tessellator.addVertex(x, y + 10, z );
-            tessellator.addVertex(x, y + 10, z);
-            tessellator.addVertex(x + 2.5D, y, z + 2.5D);
-            tessellator.addVertex(x + 2.5D, y, z - 2.5D);
+            tessellator.addVertexWithUV(x, y + 10, z, 0, 0);
+            tessellator.addVertexWithUV(x, y + 10, z, 0, 1);
+            tessellator.addVertexWithUV(x + 2.5D, y, z + 2.5D, 1, 1);
+            tessellator.addVertexWithUV(x + 2.5D, y, z - 2.5D, 1, 0);
             
-            tessellator.addVertex(x - 2.5D, y, z - 2.5D);
-            tessellator.addVertex(x, y + 10, z);
-            tessellator.addVertex(x, y + 10, z);
-            tessellator.addVertex(x + 2.5D, y, z - 2.5D);
+            tessellator.addVertexWithUV(x - 2.5D, y, z - 2.5D, 0, 0);
+            tessellator.addVertexWithUV(x, y + 10, z, 0, 1);
+            tessellator.addVertexWithUV(x, y + 10, z, 1, 1);
+            tessellator.addVertexWithUV(x + 2.5D, y, z - 2.5D, 1, 0);
             
-            tessellator.addVertex(x - 2.5D, y, z - 2.5D);
-            tessellator.addVertex(x - 2.5D, y, z + 2.5D);
-            tessellator.addVertex(x, y + 10, z );
-            tessellator.addVertex(x, y + 10, z );
+            tessellator.addVertexWithUV(x - 2.5D, y, z - 2.5D, 0, 0);
+            tessellator.addVertexWithUV(x - 2.5D, y, z + 2.5D, 0, 1);
+            tessellator.addVertexWithUV(x, y + 10, z , 1, 1);
+            tessellator.addVertexWithUV(x, y + 10, z, 1, 0 );
             
-            tessellator.addVertex(x, y + 10, z );
-            tessellator.addVertex(x - 2.5D, y, z + 2.5D);
-            tessellator.addVertex(x + 2.5D, y, z + 2.5D);
-            tessellator.addVertex(x, y + 10, z);
+            tessellator.addVertexWithUV(x, y + 10, z,0, 0);
+            tessellator.addVertexWithUV(x - 2.5D, y, z + 2.5D, 0, 1);
+            tessellator.addVertexWithUV(x + 2.5D, y, z + 2.5D, 1, 1);
+            tessellator.addVertexWithUV(x, y + 10, z, 1, 0);
             
             tessellator.draw();
             GL11.glPopMatrix();

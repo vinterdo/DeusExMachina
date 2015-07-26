@@ -6,6 +6,8 @@ import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TECamoBlock;
+import com.vinterdo.deusexmachina.tileentity.TEDeus;
+import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafter;
@@ -31,6 +33,8 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEGrayMatterFabricatorMaster.class, Reference.MOD_ID + ":" + "grayMatterFabricatorMaster");
 		GameRegistry.registerTileEntity(TEGrayMatterCrafter.class, Reference.MOD_ID + ":" + "grayMatterCrafter");
 		GameRegistry.registerTileEntity(TEGrayMatterCrafterMaster.class, Reference.MOD_ID + ":" + "grayMatterCrafterMaster");
+		GameRegistry.registerTileEntity(TEDeus.class, Reference.MOD_ID + ":" + "deus");
+		GameRegistry.registerTileEntity(TEDeusMaster.class, Reference.MOD_ID + ":" + "deusMaster");
 	
 	}
 }

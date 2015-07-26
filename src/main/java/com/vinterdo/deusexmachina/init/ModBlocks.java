@@ -7,6 +7,8 @@ import com.vinterdo.deusexmachina.block.BBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.block.BCamo;
 import com.vinterdo.deusexmachina.block.BCopperOre;
 import com.vinterdo.deusexmachina.block.BDEM;
+import com.vinterdo.deusexmachina.block.BDeus;
+import com.vinterdo.deusexmachina.block.BDeusMaster;
 import com.vinterdo.deusexmachina.block.BEssenceMacerator;
 import com.vinterdo.deusexmachina.block.BEssenceOre;
 import com.vinterdo.deusexmachina.block.BEssenceProcessor;
@@ -42,6 +44,9 @@ public class ModBlocks
 	public static final BTileEntityDEM grayMatterCrafter = new BGrayMatterCrafter();
 	public static final BTileEntityDEM grayMatterCrafterMaster = new BGrayMatterCrafterMaster();
 	
+	public static final BTileEntityDEM deus = new BDeus();
+	public static final BTileEntityDEM deusMaster = new BDeusMaster();
+	
 	public static void init()
 	{
 		GameRegistry.registerBlock(essenceOre, "essenceOre");
@@ -61,7 +66,9 @@ public class ModBlocks
 
 		GameRegistry.registerBlock(grayMatterCrafter, "grayMatterCrafter");
 		GameRegistry.registerBlock(grayMatterCrafterMaster, "grayMatterCrafterMaster");
-		
+
+		GameRegistry.registerBlock(deus, "deus");
+		GameRegistry.registerBlock(deusMaster, "deusMaster");
 
 		OreDictionary.registerOre("oreCopper", copperOre);
 		OreDictionary.registerOre("oreEssence", essenceOre);
