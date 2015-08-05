@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
+import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
@@ -16,11 +17,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -37,15 +43,43 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	protected int progress;
 	protected int progressTarget;
 	
-	protected FluidStack grayMatter;
-	protected int grayMatterCapacity = 10000;
-	
+	protected FluidTank tank = new FluidTank(10000);
 	
 	@Override
 	public void updateEntity()
 	{
 		super.updateEntity();
 		
+		if(isFormed())
+		{
+			if(essence > 0 && matter > 0 && tank.getFluidAmount() < tank.getCapacity()) 
+			{
+				tank.fill(new FluidStack(ModFluids.grayMatter, 1), true);
+				
+				essence--;
+				matter--;
+			}
+			
+			if(matter == 0 && (getStackInSlot(0) != null))
+			{
+				matter += 1000;
+				decrStackSize(0, 1);
+			}
+			
+			if(essence == 0 && (stacks[2] == null || stacks[2].stackSize < stacks[2].getMaxStackSize()) && (getStackInSlot(1) != null))
+			{
+				essence += 1000;
+				decrStackSize(1, 1);
+				if(stacks[2] == null)
+				{
+					stacks[2] = new ItemStack(ModItems.essenceContainer, 1);
+				}
+				else
+				{
+					stacks[2].stackSize++;
+				}
+			}
+		}
 	}
 	
 
@@ -214,8 +248,8 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	{
 		if(slot == 0 && itemStack.getItem() == ModItems.steelIngot) // todo : add other materials
 			return true;
-		if(slot == 1 && itemStack.getItem() == ModItems.essence) // todo : add other materials
-				return true;
+		if(slot == 1 && itemStack.getItem() == ModItems.essence)
+			return true;
 		
 		return false;
 	}
@@ -236,6 +270,8 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 			int index = t.getByte("index");
 			stacks[index] = ItemStack.loadItemStackFromNBT(t);
 		}
+
+		tank.readFromNBT(tag);
 	}
 	
 	public void writeToNBT(NBTTagCompound tag)
@@ -258,6 +294,8 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 		}
 		
 		tag.setTag("stacks", stackTag);
+		
+		tank.writeToNBT(tag);
 	}
 	
 	public void writeToPacket(ByteBuf buf)
@@ -314,7 +352,7 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) 
 	{
-		//
+		if(resource.getFluid() == ModFluids.grayMatter) return drain(from, resource.amount, doDrain);
 		return null;
 	}
 
@@ -322,8 +360,7 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) 
 	{
-		//
-		return null;
+		return tank.drain(maxDrain, doDrain);
 	}
 
 
@@ -337,15 +374,13 @@ public class TEGrayMatterFabricatorMaster extends TEMultiblockMaster implements 
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) 
 	{
-		//
-		return false;
+		return fluid == ModFluids.grayMatter;
 	}
 
 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) 
 	{
-		//
-		return null;
+		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 }

@@ -28,6 +28,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Optional;
 
 @Mod(modid=Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
@@ -69,6 +70,7 @@ public class DeusExMachina
 	public void init(FMLInitializationEvent event)
 	{
 		proxy.registerRenderThings();
+		MinecraftForge.EVENT_BUS.register(new ModFluids.TextureHook());
 	}
 	
 	@Mod.EventHandler

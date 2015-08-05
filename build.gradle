@@ -22,7 +22,7 @@ group= "com.vinterdo.deusexmachina" // http://maven.apache.org/guides/mini/guide
 archivesBaseName = "DeusExMachina"
 
 minecraft {
-    version = "1.7.10-10.13.3.1403-1.7.10"
+    version = "1.7.10-10.13.4.1448-1.7.10"
     runDir = "eclipse"
 }
 
@@ -36,28 +36,20 @@ repositories {
         url "http://chickenbones.net/maven/"
     }
     ivy {
-        name "CoFHLib"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/525/[module]-[revision].[ext]"
-    }
-    ivy {
         name "CoFHCore"
-        artifactPattern 'http://addons-origin.cursecdn.com/files/2229/536/[module]-[revision].[ext]'
-    }
-    ivy {
-        name "RedstoneArsenal"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/530/[module]-[revision].[ext]"
+        artifactPattern 'http://addons-origin.cursecdn.com/files/2246/920/[module]-[revision].[ext]'
     }
     ivy {
         name "ThermalExpansion"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/552/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2233/797/[module]-[revision].[ext]"
     }
     ivy {
         name "ThermalFoundation"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/339/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2246/923/[module]-[revision].[ext]"
     }
     ivy {
         name "ThermalDynamics"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2229/532/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2246/951/[module]-[revision].[ext]"
     }
     
     
@@ -70,7 +62,7 @@ dependencies {
     //compile "some.group:artifact:version"
       
     // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
 
     // for more info...
@@ -83,12 +75,12 @@ dependencies {
      compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
      compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
      
-     compile group: 'cofh', name: 'CoFHLib', version: '[1.7.10]1.0.0RC5-123-dev', ext: 'jar'
-     compile group: 'cofh', name: 'CoFHCore', version: '[1.7.10]3.0.0RC5-207-dev', ext: 'jar'
-     compile group: 'cofh', name: 'RedstoneArsenal', version: '[1.7.10]1.1.0RC4-54-dev', ext: 'jar'
-     compile group: 'cofh', name: 'ThermalExpansion', version: '[1.7.10]4.0.0RC6-138-dev', ext: 'jar'
-     compile group: 'cofh', name: 'ThermalFoundation', version: '[1.7.10]1.0.0RC4-58-dev', ext: 'jar'
-     compile group: 'cofh', name: 'ThermalDynamics', version: '[1.7.10]1.0.0RC5-94-dev', ext: 'jar'
+     compile group: 'cofh', name: 'CoFHCore', version: '[1.7.10]3.0.3-303-dev', ext: 'jar'
+     compile group: 'cofh', name: 'ThermalExpansion', version: '[1.7.10]4.0.0-176-dev', ext: 'jar'
+     compile group: 'cofh', name: 'ThermalFoundation', version: '[1.7.10]1.2.0-102-dev', ext: 'jar'
+     compile group: 'cofh', name: 'ThermalDynamics', version: '[1.7.10]1.1.0-161-dev', ext: 'jar'
+     
+     //compile 'com.mod-buildcraft:buildcraft:6.4.18:dev'
      
 }
 

@@ -97,7 +97,7 @@ public class ContainerGrayMatterFabricator extends ContainerDEM
 
             if (target < 3)
             {
-                if (!this.mergeItemStack(itemstack1, 9, 45, true))
+                if (!this.mergeItemStack(itemstack1, 3, 39, true))
                 {
                     return null;
                 }

@@ -62,3 +62,36 @@ Charger - daje RF wszystkim maszynom z pewnego obszaru bezprzewodowo
 Item viewer - daje możliwość przeglądania inventory każdej maszyny z pewnego obszaru
 System tarcz (a'la mffs)
 Void oil pump
+Maszyna do której gracz się "binduje", w przypadku śmierci itemy gracza są teleportowanie do inventory tej maszyny
+Omni-tool - narzędzie z możliwością rozwoju:
+	Kilof, siekiera, motyka, łopata, miecz itd... (możliwość wsadzenia dowolnego narzędzia do środka?)
+	Generator źródeł światła
+	Wrenche z EnderIo, BC, applieda, forestry itd
+	Wand z TC (z możliwością używania focusów?)
+	Coś jak Gravity gun
+	Teleporter (jak blink device z MPS)
+	Snajperka (Ze scopem)
+	Wireless terminal z AE
+	wielozadaniowy dev/null/
+	Podręczny ekwipunek (używający dysków z Applieda?)
+	Builders wand
+	Ender pouch (wpółdziałający z ender storage)
+	Requester z logistików
+	Flamethrower
+	Blood orb i paczka na sigile z Blood Magic
+	Chisel
+Inna opcja omni toola - wsadzamy w niego itemy, wybieramy je poprzez scrollowanie z shiftem, lpm, rpm normalnie używa itemu którego mamy wybranego w omni toolu
+Programowalny turret:
+	Turret base (element który odpowiada za logikę turretów, czyli to w co strzelają)
+	Logika turreta to jeden if(waruenk) gdzie warunek to jakieś wyrażenie boolowskie ustawiane w GUI
+	Warunki ustawia się w drzewo binarne używając operatorów boolowskich not, and, or, xor oraz używając stałych true, false, lub warunków typu isHostile, isPlayer, hasName(imie), isInRange(dystans)
+	Turret gun (sama wieżyczka, np. SMG, Flamethrower, Healer, Sniper, TNT cannon)
+MultiWiki
+	Książka do której można wsadzić wszystkie książki typu "InGameWiki", np Tinkerowe książki, Thaumonomicon, Lexica Botania
+Monorail - szybka, podwieszana kolejka (Interpolacja cosinusowa FTW)
+Auto Feeder - karmi graczy w jakiśm promieniu
+
+
+
+Creative only:
+Server Eater - czorno dziurwa

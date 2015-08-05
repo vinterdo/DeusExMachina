@@ -1,5 +1,7 @@
 package com.vinterdo.deusexmachina.fluids;
 
+import com.vinterdo.deusexmachina.init.ModFluids;
+
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidGrayMatter extends Fluid
@@ -13,6 +15,8 @@ public class FluidGrayMatter extends Fluid
 		setTemperature(295);
 		setViscosity(8000);
 		setGaseous(false);
+		//setIcons();
+		//Icon
 	}
 
 }
