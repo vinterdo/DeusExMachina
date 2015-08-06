@@ -6,7 +6,18 @@ Todo:
 sprawdzić synchronizacje z servem
 Drop itemów z maszyn
 Zasilanie blasta heaterami
-Blast furnace działanie
+GUI Fabricatora
+Naprawić essence macerator/processor
+Synchronizacja i NBT fabricatora
+Pluginy do NEI
+Dodać recepetury do maceratora gdy nie ma Thermala
+Aspekty Thaumcraft
+Naprawić buildcrafta
+Mechanika Craftera
+GUI craftera
+System receptur craftera
+Particle blast furnace/heater/fabricator
+Klasy od stacków w TE, synchronizowania danych i NBT
 
 
 Progressing:
@@ -90,6 +101,11 @@ MultiWiki
 	Książka do której można wsadzić wszystkie książki typu "InGameWiki", np Tinkerowe książki, Thaumonomicon, Lexica Botania
 Monorail - szybka, podwieszana kolejka (Interpolacja cosinusowa FTW)
 Auto Feeder - karmi graczy w jakiśm promieniu
+SuperChest - multiblock z możliwocia tworzenia tabów z chestami oraz craftingiem, kazdy tab to nowy chest, kazdy tab powoduje zuzycie RFów
+	możliwosć podpiecia applieda (network widzi jako tab)
+	możliwosć podpiecia innych inventory (które też widzi jako taby)
+	upgrade do ender chesta
+	zdalny dostep
 
 
 
