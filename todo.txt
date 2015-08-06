@@ -18,6 +18,9 @@ GUI craftera
 System receptur craftera
 Particle blast furnace/heater/fabricator
 Klasy od stacków w TE, synchronizowania danych i NBT
+TE Inventory (z add slot, sync slots itd)
+Synchronizacja progress barów (jak pneumatic)
+Universal Multiblock
 
 
 Progressing:
@@ -53,13 +56,25 @@ Hyperenergetic furnace - duży, bardzo szybki multiblockowy piec
 Plant Incubator - sadzimy 1 roślinkę w środku, jej wzrost jest bardzo mocno przyspieszony
 Ether Condensator - powoli generuje Ether Fluid, zjada energię
 Matter Metalizer - zjada cobbla i energię, powoli generuje Metal Fluid
-Crusher, Vibrating Screen, washer -> potraja output z niektórych orów, żre dużo energii
+Crusher, Vibrating Screen, washer -> potraja output z niektórych orów(pewnie tylko esencja), żre dużo energii
 Null Matter fabricator - robi Null Matter fluid z esencji i ender pereł
+	Mechanika: potrzebujemy infused ender pearl (gray matter crafter)
+	infused ender pearl kompresujemy tworzac end particle
+	Fabricator skada sie z 2 acceleratorów (każdy wymaga 1 end particla)
+	oraz collision chamber gdzie particle sie zdezaja tworzac Singularity
+	które jest pochlaniane tworzac Null matter
 Null matter stabilizer - robi Null Matter ingoty z fluidu, używa Gray Mattera
 Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. 
+Null matter może zostać użyty do zbudowania sieci teleportów:
+	Teleport network master (duzy multiblock z duzym zapotrzebowaniem na prad)
+	Teleport Gate (portal) - zlinkowany do mastera, uzyc looking glass
+	Teleport dialer - umozliwia wybranie polaczenia miedzy dwoma Gateami, moze ich być wiecej niz 1 w networku
+	Network logger - zapisuje kto uzywal teleportów i kiedy, stawiany obok mastera
+	Security terminal - permisje dla graczy gdzie sie moga teleportowac, stawiany obok mastera
 Electrolytic separator (tworzy hydrogen z wody i energii)
 Essence Factory (duży multiblock do przetwarzania esencji)
 Refinery (multiblock przetwarzający Oil w Fuel (wymaga buildcrafta lub innego modu dodającego fuel i oil))
+Diesel generator
 Windmill (generowanie rf)
 Water Wheel (generowanie rf)
 Solar Thermal Turbine (produkuje rf)
@@ -67,11 +82,23 @@ Plasma fabricator (zjada hydrogen i energię, robi plasmę - ta wymaga plasma co
 Plasma Reactor - zjada plasmę, robi rfy
 Ray gun - im fajerin mah lejzor!
 Assemby Line - działa jak Cyclic Assembler, tylko szybciej, multiblock
-Mana Generator - wymaga botanii, robi RFy z many
 Void Digger - kopie surowce 'z niczego' - wymaga bardzo dużo energii
 Charger - daje RF wszystkim maszynom z pewnego obszaru bezprzewodowo
-Item viewer - daje możliwość przeglądania inventory każdej maszyny z pewnego obszaru
 System tarcz (a'la mffs)
+	System sklada sie z mastera i pylonów
+	Master musi mieć energie, w nim tez zmienia sie ustawienia tarczy
+	Pylony mozna zbindowac miedzy soba, po 4 w pakiecie, musza one znajdowac sie w jednej plaszczyznie
+	Gdy pylony zostana zbindowane tworza tarcze miedzy soba i zaczynaja zjadac energie z mastera
+	Tarcza to jeden collider miedzy pylonami, ktory jest polprzezroczysty i animowany
+	W momencie udezenia w tarcze robi sie ona bardziej widoczna (alpha mask w rendererze)
+	Udezenia w tarcze zabieraja wiecej energii z mastera (tarcza to Entity z HP?)
+CCTV:
+	master (z możliwocia zmiany podgladu)
+	monitor - renderowanie outputu z mastera w swiecie
+	camera - input (looking glass)
+	Camera drone 
+Data cable (?)
+	Kable do laczenia blokow z masterami, np CCTV, tarcze
 Void oil pump
 Maszyna do której gracz się "binduje", w przypadku śmierci itemy gracza są teleportowanie do inventory tej maszyny
 Omni-tool - narzędzie z możliwością rozwoju:
