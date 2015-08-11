@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import com.vinterdo.deusexmachina.helpers.Helper;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.network.Synchronized;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,9 +16,12 @@ import net.minecraft.tileentity.TileEntityFurnace;
 public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 {
 
-    protected int burningTime;
-    protected int progress;
-    protected int progressTarget;
+    @Synchronized
+    public int burningTime;
+    @Synchronized
+    public int progress;
+    @Synchronized
+    public int progressTarget;
 
     public static final int PROGRESS_MULT    = 1;
     public static final int SMELT_TIME       = 100;
@@ -222,19 +225,6 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
         tag.setShort("burningTime", (short) this.burningTime);
         tag.setShort("progress", (short) this.progress);
         tag.setShort("progressTarget", (short) this.progressTarget);
-    }
-
-    public void writeToPacket(ByteBuf buf)
-    {
-        super.writeToPacket(buf);
-    }
-
-    public void readFromPacket(ByteBuf buf)
-    {
-        boolean oldFormed = formed;
-        super.readFromPacket(buf);
-        if (oldFormed != formed)
-            worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord, zCoord - 1, xCoord + 1, yCoord - 4, zCoord + 1);
     }
 
     public int getProgress()
