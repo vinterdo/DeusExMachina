@@ -1,8 +1,11 @@
 package com.vinterdo.deusexmachina.proxy;
 
-public interface IProxy 
+import net.minecraft.entity.player.EntityPlayer;
+
+public interface IProxy
 {
 
-	void registerRenderThings();
+    void registerRenderThings();
 
+    public EntityPlayer getPlayer();
 }
