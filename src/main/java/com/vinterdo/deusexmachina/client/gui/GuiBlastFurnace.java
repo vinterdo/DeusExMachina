@@ -21,9 +21,9 @@ public class GuiBlastFurnace extends GuiDEM
     {
         super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
 
-        if (this.te.getProgress() > 0)
+        if (this.te.progress > 0)
         {
-            int i1 = (int) (this.te.getProgressPercent() * 45f);
+            int i1 = (int) (((float)te.progress / te.progressTarget) * 45f);
             this.drawTexturedModalRect(guiLeft + 64, guiTop + 38, 176, 0, i1 + 1, 16);
         }
     }

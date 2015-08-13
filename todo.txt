@@ -64,7 +64,7 @@ Null Matter fabricator - robi Null Matter fluid z esencji i ender pereł
 	oraz collision chamber gdzie particle sie zdezaja tworzac Singularity
 	które jest pochlaniane tworzac Null matter
 Null matter stabilizer - robi Null Matter ingoty z fluidu, używa Gray Mattera
-Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. 
+Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. Daje około 100k rf/t
 Null matter może zostać użyty do zbudowania sieci teleportów:
 	Teleport network master (duzy multiblock z duzym zapotrzebowaniem na prad)
 	Teleport Gate (portal) - zlinkowany do mastera, uzyc looking glass
@@ -92,6 +92,17 @@ System tarcz (a'la mffs)
 	Tarcza to jeden collider miedzy pylonami, ktory jest polprzezroczysty i animowany
 	W momencie udezenia w tarcze robi sie ona bardziej widoczna (alpha mask w rendererze)
 	Udezenia w tarcze zabieraja wiecej energii z mastera (tarcza to Entity z HP?)
+Trapped star:
+	Tworzymy cubea z pylonów tarcz o wymiarach 128 x 128 x 128
+	Na środku tego czegoś stawiamy konstrukcję 9 x 9 x 9 - Fusion core
+	Dostarczamy do niego duuuuużo hydrogenu (około 10 kkk mb)
+	Dobudowujemy fusion preheater gdziekolwiek na brzegu pylonów
+	Do preheatera dostarczamy RF (będzie musiał przyjąć 10kkk RF)
+	Odpalamy tarcze (od tej pory muszą być włączone cały czas, wyłączene = wyzerowanie licznika RF)
+	Tarcze od tej pory będą pobierały coraz więcej energii - aż do momentu zakończenia wprowadzania energii
+	Gdy zakończymy wprowadzanie energii Fusion core eksploduje, zaczynając reakcję fuzyjną
+	Reakcja trwa około godzinę, tworząc coraz większą płonącą kulę w środku tarcz (Star)
+	Im większa gwiazda w środku, tym więcej energii dostajemy (aż do 10kk rf/t)
 CCTV:
 	master (z możliwocia zmiany podgladu)
 	monitor - renderowanie outputu z mastera w swiecie
@@ -119,6 +130,10 @@ Omni-tool - narzędzie z możliwością rozwoju:
 	Blood orb i paczka na sigile z Blood Magic
 	Chisel
 Inna opcja omni toola - wsadzamy w niego itemy, wybieramy je poprzez scrollowanie z shiftem, lpm, rpm normalnie używa itemu którego mamy wybranego w omni toolu
+Blood generator
+	Robi krew z Blood magic z RF
+Duplicator:
+	Klonuje KAŻDY item który do niego wsadzimy za 1kkk RF
 Programowalny turret:
 	Turret base (element który odpowiada za logikę turretów, czyli to w co strzelają)
 	Logika turreta to jeden if(waruenk) gdzie warunek to jakieś wyrażenie boolowskie ustawiane w GUI

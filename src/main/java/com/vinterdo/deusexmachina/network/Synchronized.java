@@ -8,4 +8,5 @@ public @interface Synchronized
 {
     // Everything that has this anotation and has Container deriving form
     // ContainerDEM will be server - client synced
+	int id();
 }

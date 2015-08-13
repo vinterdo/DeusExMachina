@@ -7,6 +7,8 @@ import java.util.List;
 import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -47,22 +49,25 @@ public abstract class ContainerDEM<T extends TileEntity> extends Container
 
     public void detectAndSendChanges()
     {
-        int i = 0;
         for (Field f : te.getClass().getFields())
         {
             if (f.isAnnotationPresent(Synchronized.class))
             {
+            	if(!synced.containsKey(f))
+            	{
+            		synced.put(f, -1);
+            	}
                 try
                 {
-                    if (f.get(te) != synced.get(f))
+                    if ((int)(Integer)f.get(te) != (int)synced.get(f))
                     {
                         for (ICrafting crafter : (List<ICrafting>) crafters)
                         {
-                            crafter.sendProgressBarUpdate(this, i, (Integer) f.get(te));
+                            crafter.sendProgressBarUpdate(this, f.getAnnotation(Synchronized.class).id(), (Integer) f.get(te));
                         }
                         synced.put(f, (Integer) f.get(te));
+                        //LogHelper.info("sent packet to " + f.toString() + " with value " + f.get(te).toString());
                     }
-                    i++;
                 } catch (Exception e)
                 {
                     LogHelper.error("Illegal access while syncing fields to " + f.getName());
@@ -70,6 +75,26 @@ public abstract class ContainerDEM<T extends TileEntity> extends Container
             }
         }
 
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int id, int value)
+    {
+        super.updateProgressBar(id, value);
+        for (Field f : te.getClass().getFields())
+        {
+            if (f.isAnnotationPresent(Synchronized.class) && f.getAnnotation(Synchronized.class).id() == id)
+            {
+            	try {
+					f.set(te, (Integer)value);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+            }
+        }
     }
 
 }

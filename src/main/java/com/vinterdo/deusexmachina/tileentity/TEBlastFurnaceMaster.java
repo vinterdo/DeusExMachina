@@ -16,11 +16,11 @@ import net.minecraft.tileentity.TileEntityFurnace;
 public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 {
 
-    @Synchronized
+    @Synchronized(id = 0)
     public int burningTime;
-    @Synchronized
+    @Synchronized(id = 1)
     public int progress;
-    @Synchronized
+    @Synchronized(id = 2)
     public int progressTarget;
 
     public static final int PROGRESS_MULT    = 1;
@@ -58,6 +58,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
             {
                 burningTime += TileEntityFurnace.getItemBurnTime(stacks.get(i + 3));
                 this.decrStackSize(i + 3, 1);
+                this.markDirty();
             }
         }
     }
@@ -138,6 +139,8 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
                 }
             }
         }
+
+        this.markDirty();
     }
 
     @Override
@@ -227,38 +230,4 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
         tag.setShort("progressTarget", (short) this.progressTarget);
     }
 
-    public int getProgress()
-    {
-        return progress;
-    }
-
-    public void setProgress(int val)
-    {
-        progress = val;
-    }
-
-    public int getPower()
-    {
-        return burningTime;
-    }
-
-    public void setPower(int val)
-    {
-        burningTime = val;
-    }
-
-    public int getProgressTarget()
-    {
-        return progressTarget;
-    }
-
-    public void setProgressTarget(int val)
-    {
-        progressTarget = val;
-    }
-
-    public float getProgressPercent()
-    {
-        return (float) progress / (float) progressTarget;
-    }
 }

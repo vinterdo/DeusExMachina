@@ -16,9 +16,6 @@ import net.minecraft.tileentity.TileEntityFurnace;
 
 public class ContainerBlastFurnace extends ContainerDEM<TEBlastFurnaceMaster>
 {
-    int                  lastProgress       = -1;
-    int                  lastPower          = -1;
-    int                  lastProgressTarget = -1;
     TEBlastFurnaceMaster te;
 
     public ContainerBlastFurnace(InventoryPlayer playerInv, TEBlastFurnaceMaster _te)
@@ -40,56 +37,6 @@ public class ContainerBlastFurnace extends ContainerDEM<TEBlastFurnaceMaster>
         }
 
         addPlayerSlots(playerInv, 8, 84);
-    }
-
-    @Override
-    public void detectAndSendChanges()
-    {
-        super.detectAndSendChanges();
-
-        /*if (lastProgress != te.getProgress())
-        {
-            for (ICrafting crafter : (List<ICrafting>) crafters)
-            {
-                crafter.sendProgressBarUpdate(this, 0, te.getProgress());
-            }
-            lastProgress = te.getProgress();
-        }*/
-
-        if (lastPower != te.getPower())
-        {
-            for (ICrafting crafter : (List<ICrafting>) crafters)
-            {
-                crafter.sendProgressBarUpdate(this, 1, te.getPower());
-            }
-            lastPower = te.getPower();
-        }
-
-        if (lastProgressTarget != te.getProgressTarget())
-        {
-            for (ICrafting crafter : (List<ICrafting>) crafters)
-            {
-                crafter.sendProgressBarUpdate(this, 2, te.getProgressTarget());
-            }
-            lastProgressTarget = te.getProgressTarget();
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void updateProgressBar(int id, int value)
-    {
-        super.updateProgressBar(id, value);
-        if (id == 0)
-        {
-            te.setProgress(value);
-        } else if (id == 1)
-        {
-            te.setPower(value);
-        } else if (id == 2)
-        {
-            te.setProgressTarget(value);
-        }
     }
 
     @Override
