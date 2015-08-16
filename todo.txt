@@ -19,7 +19,6 @@ System receptur craftera
 Particle blast furnace/heater/fabricator
 Klasy od stacków w TE, synchronizowania danych i NBT
 Synchronizacja progress barów (jak pneumatic - przepisać powstałe już maszyny)
-Anotacja NBTSaved
 
 
 

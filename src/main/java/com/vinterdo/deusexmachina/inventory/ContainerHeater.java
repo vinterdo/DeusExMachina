@@ -2,8 +2,8 @@ package com.vinterdo.deusexmachina.inventory;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TEDEM;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

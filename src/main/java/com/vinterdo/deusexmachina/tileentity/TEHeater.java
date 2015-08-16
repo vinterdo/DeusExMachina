@@ -14,6 +14,7 @@ import net.minecraft.world.EnumSkyBlock;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.IFuelHandler;

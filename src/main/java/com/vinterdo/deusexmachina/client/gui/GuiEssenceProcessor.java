@@ -3,8 +3,8 @@ package com.vinterdo.deusexmachina.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
-import com.vinterdo.deusexmachina.tileentity.TEDEM;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;

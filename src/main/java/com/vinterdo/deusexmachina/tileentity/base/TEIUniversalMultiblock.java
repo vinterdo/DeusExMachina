@@ -1,4 +1,4 @@
-package com.vinterdo.deusexmachina.tileentity;
+package com.vinterdo.deusexmachina.tileentity.base;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

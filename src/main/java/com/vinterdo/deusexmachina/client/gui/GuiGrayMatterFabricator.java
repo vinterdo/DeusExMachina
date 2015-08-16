@@ -5,8 +5,8 @@ import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
-import com.vinterdo.deusexmachina.tileentity.TEDEM;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;

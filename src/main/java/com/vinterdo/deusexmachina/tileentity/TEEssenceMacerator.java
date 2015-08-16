@@ -8,6 +8,7 @@ import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.recipes.RecipeMacerator;
 import com.vinterdo.deusexmachina.reference.ModIds;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.Loader;

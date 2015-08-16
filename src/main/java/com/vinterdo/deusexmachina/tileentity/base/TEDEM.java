@@ -1,4 +1,4 @@
-package com.vinterdo.deusexmachina.tileentity;
+package com.vinterdo.deusexmachina.tileentity.base;
 
 import java.lang.reflect.Field;
 

@@ -7,6 +7,8 @@ import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.network.Synchronized;
+import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

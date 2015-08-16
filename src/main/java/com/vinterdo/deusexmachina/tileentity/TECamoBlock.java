@@ -1,5 +1,7 @@
 package com.vinterdo.deusexmachina.tileentity;
 
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
+
 import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;

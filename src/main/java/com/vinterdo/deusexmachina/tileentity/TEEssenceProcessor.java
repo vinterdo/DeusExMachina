@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;

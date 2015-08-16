@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
+import com.vinterdo.deusexmachina.tileentity.base.TEMultiblockMaster;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
