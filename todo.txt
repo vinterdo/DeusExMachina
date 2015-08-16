@@ -18,9 +18,9 @@ GUI craftera
 System receptur craftera
 Particle blast furnace/heater/fabricator
 Klasy od stacków w TE, synchronizowania danych i NBT
-TE Inventory (z add slot, sync slots itd)
-Synchronizacja progress barów (jak pneumatic)
-Universal Multiblock
+Synchronizacja progress barów (jak pneumatic - przepisać powstałe już maszyny)
+Anotacja NBTSaved
+
 
 
 Progressing:
@@ -92,7 +92,7 @@ System tarcz (a'la mffs)
 	Tarcza to jeden collider miedzy pylonami, ktory jest polprzezroczysty i animowany
 	W momencie udezenia w tarcze robi sie ona bardziej widoczna (alpha mask w rendererze)
 	Udezenia w tarcze zabieraja wiecej energii z mastera (tarcza to Entity z HP?)
-Trapped star:
+Trapped Star:
 	Tworzymy cubea z pylonów tarcz o wymiarach 128 x 128 x 128
 	Na środku tego czegoś stawiamy konstrukcję 9 x 9 x 9 - Fusion core
 	Dostarczamy do niego duuuuużo hydrogenu (około 10 kkk mb)
@@ -101,8 +101,11 @@ Trapped star:
 	Odpalamy tarcze (od tej pory muszą być włączone cały czas, wyłączene = wyzerowanie licznika RF)
 	Tarcze od tej pory będą pobierały coraz więcej energii - aż do momentu zakończenia wprowadzania energii
 	Gdy zakończymy wprowadzanie energii Fusion core eksploduje, zaczynając reakcję fuzyjną
+	Po około połowie reakcji tarcze są już w stanie zasilić się same
 	Reakcja trwa około godzinę, tworząc coraz większą płonącą kulę w środku tarcz (Star)
 	Im większa gwiazda w środku, tym więcej energii dostajemy (aż do 10kk rf/t)
+	Wyłączenie tarcz powoduje eksplozję o promieniu 256 kratek
+	Potem cały ten obszar "wyparowuje" (łącznie z bedrockiem) a każda istota znajdująca się w pobliżu zaczyna się palić i dostaje gigantyczny dmg
 CCTV:
 	master (z możliwocia zmiany podgladu)
 	monitor - renderowanie outputu z mastera w swiecie
@@ -153,3 +156,8 @@ SuperChest - multiblock z możliwocia tworzenia tabów z chestami oraz craftingi
 
 Creative only:
 Server Eater - czorno dziurwa
+
+
+Bug:
+BLast furnace nie przepala itemu gdy zostaje 1 slot w outpucie
+Naprawić essence macerator, essence processor, heater i przepisać je na @Synchronized

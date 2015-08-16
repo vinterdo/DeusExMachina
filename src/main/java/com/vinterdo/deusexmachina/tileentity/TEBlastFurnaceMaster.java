@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.tileentity;
 import java.util.ArrayList;
 
 import com.vinterdo.deusexmachina.helpers.Helper;
+import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.network.Synchronized;
@@ -17,10 +18,13 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 {
 
     @Synchronized(id = 0)
+    @NBTSaved(name = "burningTime")
     public int burningTime;
     @Synchronized(id = 1)
+    @NBTSaved(name = "progress")
     public int progress;
     @Synchronized(id = 2)
+    @NBTSaved(name = "progressTarget")
     public int progressTarget;
 
     public static final int PROGRESS_MULT    = 1;
@@ -58,7 +62,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
             {
                 burningTime += TileEntityFurnace.getItemBurnTime(stacks.get(i + 3));
                 this.decrStackSize(i + 3, 1);
-                this.markDirty();
+                this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
         }
     }
@@ -119,6 +123,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 
     private void addItemToOutput(ItemStack stack)
     {
+        this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         for (int i = 0; i < 3; i++)
         {
             if (stacks.get(i + 6) == null)
@@ -140,7 +145,6 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
             }
         }
 
-        this.markDirty();
     }
 
     @Override
@@ -210,24 +214,6 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
             return TileEntityFurnace.getItemBurnTime(itemStack) > 0;
 
         return false;
-    }
-
-    public void readFromNBT(NBTTagCompound tag)
-    {
-        super.readFromNBT(tag);
-
-        this.burningTime = tag.getShort("burningTimes");
-        this.progress = tag.getShort("progress");
-        this.progressTarget = tag.getShort("progressTarget");
-    }
-
-    public void writeToNBT(NBTTagCompound tag)
-    {
-        super.writeToNBT(tag);
-
-        tag.setShort("burningTime", (short) this.burningTime);
-        tag.setShort("progress", (short) this.progress);
-        tag.setShort("progressTarget", (short) this.progressTarget);
     }
 
 }
