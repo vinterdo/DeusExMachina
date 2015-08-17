@@ -17,8 +17,8 @@ Mechanika Craftera
 GUI craftera
 System receptur craftera
 Particle blast furnace/heater/fabricator
-Klasy od stacków w TE, synchronizowania danych i NBT
 Synchronizacja progress barów (jak pneumatic - przepisać powstałe już maszyny)
+Bug synchronizacja eq gdy wybierane są itemy z NEI
 
 
 
