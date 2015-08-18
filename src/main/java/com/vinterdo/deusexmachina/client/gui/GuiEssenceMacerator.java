@@ -17,14 +17,6 @@ public class GuiEssenceMacerator extends GuiDEM
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mousex, int mousey)
-	{
-		super.drawGuiContainerForegroundLayer(mousex, mousey);
-		//this.fontRendererObj.drawString("" + te.getProgress(), guiLeft + 10, guiTop + 10, 0xFF000000);
-		
-	}
-	
-	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mousex, int mousey)
 	{
 		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);

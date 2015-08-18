@@ -12,7 +12,7 @@ public class TEHeater extends TEI
 {
 	@Synchronized(id = 1)
 	@NBTSaved(name = "burningTime")
-	protected int burningTime = 0;
+	public int burningTime = 0;
 	
 	public TEHeater()
 	{
