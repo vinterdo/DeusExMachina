@@ -15,6 +15,7 @@ import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
@@ -41,7 +42,8 @@ public class GuiHandler implements IGuiHandler
 			case HEATER:
 				return new ContainerHeater(player.inventory, (TEHeater) world.getTileEntity(x, y, z));
 			case ESSENCE_MACERATOR:
-				return new ContainerEssenceMacerator(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
+				return new ContainerEssenceMacerator(player.inventory,
+						(TEEssenceMacerator) world.getTileEntity(x, y, z));
 			case GRAY_MATTER_FABRICATOR:
 				return new ContainerGrayMatterFabricator(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case BLAST_FURNACE:
