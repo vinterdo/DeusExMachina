@@ -1,30 +1,22 @@
 package com.vinterdo.deusexmachina.inventory;
 
-import com.vinterdo.deusexmachina.init.ModBlocks;
-import com.vinterdo.deusexmachina.init.ModItems;
-import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
-import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
+import com.vinterdo.deusexmachina.tileentity.TEHeater;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class ContainerHeater extends ContainerDEM
+public class ContainerHeater extends ContainerDEM<TEHeater>
 {
-	
-	public ContainerHeater(InventoryPlayer playerInv, TEDEM te)
+	public ContainerHeater(InventoryPlayer playerInv, TEHeater te)
 	{
 		super(te);
 		
-		for(int i =0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
-			for(int j =0; j < 3; j++)
+			for (int j = 0; j < 3; j++)
 			{
-				this.addSlotToContainer(new SlotFuel((IInventory) te, j + i * 3, 7 + j * 19, 14 + i * 19));
+				this.addSlotToContainer(new SlotFuel(te, j + i * 3, 7 + j * 19, 14 + i * 19));
 			}
 		}
 		
@@ -32,58 +24,15 @@ public class ContainerHeater extends ContainerDEM
 	}
 	
 	@Override
-	public boolean canInteractWith(EntityPlayer player) 
+	protected boolean mergeStackToContainer(ItemStack itemstack1)
 	{
-		return ((IInventory)te).isUseableByPlayer(player); 
+		if (TileEntityFurnace.isItemFuel(itemstack1))
+		{
+			if (!this.mergeItemStack(itemstack1, 0, 9, false))
+				return true;
+		}
+		
+		return false;
 	}
 	
-
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int target)
-    {
-        ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(target);
-
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (target < 9)
-            {
-                if (!this.mergeItemStack(itemstack1, 9, 45, true))
-                {
-                    return null;
-                }
-            }
-            else 
-            {	
-            	if(TileEntityFurnace.isItemFuel(itemstack1))
-            	{
-	            	if (!this.mergeItemStack(itemstack1, 0, 9, false))
-	                	return null;
-            	}
-            	
-            }
-
-            if (itemstack1.stackSize == 0)
-            {
-                slot.putStack((ItemStack)null);
-            }
-            else
-            {
-                slot.onSlotChanged();
-            }
-
-            if (itemstack1.stackSize == itemstack.stackSize)
-            {
-                return null;
-            }
-
-            slot.onPickupFromSlot(player, itemstack1);
-        }
-
-        return itemstack;
-    }
-
 }

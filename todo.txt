@@ -19,6 +19,7 @@ System receptur craftera
 Particle blast furnace/heater/fabricator
 Synchronizacja progress barów (jak pneumatic - przepisać powstałe już maszyny)
 Bug synchronizacja eq gdy wybierane są itemy z NEI
+Heater progress bar
 
 
 

@@ -36,7 +36,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 	public TEBlastFurnaceMaster()
 	{
 		super();
-		this.setNumOfStacks(9);
+		setNumOfStacks(9);
 	}
 	
 	@Override
@@ -63,8 +63,8 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 			if (stacks.get(i + 3) != null && TileEntityFurnace.isItemFuel(stacks.get(i + 3)))
 			{
 				burningTime += TileEntityFurnace.getItemBurnTime(stacks.get(i + 3));
-				this.decrStackSize(i + 3, 1);
-				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+				decrStackSize(i + 3, 1);
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}
 		}
 	}
@@ -101,7 +101,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 						if (progress > progressTarget)
 						{
 							addItemToRange(target, 6, 9);
-							this.decrStackSize(i, 1);
+							decrStackSize(i, 1);
 							progress -= progressTarget;
 						}
 					}
