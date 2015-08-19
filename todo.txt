@@ -3,23 +3,34 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-sprawdzić synchronizacje z servem
-Drop itemów z maszyn
 Zasilanie blasta heaterami
-GUI Fabricatora
-Naprawić essence macerator/processor
-Synchronizacja i NBT fabricatora
-Pluginy do NEI
+Drop itemów z maszyn
+Particle blast furnace/heater/fabricator
 Dodać recepetury do maceratora gdy nie ma Thermala
-Aspekty Thaumcraft
 Naprawić buildcrafta
+GUI Fabricatora
+Tekstury do bloków
+Synchronizacja i NBT fabricatora
+Bug synchronizacja eq gdy wybierane są itemy z NEI
+Pluginy do NEI
+Configi
 Mechanika Craftera
 GUI craftera
+Infused diamond
 System receptur craftera
-Particle blast furnace/heater/fabricator
-Synchronizacja progress barów (jak pneumatic - przepisać powstałe już maszyny)
-Bug synchronizacja eq gdy wybierane są itemy z NEI
-Heater progress bar
+Deus:
+	GUI
+	Deus brain (item wsadzany w deusa)
+	Techtree + renderowanie (node z techtree ma 2 stany: odkryty i nieodkryty)
+	Techtree jest zapisywane w deus brainie
+	Nieodkryty node można odkryć tylko jeżeli sasiaduje z odkrytym nodem
+	Odkrytego nodea mozna zapisac do data corea
+	Data core 
+Data bank 
+	Model + Blocki/TE + GUI + Mechanika
+	Dopisać do Craftera możliwosc uzywania Data Banku
+Matter shatterer i Matter composer
+Aspekty Thaumcraft
 
 
 
