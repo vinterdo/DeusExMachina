@@ -5,6 +5,8 @@ import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEI;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
@@ -25,6 +27,9 @@ public class TEHeater extends TEI
 	{
 		if (burningTime > 0)
 		{
+			if (worldObj.isRemote)
+				spawnParticles();
+				
 			--burningTime;
 			if (burningTime == 0)
 			{
@@ -66,5 +71,16 @@ public class TEHeater extends TEI
 	public boolean isItemValidForSlot(int slot, ItemStack itemStack)
 	{
 		return TileEntityFurnace.getItemBurnTime(itemStack) > 0;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private void spawnParticles()
+	{
+		if (burningTime > 0)
+		{
+			worldObj.spawnParticle("smoke", xCoord + Math.random() * 1.2 - 0.1, yCoord + Math.random() * 1.2 - 0.1,
+					zCoord + Math.random() * 1.2 - 0.1, 0.0D, 0.0D, 0.0D);
+					
+		}
 	}
 }

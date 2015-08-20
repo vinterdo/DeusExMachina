@@ -3,7 +3,9 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-Particle blast furnace/heater/fabricator
+GUI synchronized/alwaySynchronized
+Particle - naprawić synchro
+Blast furnace/Essence macerator burn time progressbar
 Dodać recepetury do maceratora gdy nie ma Thermala
 Naprawić buildcrafta
 GUI Fabricatora

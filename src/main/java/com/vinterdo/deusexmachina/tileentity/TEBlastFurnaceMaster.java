@@ -11,6 +11,8 @@ import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -57,6 +59,11 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 			{
 				burnFuel();
 			}
+		}
+		
+		if (worldObj.isRemote)
+		{
+			spawnParticles();
 		}
 	}
 	
@@ -160,5 +167,20 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 			return TileEntityFurnace.getItemBurnTime(itemStack) > 0;
 			
 		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private void spawnParticles()
+	{
+		if (isFormed() && burningTime > BURN_CONSUME)
+		{
+			worldObj.spawnParticle("smoke", xCoord + Math.random() * 2.0 - 0.5, yCoord + Math.random() * 0.4 - 2.9,
+					zCoord + Math.random() * 2.0 - 0.5, 0.0D, 0.0D, 0.0D);
+			worldObj.spawnParticle("flame", xCoord + Math.random() * 2.0 - 0.5, yCoord + Math.random() * 0.4 - 2.9,
+					zCoord + Math.random() * 2.0 - 0.5, 0.0D, 0.0D, 0.0D);
+			for (int i = 0; i < 3; i++)
+				worldObj.spawnParticle("smoke", xCoord + Math.random(), yCoord + 0.5, zCoord + Math.random(), 0.0D,
+						0.1D, 0.0D);
+		}
 	}
 }
