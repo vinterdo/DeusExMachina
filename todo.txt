@@ -3,8 +3,6 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-Zasilanie blasta heaterami
-Drop itemów z maszyn
 Particle blast furnace/heater/fabricator
 Dodać recepetury do maceratora gdy nie ma Thermala
 Naprawić buildcrafta
@@ -82,6 +80,8 @@ Null matter może zostać użyty do zbudowania sieci teleportów:
 	Teleport dialer - umozliwia wybranie polaczenia miedzy dwoma Gateami, moze ich być wiecej niz 1 w networku
 	Network logger - zapisuje kto uzywal teleportów i kiedy, stawiany obok mastera
 	Security terminal - permisje dla graczy gdzie sie moga teleportowac, stawiany obok mastera
+Temporal anomaly generator
+	Przyspiesza tick wszystkich bloków w pobliżu n kratek za dużo rfów
 Electrolytic separator (tworzy hydrogen z wody i energii)
 Essence Factory (duży multiblock do przetwarzania esencji)
 Refinery (multiblock przetwarzający Oil w Fuel (wymaga buildcrafta lub innego modu dodającego fuel i oil))

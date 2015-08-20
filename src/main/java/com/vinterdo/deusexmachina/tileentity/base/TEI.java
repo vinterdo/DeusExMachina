@@ -6,6 +6,7 @@ import com.vinterdo.deusexmachina.helpers.Helper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -219,5 +220,17 @@ public class TEI extends TEDEM implements IInventory
 			}
 		}
 		
+	}
+	
+	public ArrayList<ItemStack> getInventory()
+	{
+		return stacks;
+	}
+	
+	public void dropInventoryInWorld()
+	{
+		for (int i = 0; i < (stacks != null ? stacks.size() : 0); i++)
+			if (stacks.get(i) != null)
+				worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord, zCoord, stacks.get(i)));
 	}
 }

@@ -31,7 +31,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 	public static final int	SMELT_TIME			= 400;
 	public static final int	SMELT_TIME_STEEL	= 3200;
 	public static final int	HEATER_MULT			= 1;
-	public static final int	MAX_BURNING_TIME	= 10000;
+	public static final int	MAX_BURNING_TIME	= 10000;	// it only apply to burningTime stored from heaters
 	public static final int	BURN_CONSUME		= 8;
 	
 	public static final MultiBlockStructure structure = new StructureBlastFurnace();
