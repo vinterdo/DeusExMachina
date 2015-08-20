@@ -27,9 +27,12 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 	@NBTSaved(name = "progressTarget")
 	public int	progressTarget;
 	
-	public static final int	PROGRESS_MULT		= 1;
-	public static final int	SMELT_TIME			= 100;
-	public static final int	SMELT_TIME_STEEL	= 400;
+	public static final int	PROGRESS_MULT		= 8;
+	public static final int	SMELT_TIME			= 400;
+	public static final int	SMELT_TIME_STEEL	= 3200;
+	public static final int	HEATER_MULT			= 1;
+	public static final int	MAX_BURNING_TIME	= 10000;
+	public static final int	BURN_CONSUME		= 8;
 	
 	public static final MultiBlockStructure structure = new StructureBlastFurnace();
 	
@@ -46,12 +49,29 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 		
 		if (!worldObj.isRemote && formed)
 		{
-			if (burningTime > 0)
+			getBurningTimeFromHeaters();
+			if (burningTime > BURN_CONSUME)
 			{
 				smeltItems();
 			} else
 			{
 				burnFuel();
+			}
+		}
+	}
+	
+	private void getBurningTimeFromHeaters()
+	{
+		for (int x = -1; x < 2; x++)
+		{
+			for (int z = -1; z < 2; z++)
+			{
+				TEHeater te = worldObj.getTileEntity(xCoord + x, yCoord - 4, zCoord + z) instanceof TEHeater
+						? (TEHeater) worldObj.getTileEntity(xCoord + x, yCoord - 4, zCoord + z) : null;
+				if (te != null && te.isWorking() && burningTime < MAX_BURNING_TIME)
+				{
+					burningTime += HEATER_MULT;
+				}
 			}
 		}
 	}
@@ -71,7 +91,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 	
 	private void smeltItems()
 	{
-		burningTime -= 1;
+		burningTime -= BURN_CONSUME;
 		
 		for (int i = 0; i < 3; i++)
 		{
