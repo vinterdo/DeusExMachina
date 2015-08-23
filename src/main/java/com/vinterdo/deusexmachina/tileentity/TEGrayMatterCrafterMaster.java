@@ -8,22 +8,41 @@ import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
+import cofh.api.energy.EnergyStorage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IFluidHandler
 {
+	private static final int	FLUID_TANK_CAPACITY	= 10000;
+	private static final int	ENERGY_CAPACITY		= 100000;
 	@Synchronized(id = 0)
 	@NBTSaved(name = "progress")
-	public int	progress;
+	public int					progress;
 	@Synchronized(id = 1)
 	@NBTSaved(name = "progressTarget")
-	public int	progressTarget;
+	public int					progressTarget;
+	
+	@Synchronized(id = 2)
+	@NBTSaved(name = "tank")
+	public FluidTank tank = new FluidTank(FLUID_TANK_CAPACITY);
+	
+	@Synchronized(id = 3)
+	@NBTSaved(name = "energy")
+	public EnergyStorage energy = new EnergyStorage(ENERGY_CAPACITY);
+	
+	public TEGrayMatterCrafterMaster()
+	{
+		super();
+		
+		setNumOfStacks(17);
+	}
 	
 	@Override
 	public void updateEntity()
