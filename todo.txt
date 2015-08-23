@@ -3,9 +3,7 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-GUI Fabricatora
 Tekstury do bloków
-Synchronizacja i NBT fabricatora
 Bug synchronizacja eq gdy wybierane są itemy z NEI
 Pluginy do NEI
 Configi
@@ -13,6 +11,7 @@ Mechanika Craftera
 GUI craftera
 Infused diamond
 System receptur craftera
+Bounding boxy do rendererów
 Deus:
 	GUI
 	Deus brain (item wsadzany w deusa)
@@ -25,6 +24,8 @@ Data bank
 	Model + Blocki/TE + GUI + Mechanika
 	Dopisać do Craftera możliwosc uzywania Data Banku
 Matter shatterer i Matter composer
+Receptury
+Lokalizacje
 Aspekty Thaumcraft
 
 

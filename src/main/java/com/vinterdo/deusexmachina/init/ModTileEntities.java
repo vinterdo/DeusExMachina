@@ -1,7 +1,5 @@
 package com.vinterdo.deusexmachina.init;
 
-import net.minecraft.tileentity.TileEntity;
-
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
@@ -15,10 +13,11 @@ import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricator;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
+import com.vinterdo.deusexmachina.tileentity.TEIERGrayMatterFabricatorEnergyPort;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ModTileEntities 
+public class ModTileEntities
 {
 	
 	public static void init()
@@ -30,11 +29,15 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEBlastFurnace.class, Reference.MOD_ID + ":" + "blastFurnace");
 		GameRegistry.registerTileEntity(TEBlastFurnaceMaster.class, Reference.MOD_ID + ":" + "blastFurnaceMaster");
 		GameRegistry.registerTileEntity(TEGrayMatterFabricator.class, Reference.MOD_ID + ":" + "grayMatterFabricator");
-		GameRegistry.registerTileEntity(TEGrayMatterFabricatorMaster.class, Reference.MOD_ID + ":" + "grayMatterFabricatorMaster");
+		GameRegistry.registerTileEntity(TEIERGrayMatterFabricatorEnergyPort.class,
+				Reference.MOD_ID + ":" + "grayMatterFabricatorEnergyPort");
+		GameRegistry.registerTileEntity(TEGrayMatterFabricatorMaster.class,
+				Reference.MOD_ID + ":" + "grayMatterFabricatorMaster");
 		GameRegistry.registerTileEntity(TEGrayMatterCrafter.class, Reference.MOD_ID + ":" + "grayMatterCrafter");
-		GameRegistry.registerTileEntity(TEGrayMatterCrafterMaster.class, Reference.MOD_ID + ":" + "grayMatterCrafterMaster");
+		GameRegistry.registerTileEntity(TEGrayMatterCrafterMaster.class,
+				Reference.MOD_ID + ":" + "grayMatterCrafterMaster");
 		GameRegistry.registerTileEntity(TEDeus.class, Reference.MOD_ID + ":" + "deus");
 		GameRegistry.registerTileEntity(TEDeusMaster.class, Reference.MOD_ID + ":" + "deusMaster");
-	
+		
 	}
 }
