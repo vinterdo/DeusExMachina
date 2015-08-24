@@ -23,6 +23,7 @@ public class GuiGrayMatterCrafter extends GuiDEM
 	@Override
 	public void initGui()
 	{
+		super.initGui();
 		widgetTank = new WidgetTank(this.te.tank, guiLeft + 152, guiTop + 19, 58, 16);
 		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 134, guiTop + 19, 58, 16);
 	}

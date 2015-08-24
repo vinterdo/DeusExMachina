@@ -12,6 +12,7 @@ GUI craftera
 Infused diamond
 System receptur craftera
 Bounding boxy do rendererów
+MarkBlockForUpdate (albo zbugowane reformowanie bloków po wczytaniu)
 Deus:
 	GUI
 	Deus brain (item wsadzany w deusa)

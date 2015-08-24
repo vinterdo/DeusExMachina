@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
+import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
@@ -40,7 +41,7 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	public TEGrayMatterCrafterMaster()
 	{
 		super();
-		
+		tank.setFluid(new FluidStack(ModFluids.grayMatter, 0));
 		setNumOfStacks(17);
 	}
 	
