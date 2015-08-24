@@ -12,6 +12,7 @@ import com.vinterdo.deusexmachina.block.BEssenceOre;
 import com.vinterdo.deusexmachina.block.BEssenceProcessor;
 import com.vinterdo.deusexmachina.block.BGrayMatterCrafter;
 import com.vinterdo.deusexmachina.block.BGrayMatterCrafterMaster;
+import com.vinterdo.deusexmachina.block.BGrayMatterCrafterPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricator;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
@@ -44,6 +45,7 @@ public class ModBlocks
 	
 	public static final BTileEntityDEM	grayMatterCrafter		= new BGrayMatterCrafter();
 	public static final BTileEntityDEM	grayMatterCrafterMaster	= new BGrayMatterCrafterMaster();
+	public static final BTileEntityDEM	grayMatterCrafterPort	= new BGrayMatterCrafterPort();
 	
 	public static final BTileEntityDEM	deus		= new BDeus();
 	public static final BTileEntityDEM	deusMaster	= new BDeusMaster();
@@ -67,6 +69,7 @@ public class ModBlocks
 		
 		GameRegistry.registerBlock(grayMatterCrafter, "grayMatterCrafter");
 		GameRegistry.registerBlock(grayMatterCrafterMaster, "grayMatterCrafterMaster");
+		GameRegistry.registerBlock(grayMatterCrafterPort, "grayMatterCrafterPort");
 		
 		GameRegistry.registerBlock(deus, "deus");
 		GameRegistry.registerBlock(deusMaster, "deusMaster");

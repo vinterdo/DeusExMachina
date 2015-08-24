@@ -14,9 +14,14 @@ public class ContainerGrayMatterCrafter extends ContainerDEM<TEGrayMatterCrafter
 	{
 		super(_te);
 		
-		this.addSlotToContainer(new Slot(te, 0, 25, 14 + 0 * 21));
-		this.addSlotToContainer(new Slot(te, 1, 60 + 0 * 20, 56));
-		this.addSlotToContainer(new SlotOutput(te, 2, 134, 14 + 0 * 21));
+		for (int y = 0; y < 4; y++)
+		{
+			for (int x = 0; x < 4; x++)
+			{
+				this.addSlotToContainer(new Slot(te, y * 4 + x, 8 + x * 18, 7 + y * 18));
+			}
+		}
+		this.addSlotToContainer(new SlotOutput(te, 16, 111, 33));
 		
 		addPlayerSlots(playerInv, 8, 84);
 	}

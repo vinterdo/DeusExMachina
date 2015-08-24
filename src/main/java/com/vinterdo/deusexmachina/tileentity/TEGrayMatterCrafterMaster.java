@@ -10,6 +10,7 @@ import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
 import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -19,7 +20,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IFluidHandler
+public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IFluidHandler, IEnergyReceiver
 {
 	private static final int	FLUID_TANK_CAPACITY	= 10000;
 	private static final int	ENERGY_CAPACITY		= 100000;
@@ -63,7 +64,7 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 				{
 					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 2, zCoord + z - 1);
 					
-					if (te instanceof TEGrayMatterCrafter)
+					if (te instanceof TEGrayMatterCrafter || te instanceof TEGrayMatterCrafterPort)
 					{
 						members.add((TEMultiblock) te);
 					}
@@ -91,6 +92,12 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 						TEMultiblock tem = (TEMultiblock) te;
 						if (tem.getMaster() != null)
 							return false;
+					} else if (te instanceof TEGrayMatterCrafterPort)
+					{
+						if (!(y == 0 && (x == 1 && (z == 0 || z == 2) || z == 1 && (x == 0 || x == 2))))
+						{
+							return false;
+						}
 					} else if (te != this)
 					{
 						return false;
@@ -119,6 +126,8 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
 	{
+		if (resource.getFluid() == ModFluids.grayMatter)
+			return tank.fill(resource, doFill);
 		return 0;
 	}
 	
@@ -137,7 +146,7 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid)
 	{
-		return false;
+		return fluid == ModFluids.grayMatter;
 	}
 	
 	@Override
@@ -149,6 +158,31 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from)
 	{
-		return null;
+		return new FluidTankInfo[]
+		{ this.tank.getInfo() };
+	}
+	
+	@Override
+	public boolean canConnectEnergy(ForgeDirection from)
+	{
+		return true;
+	}
+	
+	@Override
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
+	{
+		return energy.receiveEnergy(maxReceive, simulate);
+	}
+	
+	@Override
+	public int getEnergyStored(ForgeDirection from)
+	{
+		return energy.getEnergyStored();
+	}
+	
+	@Override
+	public int getMaxEnergyStored(ForgeDirection from)
+	{
+		return energy.getMaxEnergyStored();
 	}
 }

@@ -10,6 +10,7 @@ import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafter;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
+import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterPort;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricator;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
@@ -34,6 +35,8 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEGrayMatterFabricatorMaster.class,
 				Reference.MOD_ID + ":" + "grayMatterFabricatorMaster");
 		GameRegistry.registerTileEntity(TEGrayMatterCrafter.class, Reference.MOD_ID + ":" + "grayMatterCrafter");
+		GameRegistry.registerTileEntity(TEGrayMatterCrafterPort.class,
+				Reference.MOD_ID + ":" + "grayMatterCrafterPort");
 		GameRegistry.registerTileEntity(TEGrayMatterCrafterMaster.class,
 				Reference.MOD_ID + ":" + "grayMatterCrafterMaster");
 		GameRegistry.registerTileEntity(TEDeus.class, Reference.MOD_ID + ":" + "deus");
