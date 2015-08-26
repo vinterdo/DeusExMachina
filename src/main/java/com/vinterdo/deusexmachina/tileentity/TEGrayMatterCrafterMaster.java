@@ -6,6 +6,7 @@ import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.network.Synchronized;
+import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
@@ -50,6 +51,32 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	public void updateEntity()
 	{
 		super.updateEntity();
+		
+		if (!worldObj.isRemote && isFormed())
+		{
+			ItemStack grid[][] = new ItemStack[4][4];
+			for (int y = 0; y < 4; y++)
+			{
+				for (int x = 0; x < 4; x++)
+				{
+					grid[x][y] = stacks.get(y * 4 + x);
+				}
+			}
+			RecipeGrayMatter rec = RecipeGrayMatter.getMatchingRecipe(grid);
+			if (rec != null)
+			{
+				this.addItemToRange(rec.output, 16, 17);
+				
+				for (int y = 0; y < 4; y++)
+				{
+					for (int x = 0; x < 4; x++)
+					{
+						if (rec.grid[x][y] != null)
+							this.decrStackSize(y * 4 + x, rec.grid[x][y].stackSize);
+					}
+				}
+			}
+		}
 	}
 	
 	@Override
