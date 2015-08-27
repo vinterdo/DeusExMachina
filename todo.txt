@@ -3,14 +3,11 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-Tekstury do bloków
-Bug synchronizacja eq gdy wybierane są itemy z NEI
-Pluginy do NEI
-Configi
 Mechanika Craftera
-GUI craftera
 Infused diamond
 System receptur craftera
+Pluginy do NEI
+Configi
 Bounding boxy do rendererów
 MarkBlockForUpdate (albo zbugowane reformowanie bloków po wczytaniu)
 Deus:
@@ -25,6 +22,7 @@ Data bank
 	Model + Blocki/TE + GUI + Mechanika
 	Dopisać do Craftera możliwosc uzywania Data Banku
 Matter shatterer i Matter composer
+Slot Interface
 Receptury
 Lokalizacje
 Aspekty Thaumcraft
@@ -172,4 +170,3 @@ Server Eater - czorno dziurwa
 
 Bug:
 BLast furnace nie przepala itemu gdy zostaje 1 slot w outpucie
-Naprawić essence macerator, essence processor, heater i przepisać je na @Synchronized

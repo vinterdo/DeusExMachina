@@ -26,7 +26,6 @@ public class ContainerBlastFurnace extends ContainerDEM<TEBlastFurnaceMaster>
 		{
 			this.addSlotToContainer(new SlotOutput(te, i + 6, 134, 14 + i * 21));
 		}
-		
 		addPlayerSlots(playerInv, 8, 84);
 	}
 	

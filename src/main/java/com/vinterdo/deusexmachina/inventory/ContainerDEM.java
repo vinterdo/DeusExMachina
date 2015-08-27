@@ -68,6 +68,7 @@ public abstract class ContainerDEM<T extends TileEntity> extends Container
 	@Override
 	public void detectAndSendChanges()
 	{
+		super.detectAndSendChanges();
 		for (Field f : te.getClass().getFields())
 		{
 			if (f.isAnnotationPresent(Synchronized.class))

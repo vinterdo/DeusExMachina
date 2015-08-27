@@ -70,7 +70,7 @@ public class TEGrayMatterFabricatorMaster extends TEIMultiblockMaster implements
 				energy.modifyEnergyStored(-1 * ENERGY_CONSUME);
 			}
 			
-			if (matter == 0 && (getStackInSlot(0) != null))
+			if (matter == 0 && (getStackInSlot(0) != null) && getStackInSlot(0).getItem() == ModItems.steelIngot)
 			{
 				matter += MATTER_MAX_STORAGE;
 				decrStackSize(0, 1);
