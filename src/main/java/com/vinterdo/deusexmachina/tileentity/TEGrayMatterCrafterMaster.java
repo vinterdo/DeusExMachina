@@ -31,14 +31,18 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Synchronized(id = 1)
 	@NBTSaved(name = "progressTarget")
 	public int					progressTarget;
-	
 	@Synchronized(id = 2)
 	@NBTSaved(name = "tank")
-	public FluidTank tank = new FluidTank(FLUID_TANK_CAPACITY);
-	
+	public FluidTank			tank				= new FluidTank(FLUID_TANK_CAPACITY);
 	@Synchronized(id = 3)
 	@NBTSaved(name = "energy")
-	public EnergyStorage energy = new EnergyStorage(ENERGY_CAPACITY);
+	public EnergyStorage		energy				= new EnergyStorage(ENERGY_CAPACITY);
+	@Synchronized(id = 4)
+	@NBTSaved(name = "gmConsumed")
+	public int					gmConsumed;
+	@Synchronized(id = 5)
+	@NBTSaved(name = "gmTarget")
+	public int					gmTarget;
 	
 	public TEGrayMatterCrafterMaster()
 	{
@@ -65,15 +69,35 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 			RecipeGrayMatter rec = RecipeGrayMatter.getMatchingRecipe(grid);
 			if (rec != null)
 			{
-				this.addItemToRange(rec.output, 16, 17);
+				gmTarget = rec.grayMatter;
+				progressTarget = rec.time;
 				
-				for (int y = 0; y < 4; y++)
+				if (gmConsumed >= gmTarget && progress >= progressTarget)
 				{
-					for (int x = 0; x < 4; x++)
+					this.addItemToRange(rec.output, 16, 17);
+					
+					for (int y = 0; y < 4; y++)
 					{
-						if (rec.grid[x][y] != null)
-							this.decrStackSize(y * 4 + x, rec.grid[x][y].stackSize);
+						for (int x = 0; x < 4; x++)
+						{
+							if (rec.grid[x][y] != null)
+								this.decrStackSize(y * 4 + x, rec.grid[x][y].stackSize);
+						}
 					}
+				} else
+				{
+					if (energy.getEnergyStored() > rec.rfPerTick)
+					{
+						progress++;
+						energy.setEnergyStored(energy.getEnergyStored() - rec.rfPerTick);
+					}
+					
+					if (tank.getFluidAmount() > 0)
+					{
+						tank.drain(1, true);
+						gmConsumed++;
+					}
+					
 				}
 			}
 		}
