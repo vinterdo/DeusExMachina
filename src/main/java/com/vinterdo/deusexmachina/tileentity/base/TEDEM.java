@@ -14,6 +14,11 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TEDEM extends TileEntity
 {
+	public TEDEM()
+	{
+		super();
+	}
+	
 	@Override
 	public Packet getDescriptionPacket()
 	{
@@ -32,7 +37,6 @@ public class TEDEM extends TileEntity
 	
 	public void readFromPacket(ByteBuf buf)
 	{
-	
 	}
 	
 	@Override

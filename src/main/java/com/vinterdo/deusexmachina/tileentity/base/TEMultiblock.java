@@ -1,24 +1,18 @@
 package com.vinterdo.deusexmachina.tileentity.base;
 
-import io.netty.buffer.ByteBuf;
-
-import java.util.ArrayList;
-
-import com.vinterdo.deusexmachina.utility.LogHelper;
-
 import cpw.mods.fml.common.network.ByteBufUtils;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class TEMultiblock extends TEDEM
 {
-	protected TEMultiblockMaster master;
+	protected int	masterXCoord	= Integer.MAX_VALUE;
+	protected int	masterYCoord	= Integer.MAX_VALUE;
+	protected int	masterZCoord	= Integer.MAX_VALUE;
 	
 	public TEMultiblockMaster getMaster()
 	{
-		return master;
+		return (TEMultiblockMaster) worldObj.getTileEntity(masterXCoord, masterYCoord, masterZCoord);
 	}
 	
 	@Override
@@ -29,53 +23,66 @@ public class TEMultiblock extends TEDEM
 	
 	public void setMaster(TEMultiblockMaster te)
 	{
-		master = te;
+		if (te != null)
+		{
+			masterXCoord = te.xCoord;
+			masterYCoord = te.yCoord;
+			masterZCoord = te.zCoord;
+		} else
+		{
+			masterXCoord = Integer.MAX_VALUE;
+			masterYCoord = Integer.MAX_VALUE;
+			masterZCoord = Integer.MAX_VALUE;
+		}
+		
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 	public boolean isFormed()
 	{
-		return master != null && master.isFormed();
+		return getMaster() != null && getMaster().isFormed();
 	}
 	
+	@Override
 	public void writeToPacket(ByteBuf buf)
 	{
 		super.writeToPacket(buf);
-		ByteBufUtils.writeVarShort(buf, master != null ? 1 : 0);
-		if(master != null)
+		ByteBufUtils.writeVarShort(buf, getMaster() != null ? 1 : 0);
+		if (getMaster() != null)
 		{
-			ByteBufUtils.writeVarInt(buf, master.xCoord, 5);
-			ByteBufUtils.writeVarInt(buf, master.yCoord, 5);
-			ByteBufUtils.writeVarInt(buf, master.zCoord, 5);
+			ByteBufUtils.writeVarInt(buf, getMaster().xCoord, 5);
+			ByteBufUtils.writeVarInt(buf, getMaster().yCoord, 5);
+			ByteBufUtils.writeVarInt(buf, getMaster().zCoord, 5);
 		}
 	}
 	
+	@Override
 	public void readFromPacket(ByteBuf buf)
 	{
 		super.readFromPacket(buf);
-		if(ByteBufUtils.readVarShort(buf) == 0 ? false : true)
+		if (ByteBufUtils.readVarShort(buf) != 0)
 		{
-			int x = ByteBufUtils.readVarInt(buf, 5);
-			int y = ByteBufUtils.readVarInt(buf, 5);
-			int z = ByteBufUtils.readVarInt(buf, 5);
-			
-			master = (TEMultiblockMaster) worldObj.getTileEntity(x, y, z);
-		}
-		else
+			masterXCoord = ByteBufUtils.readVarInt(buf, 5);
+			masterYCoord = ByteBufUtils.readVarInt(buf, 5);
+			masterZCoord = ByteBufUtils.readVarInt(buf, 5);
+		} else
 		{
-			master = null;
+			masterXCoord = Integer.MAX_VALUE;
+			masterYCoord = Integer.MAX_VALUE;
+			masterZCoord = Integer.MAX_VALUE;
 		}
 		
-
-		worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord, zCoord - 1, xCoord + 1, yCoord - 4, zCoord + 1);
+		worldObj.markBlockRangeForRenderUpdate(xCoord - 1, yCoord - 1, zCoord - 1, xCoord + 1, yCoord + 1, zCoord + 1);
 	}
 	
+	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
 		
 	}
 	
+	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);

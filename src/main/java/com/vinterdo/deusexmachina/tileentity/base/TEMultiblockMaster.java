@@ -78,7 +78,7 @@ public abstract class TEMultiblockMaster extends TEDEM
 		{
 			for (TEMultiblock te : members)
 			{
-				te.master = null;
+				te.setMaster(null);
 				worldObj.markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
 			}
 		}

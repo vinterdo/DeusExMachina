@@ -3,13 +3,10 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-Mechanika Craftera
 Infused diamond
-System receptur craftera
 Pluginy do NEI
 Configi
 Bounding boxy do rendererów
-MarkBlockForUpdate (albo zbugowane reformowanie bloków po wczytaniu)
 Deus:
 	GUI
 	Deus brain (item wsadzany w deusa)
@@ -90,6 +87,9 @@ Plasma fabricator (zjada hydrogen i energię, robi plasmę - ta wymaga plasma co
 Plasma Reactor - zjada plasmę, robi rfy
 Ray gun - im fajerin mah lejzor!
 Assemby Line - działa jak Cyclic Assembler, tylko szybciej, multiblock
+Instant Macerator
+Instant Furnace
+Safe Chest - gracz się "binduje" do niego, kiedy umrze jego itemy trafiają do tego chesta
 Void Digger - kopie surowce 'z niczego' - wymaga bardzo dużo energii
 Charger - daje RF wszystkim maszynom z pewnego obszaru bezprzewodowo
 System tarcz (a'la mffs)
@@ -167,6 +167,3 @@ SuperChest - multiblock z możliwocia tworzenia tabów z chestami oraz craftingi
 Creative only:
 Server Eater - czorno dziurwa
 
-
-Bug:
-BLast furnace nie przepala itemu gdy zostaje 1 slot w outpucie
