@@ -35,8 +35,8 @@ public class GuiGrayMatterCrafter extends GuiDEM
 		
 		if (te.progress > 0)
 		{
-			int i1 = (int) (((float) te.progress / (float) te.progressTarget) * 45f);
-			this.drawTexturedModalRect(guiLeft + 64, guiTop + 38, 176, 0, i1 + 1, 16);
+			int i1 = (int) (((float) te.progress / (float) te.progressTarget) * 24f);
+			this.drawTexturedModalRect(guiLeft + 82, guiTop + 38, 176, 0, i1 + 1, 16);
 		}
 		
 		widgetTank.render(mousex, mousey, partialTick);

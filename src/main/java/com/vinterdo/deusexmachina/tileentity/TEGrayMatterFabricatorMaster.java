@@ -236,7 +236,10 @@ public class TEGrayMatterFabricatorMaster extends TEIMultiblockMaster implements
 	@Override
 	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
 	{
-		return energy.receiveEnergy(maxReceive, simulate);
+		if (energy.getEnergyStored() < energy.getMaxEnergyStored())
+			return energy.receiveEnergy(maxReceive, simulate);
+		else
+			return 0;
 	}
 	
 	@Override

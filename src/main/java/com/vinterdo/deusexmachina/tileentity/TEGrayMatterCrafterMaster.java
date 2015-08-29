@@ -13,6 +13,7 @@ import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -25,6 +26,7 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 {
 	private static final int	FLUID_TANK_CAPACITY	= 10000;
 	private static final int	ENERGY_CAPACITY		= 100000;
+	private static final int	GM_PER_TICK			= 10;
 	@Synchronized(id = 0)
 	@NBTSaved(name = "progress")
 	public int					progress;
@@ -67,14 +69,14 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 				}
 			}
 			RecipeGrayMatter rec = RecipeGrayMatter.getMatchingRecipe(grid);
-			if (rec != null)
+			if (rec != null && super.calcSpaceForStack(rec.output, 16, 17) >= rec.output.stackSize)
 			{
 				gmTarget = rec.grayMatter;
 				progressTarget = rec.time;
 				
 				if (gmConsumed >= gmTarget && progress >= progressTarget)
 				{
-					this.addItemToRange(rec.output, 16, 17);
+					this.addItemToRange(rec.output.copy(), 16, 17);
 					
 					for (int y = 0; y < 4; y++)
 					{
@@ -84,18 +86,28 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 								this.decrStackSize(y * 4 + x, rec.grid[x][y].stackSize);
 						}
 					}
+					progress = 0;
+					gmConsumed = 0;
 				} else
 				{
 					if (energy.getEnergyStored() > rec.rfPerTick)
 					{
-						progress++;
+						if (progress < progressTarget)
+							progress++;
 						energy.setEnergyStored(energy.getEnergyStored() - rec.rfPerTick);
 					}
 					
-					if (tank.getFluidAmount() > 0)
+					if (tank.getFluidAmount() > 0 && gmConsumed < gmTarget)
 					{
-						tank.drain(1, true);
-						gmConsumed++;
+						if (tank.getFluidAmount() >= GM_PER_TICK)
+						{
+							tank.drain(GM_PER_TICK, true);
+							gmConsumed += GM_PER_TICK;
+						} else
+						{
+							gmConsumed += tank.getFluidAmount();
+							tank.drain(tank.getFluidAmount(), true);
+						}
 					}
 					
 				}
@@ -222,7 +234,10 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Override
 	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
 	{
-		return energy.receiveEnergy(maxReceive, simulate);
+		if (energy.getEnergyStored() < energy.getMaxEnergyStored())
+			return energy.receiveEnergy(maxReceive, simulate);
+		else
+			return 0;
 	}
 	
 	@Override
@@ -235,5 +250,21 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	public int getMaxEnergyStored(ForgeDirection from)
 	{
 		return energy.getMaxEnergyStored();
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		super.readFromNBT(tag);
+		tank.readFromNBT(tag);
+		energy.readFromNBT(tag);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		super.writeToNBT(tag);
+		tank.writeToNBT(tag);
+		energy.writeToNBT(tag);
 	}
 }

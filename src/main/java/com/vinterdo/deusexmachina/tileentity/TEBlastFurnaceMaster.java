@@ -122,7 +122,7 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 					
 					int spaceLeft = calcSpaceForStack(target, 6, 9);
 					
-					if (spaceLeft - target.stackSize > 0)
+					if (spaceLeft >= target.stackSize)
 					{
 						progress += PROGRESS_MULT;
 						if (progress > progressTarget)
