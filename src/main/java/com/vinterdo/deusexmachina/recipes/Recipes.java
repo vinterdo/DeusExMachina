@@ -50,10 +50,13 @@ public class Recipes
 		{
 				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1),
 						new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1) },
-				{ null, null, null, null },
-				{ null, null, null, null },
+				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(Items.diamond, 1),
+						new ItemStack(Items.diamond, 1), new ItemStack(ModItems.steelIngot, 1) },
+				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(Items.diamond, 1),
+						new ItemStack(Items.diamond, 1), new ItemStack(ModItems.steelIngot, 1) },
 				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1),
 						new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1) } };
-		RecipeGrayMatter.addRecipe(new RecipeGrayMatter(grid, 300, 5000, 2000, new ItemStack(Items.diamond, 32)));
+		RecipeGrayMatter
+				.addRecipe(new RecipeGrayMatter(grid, 300, 5000, 2000, new ItemStack(ModItems.infusedDiamond, 1)));
 	}
 }
