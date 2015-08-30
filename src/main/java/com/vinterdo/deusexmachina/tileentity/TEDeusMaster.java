@@ -29,15 +29,14 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFluidHandler
 {
-
-	protected ItemStack[] stacks = new ItemStack[3]; 
 	
-	protected int progress;
-	protected int progressTarget;
+	protected ItemStack[] stacks = new ItemStack[3];
 	
-	protected FluidStack grayMatter;
-	protected int grayMatterCapacity = 10000;
+	protected int	progress;
+	protected int	progressTarget;
 	
+	protected FluidStack	grayMatter;
+	protected int			grayMatterCapacity	= 10000;
 	
 	@Override
 	public void updateEntity()
@@ -46,48 +45,47 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 		
 	}
 	
-
 	@Override
 	public void tryForming()
 	{
 		members = new ArrayList<TEMultiblock>();
-		for(int x =0; x < 5; x++)
+		for (int x = 0; x < 5; x++)
 		{
-			for(int y =0; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
-				for(int z =0; z < 5; z++)
+				for (int z = 0; z < 5; z++)
 				{
 					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y - 9, zCoord + z - 2);
 					
-					if(te instanceof TEDeus)
+					if (te instanceof TEDeus)
 					{
-						members.add((TEMultiblock)te);
+						members.add((TEMultiblock) te);
 					}
 				}
 			}
 		}
-		for(int x =0; x < 3; x++)
+		for (int x = 0; x < 3; x++)
 		{
-			for(int y =0; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
-				for(int z =0; z < 3; z++)
+				for (int z = 0; z < 3; z++)
 				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y -6, zCoord + z - 1);
+					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 6, zCoord + z - 1);
 					
-					if(te instanceof TEDeus)
+					if (te instanceof TEDeus)
 					{
-						members.add((TEMultiblock)te);
+						members.add((TEMultiblock) te);
 					}
 				}
 			}
 		}
-		for(int y =0; y < 4; y++)
+		for (int y = 0; y < 4; y++)
 		{
-			TileEntity te = worldObj.getTileEntity(xCoord , yCoord + y - 3, zCoord );
+			TileEntity te = worldObj.getTileEntity(xCoord, yCoord + y - 3, zCoord);
 			
-			if(te instanceof TEDeus)
+			if (te instanceof TEDeus)
 			{
-				members.add((TEMultiblock)te);
+				members.add((TEMultiblock) te);
 			}
 		}
 		super.tryForming();
@@ -96,24 +94,22 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	@Override
 	public boolean isProperMultiblock()
 	{
-		for(int x =0; x < 5; x++)
+		for (int x = 0; x < 5; x++)
 		{
-			for(int y =0; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
-				for(int z =0; z < 5; z++)
+				for (int z = 0; z < 5; z++)
 				{
 					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y - 9, zCoord + z - 2);
-					if(te == null)
+					if (te == null)
 					{
 						return false;
-					}
-					else if(te instanceof TEDeus)
+					} else if (te instanceof TEDeus)
 					{
-						TEMultiblock tem = (TEMultiblock)te;
-						if(tem.getMaster() != null) 
+						TEMultiblock tem = (TEMultiblock) te;
+						if (tem.getMaster() != null)
 							return false;
-					}
-					else if(te != this)
+					} else if (te != this)
 					{
 						return false;
 					}
@@ -122,24 +118,22 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 			}
 		}
 		
-		for(int x =0; x < 3; x++)
+		for (int x = 0; x < 3; x++)
 		{
-			for(int y =0; y < 3; y++)
+			for (int y = 0; y < 3; y++)
 			{
-				for(int z =0; z < 3; z++)
+				for (int z = 0; z < 3; z++)
 				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y -6, zCoord + z - 1);
-					if(te == null)
+					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 6, zCoord + z - 1);
+					if (te == null)
 					{
 						return false;
-					}
-					else if(te instanceof TEDeus)
+					} else if (te instanceof TEDeus)
 					{
-						TEMultiblock tem = (TEMultiblock)te;
-						if(tem.getMaster() != null) 
+						TEMultiblock tem = (TEMultiblock) te;
+						if (tem.getMaster() != null)
 							return false;
-					}
-					else if(te != this)
+					} else if (te != this)
 					{
 						return false;
 					}
@@ -148,20 +142,18 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 			}
 		}
 		
-		for(int y =0; y < 4; y++)
+		for (int y = 0; y < 4; y++)
 		{
-			TileEntity te = worldObj.getTileEntity(xCoord , yCoord + y -3, zCoord );
-			if(te == null)
+			TileEntity te = worldObj.getTileEntity(xCoord, yCoord + y - 3, zCoord);
+			if (te == null)
 			{
 				return false;
-			}
-			else if(te instanceof TEDeus)
+			} else if (te instanceof TEDeus)
 			{
-				TEMultiblock tem = (TEMultiblock)te;
-				if(tem.getMaster() != null) 
+				TEMultiblock tem = (TEMultiblock) te;
+				if (tem.getMaster() != null)
 					return false;
-			}
-			else if(te != this)
+			} else if (te != this)
 			{
 				return false;
 			}
@@ -173,112 +165,111 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount)
-    {
-        if (this.stacks[slot] != null)
-        {
-            ItemStack itemstack;
-
-            if (this.stacks[slot].stackSize <= amount)
-            {
-                itemstack = this.stacks[slot];
-                setInventorySlotContents(slot, null);
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.stacks[slot].splitStack(amount);
-
-                if (this.stacks[slot].stackSize == 0)
-                {
-                	setInventorySlotContents(slot, null);
-                }
-
-                this.markDirty();
-                return itemstack;
-            }
-        }
-        else
-        {
-            return null;
-        }
-    }
+	{
+		if (this.stacks[slot] != null)
+		{
+			ItemStack itemstack;
+			
+			if (this.stacks[slot].stackSize <= amount)
+			{
+				itemstack = this.stacks[slot];
+				setInventorySlotContents(slot, null);
+				return itemstack;
+			} else
+			{
+				itemstack = this.stacks[slot].splitStack(amount);
+				
+				if (this.stacks[slot].stackSize == 0)
+				{
+					setInventorySlotContents(slot, null);
+				}
+				
+				this.markDirty();
+				return itemstack;
+			}
+		} else
+		{
+			return null;
+		}
+	}
 	
 	@Override
-	public int getSizeInventory() 
+	public int getSizeInventory()
 	{
 		return stacks.length;
 	}
 	
 	@Override
-	public ItemStack getStackInSlot(int slot) 
+	public ItemStack getStackInSlot(int slot)
 	{
 		return this.stacks[slot];
 	}
 	
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot)
-    {
-        if (this.stacks[slot] != null)
-        {
-            ItemStack itemstack = this.stacks[slot];
-            this.stacks[slot] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
+	{
+		if (this.stacks[slot] != null)
+		{
+			ItemStack itemstack = this.stacks[slot];
+			this.stacks[slot] = null;
+			return itemstack;
+		} else
+		{
+			return null;
+		}
+	}
+	
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
-    {
-        this.stacks[slot] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
-
-        this.markDirty();
-    }
-
+	{
+		this.stacks[slot] = stack;
+		
+		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+		{
+			stack.stackSize = this.getInventoryStackLimit();
+		}
+		
+		this.markDirty();
+	}
+	
 	@Override
-	public String getInventoryName() 
+	public String getInventoryName()
 	{
 		return ModBlocks.deusMaster.getUnlocalizedName() + ".name";
 	}
-
+	
 	@Override
-	public boolean hasCustomInventoryName() 
+	public boolean hasCustomInventoryName()
 	{
 		return false;
 	}
-
+	
 	@Override
-	public int getInventoryStackLimit() 
+	public int getInventoryStackLimit()
 	{
 		return 64;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
-    }
-
+	{
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
+				: player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+						(double) this.zCoord + 0.5D) <= 64.0D;
+	}
+	
 	@Override
-	public void openInventory() 
+	public void openInventory()
 	{
 	}
-
+	
 	@Override
-	public void closeInventory() 
-	{		
+	public void closeInventory()
+	{
 	}
-
+	
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack itemStack) 
+	public boolean isItemValidForSlot(int slot, ItemStack itemStack)
 	{
 		
 		return false;
@@ -287,14 +278,14 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
-
-        this.progress = tag.getShort("progress");
-        this.progressTarget = tag.getShort("progressTarget");
+		
+		this.progress = tag.getShort("progress");
+		this.progressTarget = tag.getShort("progressTarget");
 		
 		NBTTagList stackTag = tag.getTagList("stacks", 10);
 		stacks = new ItemStack[3];
 		
-		for(int i =0 ; i < stackTag.tagCount(); i++)
+		for (int i = 0; i < stackTag.tagCount(); i++)
 		{
 			NBTTagCompound t = stackTag.getCompoundTagAt(i);
 			int index = t.getByte("index");
@@ -306,17 +297,17 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	{
 		super.writeToNBT(tag);
 		
-		tag.setShort("progress", (short)this.progress);
-		tag.setShort("progressTarget", (short)this.progressTarget);
+		tag.setShort("progress", (short) this.progress);
+		tag.setShort("progressTarget", (short) this.progressTarget);
 		
 		NBTTagList stackTag = new NBTTagList();
-		for(int i=0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
-			if(stacks[i] != null)
+			if (stacks[i] != null)
 			{
 				NBTTagCompound t = new NBTTagCompound();
 				stacks[i].writeToNBT(t);
-				t.setByte("index", (byte)i);
+				t.setByte("index", (byte) i);
 				stackTag.appendTag(t);
 			}
 		}
@@ -327,7 +318,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	public void writeToPacket(ByteBuf buf)
 	{
 		super.writeToPacket(buf);
-		for(ItemStack stack : stacks)
+		for (ItemStack stack : stacks)
 			ByteBufUtils.writeItemStack(buf, stack);
 	}
 	
@@ -335,10 +326,10 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	{
 		boolean oldFormed = formed;
 		super.readFromPacket(buf);
-		if(oldFormed != formed)
+		if (oldFormed != formed)
 			worldObj.markBlockRangeForRenderUpdate(xCoord - 2, yCoord, zCoord - 2, xCoord + 2, yCoord - 1, zCoord + 2);
-		
-		for(int i=0 ; i < 3; i++)
+			
+		for (int i = 0; i < 3; i++)
 			stacks[i] = ByteBufUtils.readItemStack(buf);
 	}
 	
@@ -364,47 +355,41 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	
 	public float getProgressPercent()
 	{
-		return (float)progress / (float)progressTarget;
+		return (float) progress / (float) progressTarget;
 	}
-
-
+	
 	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) 
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
 	{
 		return 0;
 	}
-
-
+	
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) 
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
 	{
 		return null;
 	}
-
-
+	
 	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) 
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{
 		return null;
 	}
-
-
+	
 	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) 
+	public boolean canFill(ForgeDirection from, Fluid fluid)
 	{
 		return false;
 	}
-
-
+	
 	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) 
+	public boolean canDrain(ForgeDirection from, Fluid fluid)
 	{
 		return false;
 	}
-
-
+	
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) 
+	public FluidTankInfo[] getTankInfo(ForgeDirection from)
 	{
 		return null;
 	}
@@ -413,6 +398,6 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	public AxisAlignedBB getRenderBoundingBox()
 	{
 		//return super.getRenderBoundingBox();
-		return AxisAlignedBB.getBoundingBox(xCoord -5, yCoord -10, zCoord -5, xCoord  + 5, yCoord  + 2,  zCoord + 5);
+		return AxisAlignedBB.getBoundingBox(xCoord - 5, yCoord - 10, zCoord - 5, xCoord + 5, yCoord + 2, zCoord + 5);
 	}
 }

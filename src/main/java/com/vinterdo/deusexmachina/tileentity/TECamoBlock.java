@@ -14,7 +14,6 @@ public class TECamoBlock extends TEDEM
 {
 	private ItemStack[] camoStacks = new ItemStack[6];
 	
-	
 	public void setCamo(ItemStack stack, int side)
 	{
 		camoStacks[side] = stack;
@@ -26,8 +25,6 @@ public class TECamoBlock extends TEDEM
 		return camoStacks[side];
 	}
 	
-	
-	
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
@@ -35,7 +32,7 @@ public class TECamoBlock extends TEDEM
 		NBTTagList camoStackTag = tag.getTagList("camoStacks", 10);
 		camoStacks = new ItemStack[6];
 		
-		for(int i =0 ; i < camoStackTag.tagCount(); i++)
+		for (int i = 0; i < camoStackTag.tagCount(); i++)
 		{
 			NBTTagCompound t = camoStackTag.getCompoundTagAt(i);
 			int index = t.getByte("index");
@@ -48,13 +45,13 @@ public class TECamoBlock extends TEDEM
 		super.writeToNBT(tag);
 		
 		NBTTagList camoStackTag = new NBTTagList();
-		for(int i=0; i < 6; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			if(camoStacks[i] != null)
+			if (camoStacks[i] != null)
 			{
 				NBTTagCompound t = new NBTTagCompound();
 				camoStacks[i].writeToNBT(t);
-				t.setByte("index", (byte)i);
+				t.setByte("index", (byte) i);
 				camoStackTag.appendTag(t);
 			}
 		}
@@ -64,14 +61,14 @@ public class TECamoBlock extends TEDEM
 	
 	public void writeToPacket(ByteBuf buf)
 	{
-		for(ItemStack stack : camoStacks)
+		for (ItemStack stack : camoStacks)
 			ByteBufUtils.writeItemStack(buf, stack);
 	}
 	
 	public void readFromPacket(ByteBuf buf)
 	{
-		for(int i=0 ; i < 6; i++)
+		for (int i = 0; i < 6; i++)
 			camoStacks[i] = ByteBufUtils.readItemStack(buf);
-		worldObj.markBlockRangeForRenderUpdate(xCoord,  yCoord,  zCoord, xCoord, yCoord, zCoord);
+		worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
 	}
 }

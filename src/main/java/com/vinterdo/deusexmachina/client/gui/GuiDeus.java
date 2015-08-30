@@ -18,21 +18,22 @@ import net.minecraft.tileentity.TileEntity;
 public class GuiDeus extends GuiDEM
 {
 	TEDeusMaster te;
-	public GuiDeus(InventoryPlayer playerInv, TileEntity te) 
+	
+	public GuiDeus(InventoryPlayer playerInv, TileEntity te)
 	{
-		super(new ContainerDeus(playerInv, (TEDEM)te), "grayMatterCrafter");
+		super(new ContainerDeus(playerInv, (TEDEM) te), "grayMatterCrafter");
 		this.te = (TEDeusMaster) te;
 	}
-
-	@Override 
+	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mousex, int mousey)
 	{
 		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
-
-        if (this.te.getProgress() > 0)
-        {
-            int i1 = (int) (this.te.getProgressPercent() * 45f);
-            this.drawTexturedModalRect(guiLeft + 64, guiTop + 38, 176, 0, i1 + 1, 16);
-        }
+		
+		if (this.te.getProgress() > 0)
+		{
+			int i1 = (int) (this.te.getProgressPercent() * 45f);
+			this.drawTexturedModalRect(guiLeft + 64, guiTop + 38, 176, 0, i1 + 1, 16);
+		}
 	}
 }

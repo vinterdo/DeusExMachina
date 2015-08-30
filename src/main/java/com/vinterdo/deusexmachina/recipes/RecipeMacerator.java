@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class RecipeMacerator 
+public class RecipeMacerator
 {
 	private static ArrayList<RecipeMacerator> recipes = new ArrayList<RecipeMacerator>();
 	
 	public static RecipeMacerator getRecipe(ItemStack input)
 	{
-		for(RecipeMacerator ch : recipes)
+		for (RecipeMacerator ch : recipes)
 		{
-			if(OreDictionary.itemMatches(ch.input, input, true))
+			if (OreDictionary.itemMatches(ch.input, input, true))
 			{
 				return ch;
 			}
@@ -27,9 +27,9 @@ public class RecipeMacerator
 		recipes.add(recipe);
 	}
 	
-	private ItemStack input;
-	private ItemStack output;
-	private int energy;
+	private ItemStack	input;
+	private ItemStack	output;
+	private int			energy;
 	
 	public RecipeMacerator(ItemStack _input, ItemStack _output, int _energy)
 	{

@@ -2,7 +2,7 @@ package com.vinterdo.deusexmachina.item;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 
-public class ItemBronzeIngot extends ItemDEM 
+public class ItemBronzeIngot extends ItemDEM
 {
 	public ItemBronzeIngot()
 	{

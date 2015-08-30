@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 public class BHeater extends BTileEntityDEM
 {
 	IIcon workingIcon;
+	
 	public BHeater()
 	{
 		super();
@@ -30,15 +31,16 @@ public class BHeater extends BTileEntityDEM
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TEHeater();
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+			float hitY, float hitZ)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 		{
 			player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.HEATER.ordinal(), world, x, y, z);
 		}
@@ -50,35 +52,34 @@ public class BHeater extends BTileEntityDEM
 	public void registerBlockIcons(IIconRegister iconRegister)
 	{
 		super.registerBlockIcons(iconRegister);
-		workingIcon = iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_working")));
+		workingIcon = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_working")));
 	}
-	
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
 	{
-		TEHeater te = (TEHeater)world.getTileEntity(x, y, z);
-		if(te.isWorking())
+		TEHeater te = (TEHeater) world.getTileEntity(x, y, z);
+		if (te.isWorking())
 		{
 			return workingIcon;
-		}
-		else
+		} else
 		{
 			return super.getIcon(world, x, y, z, side);
 		}
 	}
 	
-	public int getLightValue(IBlockAccess world,int  x,int y,int z)
+	public int getLightValue(IBlockAccess world, int x, int y, int z)
 	{
-    	TEHeater te = (TEHeater)world.getTileEntity(x, y, z);
-    	if (te!=null)
-    	{
-        	if (te.isWorking())
-        	{
-        		return 14;
-        	}
-    	}
-    	return 0;
-    }
-
+		TEHeater te = (TEHeater) world.getTileEntity(x, y, z);
+		if (te != null)
+		{
+			if (te.isWorking())
+			{
+				return 14;
+			}
+		}
+		return 0;
+	}
+	
 }

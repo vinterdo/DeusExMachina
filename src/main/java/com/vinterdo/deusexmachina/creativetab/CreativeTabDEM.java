@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.reference.Reference;
 
-public class CreativeTabDEM 
+public class CreativeTabDEM
 {
 	public static final CreativeTabs DEM_TAB = new CreativeTabs(Reference.MOD_ID)
 	{

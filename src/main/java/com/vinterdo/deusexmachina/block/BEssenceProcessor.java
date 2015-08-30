@@ -18,17 +18,18 @@ public class BEssenceProcessor extends BMultitexturedTileEntity
 		this.setHardness(5.0F);
 		this.setCreativeTab(CreativeTabDEM.DEM_TAB);
 	}
-
+	
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TEEssenceProcessor();
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+			float hitY, float hitZ)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 		{
 			player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.ESSENCE_PROCESSOR.ordinal(), world, x, y, z);
 		}

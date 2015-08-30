@@ -8,7 +8,8 @@ import net.minecraft.item.ItemStack;
 public class SlotItemOnly extends Slot
 {
 	private Item item;
-	public SlotItemOnly(IInventory inventory, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_, Item _item) 
+	
+	public SlotItemOnly(IInventory inventory, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_, Item _item)
 	{
 		super(inventory, p_i1824_2_, p_i1824_3_, p_i1824_4_);
 		item = _item;
@@ -19,5 +20,5 @@ public class SlotItemOnly extends Slot
 	{
 		return item == stack.getItem();
 	}
-
+	
 }

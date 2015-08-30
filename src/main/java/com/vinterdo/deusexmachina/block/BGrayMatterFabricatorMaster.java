@@ -33,20 +33,22 @@ public class BGrayMatterFabricatorMaster extends BTileEntityDEM
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TEGrayMatterFabricatorMaster();
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+			float hitY, float hitZ)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 		{
 			TEGrayMatterFabricatorMaster te = (TEGrayMatterFabricatorMaster) world.getTileEntity(x, y, z);
-			if(te.isFormed())
-				player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.GRAY_MATTER_FABRICATOR.ordinal(), world, x, y, z);
-				//LogHelper.info("formed");
+			if (te.isFormed())
+				player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.GRAY_MATTER_FABRICATOR.ordinal(), world, x, y,
+						z);
+			//LogHelper.info("formed");
 			else
 				te.tryForming();
 		}
@@ -65,26 +67,26 @@ public class BGrayMatterFabricatorMaster extends BTileEntityDEM
 	{
 		TEGrayMatterFabricatorMaster te = (TEGrayMatterFabricatorMaster) world.getTileEntity(x, y, z);
 		te.destroyMultiblock();
-
+		
 		super.breakBlock(world, x, y, z, par5, par6);
 	}
 	
 	@Override
-    public int getRenderType() 
+	public int getRenderType()
 	{
-            return -1;
-    }
-    
-    //It's not an opaque cube, so you need this.
-    @Override
-    public boolean isOpaqueCube() 
-    {
-            return false;
-    }
-    
-    //It's not a normal block, so you need this too.
-    public boolean renderAsNormalBlock() 
-    {
-            return false;
-    }
+		return -1;
+	}
+	
+	//It's not an opaque cube, so you need this.
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	//It's not a normal block, so you need this too.
+	public boolean renderAsNormalBlock()
+	{
+		return false;
+	}
 }

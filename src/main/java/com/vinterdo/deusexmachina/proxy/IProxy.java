@@ -1,8 +1,8 @@
 package com.vinterdo.deusexmachina.proxy;
 
-public interface IProxy 
+public interface IProxy
 {
-
+	
 	void registerRenderThings();
-
+	
 }

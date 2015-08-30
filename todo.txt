@@ -3,7 +3,6 @@ Techmod:
 crafting chest (chest z craftingiem)
 
 Todo:
-Infused diamond
 Pluginy do NEI
 Configi
 Bounding boxy do rendererów

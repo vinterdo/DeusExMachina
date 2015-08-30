@@ -35,20 +35,21 @@ public class BDeusMaster extends BTileEntityDEM
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) 
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TEDeusMaster();
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+			float hitY, float hitZ)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 		{
 			TEDeusMaster te = (TEDeusMaster) world.getTileEntity(x, y, z);
-			if(te.isFormed())
+			if (te.isFormed())
 				player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.DEUS.ordinal(), world, x, y, z);
-				//LogHelper.info("formed");
+			//LogHelper.info("formed");
 			else
 				te.tryForming();
 		}
@@ -61,24 +62,24 @@ public class BDeusMaster extends BTileEntityDEM
 	{
 		TEDeusMaster te = (TEDeusMaster) world.getTileEntity(x, y, z);
 		te.destroyMultiblock();
-
+		
 		super.breakBlock(world, x, y, z, par5, par6);
 	}
 	
 	@Override
-    public int getRenderType() 
+	public int getRenderType()
 	{
-            return -1;
-    }
-    
-    @Override
-    public boolean isOpaqueCube() 
-    {
-            return false;
-    }
-    
-    public boolean renderAsNormalBlock() 
-    {
-            return false;
-    }
+		return -1;
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	public boolean renderAsNormalBlock()
+	{
+		return false;
+	}
 }

@@ -17,39 +17,41 @@ import net.minecraftforge.fluids.Fluid;
 public class BFluidGrayMatter extends BlockFluidClassic
 {
 	@SideOnly(Side.CLIENT)
-    protected IIcon stillIcon;
-     
-	public BFluidGrayMatter() 
+	protected IIcon stillIcon;
+	
+	public BFluidGrayMatter()
 	{
 		super(ModFluids.grayMatter, Material.water);
 		setCreativeTab(CreativeTabDEM.DEM_TAB);
 		setBlockName("fluidGrayMatter");
 	}
-
+	
 	@Override
-    public IIcon getIcon(int side, int meta) 
+	public IIcon getIcon(int side, int meta)
 	{
-            return stillIcon;
-    }
+		return stillIcon;
+	}
 	
 	@SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register) 
+	@Override
+	public void registerBlockIcons(IIconRegister register)
 	{
-            stillIcon = register.registerIcon(Reference.MOD_ID + ":grayMatterStill");
-    }
+		stillIcon = register.registerIcon(Reference.MOD_ID + ":grayMatterStill");
+	}
 	
 	@Override
-    public boolean canDisplace(IBlockAccess world, int x, int y, int z) 
+	public boolean canDisplace(IBlockAccess world, int x, int y, int z)
 	{
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
-            return super.canDisplace(world, x, y, z);
-    }
-   
-    @Override
-    public boolean displaceIfPossible(World world, int x, int y, int z) 
-    {
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
-            return super.displaceIfPossible(world, x, y, z);
-    }
+		if (world.getBlock(x, y, z).getMaterial().isLiquid())
+			return false;
+		return super.canDisplace(world, x, y, z);
+	}
+	
+	@Override
+	public boolean displaceIfPossible(World world, int x, int y, int z)
+	{
+		if (world.getBlock(x, y, z).getMaterial().isLiquid())
+			return false;
+		return super.displaceIfPossible(world, x, y, z);
+	}
 }

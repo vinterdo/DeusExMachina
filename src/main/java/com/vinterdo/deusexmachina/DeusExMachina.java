@@ -31,13 +31,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Optional;
 
-@Mod(modid=Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
-public class DeusExMachina 
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
+public class DeusExMachina
 {
 	@Instance(Reference.MOD_ID)
 	public static DeusExMachina instance;
 	
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide= Reference.SERVER_PROXY_CLASS)
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
 	@Mod.EventHandler
@@ -54,7 +54,7 @@ public class DeusExMachina
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		GameRegistry.registerWorldGenerator(new WorldGeneratorOres(), 0);
 		
-		if(Loader.isModLoaded(ModIds.THAUMCRAFT))
+		if (Loader.isModLoaded(ModIds.THAUMCRAFT))
 		{
 			thaumcraftApi();
 		}
@@ -76,6 +76,6 @@ public class DeusExMachina
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		
+	
 	}
 }

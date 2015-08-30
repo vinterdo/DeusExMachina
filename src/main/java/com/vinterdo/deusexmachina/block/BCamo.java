@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BCamo extends BTileEntityDEM 
+public class BCamo extends BTileEntityDEM
 {
 	public BCamo()
 	{
@@ -25,19 +25,20 @@ public class BCamo extends BTileEntityDEM
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) 
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
 		return new TECamoBlock();
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+			float hitY, float hitZ)
 	{
-		if(!world.isRemote)
+		if (!world.isRemote)
 		{
-			TECamoBlock te = (TECamoBlock)world.getTileEntity(x, y, z);
+			TECamoBlock te = (TECamoBlock) world.getTileEntity(x, y, z);
 			ItemStack stack = player.getCurrentEquippedItem();
-			te.setCamo(stack, side);			
+			te.setCamo(stack, side);
 		}
 		return true;
 	}
@@ -45,22 +46,21 @@ public class BCamo extends BTileEntityDEM
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
 	{
-		TECamoBlock te = (TECamoBlock)world.getTileEntity(x, y, z);
+		TECamoBlock te = (TECamoBlock) world.getTileEntity(x, y, z);
 		ItemStack stack = te.getCamo(side);
-		if(stack != null && stack.getItem() instanceof ItemBlock)
+		if (stack != null && stack.getItem() instanceof ItemBlock)
 		{
-			Block block = ((ItemBlock)stack.getItem()).field_150939_a;
+			Block block = ((ItemBlock) stack.getItem()).field_150939_a;
 			return block.getIcon(side, stack.getItemDamage());
-		}
-		else
+		} else
 		{
 			return super.getIcon(world, x, y, z, side);
 		}
 	}
 	
 	@Override
-    public boolean isOpaqueCube() 
-    {
-            return false;
-    }
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
 }

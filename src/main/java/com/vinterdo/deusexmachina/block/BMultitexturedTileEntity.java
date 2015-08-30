@@ -16,47 +16,50 @@ public abstract class BMultitexturedTileEntity extends BTileEntityDEM
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
 	{
-		icons[0]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_bottom")));
-		icons[1]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_top")));
-		icons[2]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_front")));
-		icons[3]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_back")));
-		icons[4]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_right")));
-		icons[5]= iconRegister.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_left")));
+		icons[0] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_bottom")));
+		icons[1] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_top")));
+		icons[2] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_front")));
+		icons[3] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_back")));
+		icons[4] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_right")));
+		icons[5] = iconRegister
+				.registerIcon(String.format("%s", getUnwrappedUnlocalizedName(this.getUnlocalizedName() + "_left")));
 	}
 	
 	@Override
-	public IIcon getIcon(int side, int meta) 
+	public IIcon getIcon(int side, int meta)
 	{
-		if(side == 0 || side == 1) 
-		    return this.icons[side];
-	    
-	    return this.icons[(side + meta) % 4 + 2];
+		if (side == 0 || side == 1)
+			return this.icons[side];
+			
+		return this.icons[(side + meta) % 4 + 2];
 	}
 	
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) 
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack)
 	{
 		double diffX = x - entity.posX;
 		double diffZ = z - entity.posZ;
 		
-		if(Math.abs(diffX) > Math.abs(diffZ))
+		if (Math.abs(diffX) > Math.abs(diffZ))
 		{
-			if(diffX < 0)
+			if (diffX < 0)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 3, 0);
-			}
-			else
+			} else
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 0, 0);
 			}
-		}
-		else
+		} else
 		{
-			if(diffZ < 0)
+			if (diffZ < 0)
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 1, 0);
-			}
-			else
+			} else
 			{
 				world.setBlockMetadataWithNotify(x, y, z, 2, 0);
 			}

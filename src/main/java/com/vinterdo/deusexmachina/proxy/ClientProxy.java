@@ -15,18 +15,19 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class ClientProxy extends CommonProxy
 {
-
+	
 	@Override
-	public EntityPlayer getClientPlayer() 
+	public EntityPlayer getClientPlayer()
 	{
 		return Minecraft.getMinecraft().thePlayer;
 	}
 	
 	public void registerRenderThings()
 	{
-        ClientRegistry.bindTileEntitySpecialRenderer(TEBlastFurnaceMaster.class, new BlastFurnaceRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEGrayMatterFabricatorMaster.class, new GrayMatterFabricatorRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEGrayMatterCrafterMaster.class, new GrayMatterCrafterRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TEDeusMaster.class, new DeusRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TEBlastFurnaceMaster.class, new BlastFurnaceRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TEGrayMatterFabricatorMaster.class,
+				new GrayMatterFabricatorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TEGrayMatterCrafterMaster.class, new GrayMatterCrafterRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TEDeusMaster.class, new DeusRenderer());
 	}
 }

@@ -6,8 +6,8 @@ import net.minecraftforge.fluids.Fluid;
 
 public class FluidGrayMatter extends Fluid
 {
-
-	public FluidGrayMatter() 
+	
+	public FluidGrayMatter()
 	{
 		super("grayMatter");
 		setLuminosity(0);
@@ -18,5 +18,5 @@ public class FluidGrayMatter extends Fluid
 		//setIcons();
 		//Icon
 	}
-
+	
 }

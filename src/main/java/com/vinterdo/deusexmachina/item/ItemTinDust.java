@@ -2,7 +2,7 @@ package com.vinterdo.deusexmachina.item;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 
-public class ItemTinDust extends ItemDEM 
+public class ItemTinDust extends ItemDEM
 {
 	public ItemTinDust()
 	{
