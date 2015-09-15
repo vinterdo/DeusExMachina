@@ -3,31 +3,25 @@ package com.vinterdo.deusexmachina.renderers;
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
-import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 
-import assets.deusexmachina.models.ModelBlock;
-import assets.deusexmachina.models.ModelFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
 
-public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
+public class EssenceProcessorRenderer extends TileEntitySpecialRenderer
 {
-	private final ModelFurnace	model;
-	private final ModelBlock	modelBlock;
-	
-	public BlastFurnaceRenderer()
-	{
-		this.model = new ModelFurnace();
-		this.modelBlock = new ModelBlock();
-	}
-	
+	private final IModelCustom		model		= AdvancedModelLoader
+			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceProcessor.obj"));;
+	private final ResourceLocation	textures	= (new ResourceLocation(
+			Reference.MOD_ID + ":models/essenceProcessor.png"));
+			
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
@@ -50,27 +44,24 @@ public class BlastFurnaceRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{
-		if (((TEBlastFurnaceMaster) te).isFormed())
-		{
-			GL11.glPushMatrix();
-			GL11.glTranslatef((float) x + 0.5F, (float) y - 1.5F, (float) z + 0.5F);
-			ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/ModelFurnace.png"));
-			Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-			GL11.glPushMatrix();
-			GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-			this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-		} else
-		{
-			GL11.glPushMatrix();
-			GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-			ResourceLocation textures = (new ResourceLocation(Reference.MOD_ID + ":models/BlockBlastFurnace.png"));
-			Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-			GL11.glPushMatrix();
-			GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-			this.modelBlock.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-		}
-		GL11.glPopMatrix();
-		GL11.glPopMatrix();
+		adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
 		
+		int meta = te.getBlockMetadata();
+		
+		GL11.glPushMatrix();
+		GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
+		GL11.glScalef(1 / 18f, 1 / 18f, 1 / 18f);
+		if (meta == 1)
+			meta = 4;
+		if (meta == 0)
+			meta = 1;
+		GL11.glRotatef(meta * (-90), 0.0F, 1.0F, 0.0F);
+		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
+		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_SHADE_MODEL);
+		this.model.renderAll();
+		
+		GL11.glPopMatrix();
+		GL11.glPopMatrix();
 	}
 }

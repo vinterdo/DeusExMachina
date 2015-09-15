@@ -35,6 +35,9 @@ repositories {
         name 'CB Repo'
         url "http://chickenbones.net/maven/"
     }
+    maven {
+        url = "https://raw.github.com/hea3ven/lib-colladamodel/mvn-repo/"
+    }
     ivy {
         name "CoFHCore"
         artifactPattern 'http://addons-origin.cursecdn.com/files/2246/920/[module]-[revision].[ext]'
@@ -82,6 +85,8 @@ dependencies {
      
      compile name: 'buildcraft', version: '7.0.13', classifier: "dev", ext: 'jar'
      
+     compile 'com.hea3ven:lib-colladamodel-deobf:1.0a1'
+
 }
 
 sourceSets {

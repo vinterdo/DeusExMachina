@@ -2,10 +2,12 @@ package com.vinterdo.deusexmachina.proxy;
 
 import com.vinterdo.deusexmachina.renderers.BlastFurnaceRenderer;
 import com.vinterdo.deusexmachina.renderers.DeusRenderer;
+import com.vinterdo.deusexmachina.renderers.EssenceProcessorRenderer;
 import com.vinterdo.deusexmachina.renderers.GrayMatterCrafterRenderer;
 import com.vinterdo.deusexmachina.renderers.GrayMatterFabricatorRenderer;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
+import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 
@@ -22,6 +24,7 @@ public class ClientProxy extends CommonProxy
 		return Minecraft.getMinecraft().thePlayer;
 	}
 	
+	@Override
 	public void registerRenderThings()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TEBlastFurnaceMaster.class, new BlastFurnaceRenderer());
@@ -29,5 +32,6 @@ public class ClientProxy extends CommonProxy
 				new GrayMatterFabricatorRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TEGrayMatterCrafterMaster.class, new GrayMatterCrafterRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TEDeusMaster.class, new DeusRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TEEssenceProcessor.class, new EssenceProcessorRenderer());
 	}
 }

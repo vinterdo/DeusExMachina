@@ -39,7 +39,6 @@ public class TEHeater extends TEI
 			}
 		} else
 		{
-			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			for (int i = 0; i < 9; i++)
 			{
 				int burn = TileEntityFurnace.getItemBurnTime(stacks.get(i));

@@ -1,0 +1,115 @@
+Deus Ex Machina
+
+
+1. General Idea
+  Deus Ex Machina is mod centered around high-tech machines. So technologicaly advanced, they are beyond human understanding. So advanced, so they became Gods. 
+  
+ - Old end game is now just a beggining
+   You thought that one million RF is a lot? Octuple compressed cobblestone is hard to get? Quantum armor is best armor? Meet Deus Ex Machina :)
+ - More broken than Batman after fight versus Bane
+   How about creating your own Star trapped inside forcefield system? Giving you so much RF you can power entire server... or one Deus Ex Machina machine :)
+ - More HAYO than IC2
+   Custom models and gigantic multiblocks!
+ - Even Greg can't handle it
+   Build your own black hole with thousands of octuple compressed cobblestones... to produce 9 UnMatter ingots
+ - Set new goals for modded MC
+   Bored of repeatable mechanics and looking for new challanges? Try Deus Ex Machina
+ - Dont Re-Do things that are already Done
+   Who needs another macerator? 
+
+2. Basics (aka tier 0) - Steel and Essence - Start slowly
+ - Ores: Copper, Tin, Essence
+   Copper and Tin are just regular ores similar to any other Copper and Tin in mods. Essence is a bit more interesting
+   You can find it in overworld. This blueish matterial is trapped inside strange crystals. Sometimes you think it is alive. 
+ - Processing essence (Essence Processor and Heater)
+   Heating essence ore causes Essence extract from rock. Trapping it into capsules will make it usefull later.
+   Place Heater and above it, put Essence Processor. Put Capsules and Essence ore into processor, and any kind of fuel into Heater. You will get your Capsules back. 
+ - Macerating resources
+   Crushing ores before smelting them is always good idea. You get more ingots from less ores, and you can mix dusts to create new alloys.
+ - Create bronze
+   Mixing tin and copper dusts creates bronze. Smelt it... It will be usefull for some machines. 
+ - Computer guide - new fancy InGame wiki
+   Your knowledge database about everything in Deus ex Machina
+ - Build Blast Furnace and produce Steel
+   Bronze is not enough. We need stronger materials. 
+   This is also first multiblock. Here are the basics: every multiblock is based on "Master" block. You have to build rest of the structure from other blocks, as specified in Computer Guide. When multiblock is built, just right click on master block. If you've done everything right, multiblock should form showing you cool looking model.
+   
+ - WindMill
+ - Water Wheel
+ 
+ - Fabricate GrayMatter
+ - Gray Matter Crafting
+
+3. Deus
+ - Deus building
+ - Data Cores and Data bank
+ - Techtree and Deus Brain
+ - Feed me for tech
+
+4. Machines tier 1 - Gray Matter - Better, Harder, Faster, Stronger
+ - Material essences : metal, ether, life, matter
+   - Matter shatterer
+   - Matter composer
+   - Plant incubator
+   - Ether condensator
+   - Metalizer
+ - Hyperenergetic furnace
+ - Crusher, Vibrating Screen, Washer
+ - Node consumer
+ - Essence Factory
+ - Turrets
+
+5. Machines tier 2 - Null Matter - Break your game
+ - Null Matter Particle Collider
+   - Particle fabricator
+   - Accelerator
+   - Collision chamber
+   - Singularity
+   - Stabilizer
+ - Zero point module
+ - Teleport network
+   - Teleport Master
+   - Teleport Gate
+   - Teleport Dialer
+   - Teleport Logger
+   - Security Terminal
+ - Omni Tool
+ - Electrolytic separator
+ - Plasma Preheater
+ - Tokamak reactor
+ - Assembly Line
+ - Void digger
+ - Oil fabricator
+ - Shield System
+   - Shield Master
+   - Pylon
+ - Charger
+ - CCTV
+ - CCTV drone
+ - Blood fabricator
+ - Duplicator
+ - Monorail
+ - CyberCoffin
+ - Auto Feeder
+ - Trapped Star
+   - Fusion Core
+   - Fusion Heater
+   
+6. Machines tier 3 - UnMatter - Nothing is impossible
+ - SuperChest
+ - Holo Map
+ - Instant Furnace
+ - Instant Macerator
+ - Instant Assembler
+ - Temporal Anomaly Genrator
+ - Material Essence Fabricators
+
+7. Have an idea? Share it!
+
+8. Implementation progess
+
+9. Videos
+
+10. Changelog
+
+11. Copyright

@@ -1,13 +1,13 @@
 package com.vinterdo.deusexmachina.block;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class BEssenceProcessor extends BMultitexturedTileEntity
 {
@@ -35,5 +35,23 @@ public class BEssenceProcessor extends BMultitexturedTileEntity
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public int getRenderType()
+	{
+		return -1;
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean renderAsNormalBlock()
+	{
+		return false;
 	}
 }
