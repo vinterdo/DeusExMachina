@@ -15,7 +15,6 @@ public class BTerminal extends BTileEntityDEM
 	{
 		super();
 		this.setBlockName("terminal");
-		this.setHardness(5.0F);
 		this.setCreativeTab(CreativeTabDEM.DEM_TAB);
 	}
 	
