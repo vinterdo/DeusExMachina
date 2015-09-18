@@ -17,6 +17,7 @@ import com.vinterdo.deusexmachina.block.BGrayMatterFabricator;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BHeater;
+import com.vinterdo.deusexmachina.block.BTerminal;
 import com.vinterdo.deusexmachina.block.BTileEntityDEM;
 import com.vinterdo.deusexmachina.block.BTinOre;
 import com.vinterdo.deusexmachina.reference.Reference;
@@ -30,6 +31,8 @@ public class ModBlocks
 	public static final BDEM	essenceOre	= new BEssenceOre();
 	public static final BDEM	tinOre		= new BTinOre();
 	public static final BDEM	copperOre	= new BCopperOre();
+	
+	public static final BTileEntityDEM terminal = new BTerminal();
 	
 	public static final BTileEntityDEM	essenceProcessor	= new BEssenceProcessor();
 	public static final BTileEntityDEM	camoBlock			= new BCamo();
@@ -52,6 +55,8 @@ public class ModBlocks
 	
 	public static void init()
 	{
+		GameRegistry.registerBlock(terminal, "terminal");
+		
 		GameRegistry.registerBlock(essenceOre, "essenceOre");
 		GameRegistry.registerBlock(camoBlock, "camoBlock");
 		GameRegistry.registerBlock(essenceProcessor, "essenceProcessor");

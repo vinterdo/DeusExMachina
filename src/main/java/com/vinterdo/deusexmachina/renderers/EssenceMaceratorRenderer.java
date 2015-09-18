@@ -15,10 +15,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-public class EssenceProcessorRenderer extends TileEntitySpecialRenderer
+public class EssenceMaceratorRenderer extends TileEntitySpecialRenderer
 {
 	private final IModelCustom		model		= AdvancedModelLoader
-			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceProcessor.obj"));;
+			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceMacerator.obj"));;
 	private final ResourceLocation	textures	= (new ResourceLocation(Reference.MOD_ID + ":models/pallete.png"));
 	
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)

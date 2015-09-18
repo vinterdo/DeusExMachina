@@ -3,26 +3,26 @@ package com.vinterdo.deusexmachina.block;
 import com.vinterdo.deusexmachina.DeusExMachina;
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
 import com.vinterdo.deusexmachina.handler.GuiHandler;
-import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BEssenceMacerator extends BMultitexturedTileEntity
+public class BTerminal extends BTileEntityDEM
 {
-	public BEssenceMacerator()
+	
+	public BTerminal()
 	{
 		super();
-		this.setBlockName("essenceMacerator");
-		this.setHardness(2.0F);
+		this.setBlockName("terminal");
 		this.setCreativeTab(CreativeTabDEM.DEM_TAB);
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_)
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
-		return new TEEssenceMacerator();
+		return new TETerminal();
 	}
 	
 	@Override
@@ -31,9 +31,8 @@ public class BEssenceMacerator extends BMultitexturedTileEntity
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.ESSENCE_MACERATOR.ordinal(), world, x, y, z);
+			player.openGui(DeusExMachina.instance, GuiHandler.GuiIDs.TERMINAL.ordinal(), world, x, y, z);
 		}
-		
 		return true;
 	}
 	
