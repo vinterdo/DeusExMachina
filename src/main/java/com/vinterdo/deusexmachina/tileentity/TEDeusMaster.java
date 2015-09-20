@@ -1,25 +1,20 @@
 package com.vinterdo.deusexmachina.tileentity;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.ArrayList;
 
 import com.vinterdo.deusexmachina.init.ModBlocks;
-import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.multiblockstructures.MultiBlockStructure;
+import com.vinterdo.deusexmachina.multiblockstructures.StructureDeus;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblockMaster;
-import com.vinterdo.deusexmachina.utility.LogHelper;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -29,6 +24,8 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFluidHandler
 {
+	
+	public static final MultiBlockStructure structure = new StructureDeus();
 	
 	protected ItemStack[] stacks = new ItemStack[3];
 	
@@ -49,118 +46,14 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	public void tryForming()
 	{
 		members = new ArrayList<TEMultiblock>();
-		for (int x = 0; x < 5; x++)
-		{
-			for (int y = 0; y < 3; y++)
-			{
-				for (int z = 0; z < 5; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y - 9, zCoord + z - 2);
-					
-					if (te instanceof TEDeus)
-					{
-						members.add((TEMultiblock) te);
-					}
-				}
-			}
-		}
-		for (int x = 0; x < 3; x++)
-		{
-			for (int y = 0; y < 3; y++)
-			{
-				for (int z = 0; z < 3; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 6, zCoord + z - 1);
-					
-					if (te instanceof TEDeus)
-					{
-						members.add((TEMultiblock) te);
-					}
-				}
-			}
-		}
-		for (int y = 0; y < 4; y++)
-		{
-			TileEntity te = worldObj.getTileEntity(xCoord, yCoord + y - 3, zCoord);
-			
-			if (te instanceof TEDeus)
-			{
-				members.add((TEMultiblock) te);
-			}
-		}
+		structure.getMembers(this, members);
 		super.tryForming();
 	}
 	
 	@Override
 	public boolean isProperMultiblock()
 	{
-		for (int x = 0; x < 5; x++)
-		{
-			for (int y = 0; y < 3; y++)
-			{
-				for (int z = 0; z < 5; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 2, yCoord + y - 9, zCoord + z - 2);
-					if (te == null)
-					{
-						return false;
-					} else if (te instanceof TEDeus)
-					{
-						TEMultiblock tem = (TEMultiblock) te;
-						if (tem.getMaster() != null)
-							return false;
-					} else if (te != this)
-					{
-						return false;
-					}
-					
-				}
-			}
-		}
-		
-		for (int x = 0; x < 3; x++)
-		{
-			for (int y = 0; y < 3; y++)
-			{
-				for (int z = 0; z < 3; z++)
-				{
-					TileEntity te = worldObj.getTileEntity(xCoord + x - 1, yCoord + y - 6, zCoord + z - 1);
-					if (te == null)
-					{
-						return false;
-					} else if (te instanceof TEDeus)
-					{
-						TEMultiblock tem = (TEMultiblock) te;
-						if (tem.getMaster() != null)
-							return false;
-					} else if (te != this)
-					{
-						return false;
-					}
-					
-				}
-			}
-		}
-		
-		for (int y = 0; y < 4; y++)
-		{
-			TileEntity te = worldObj.getTileEntity(xCoord, yCoord + y - 3, zCoord);
-			if (te == null)
-			{
-				return false;
-			} else if (te instanceof TEDeus)
-			{
-				TEMultiblock tem = (TEMultiblock) te;
-				if (tem.getMaster() != null)
-					return false;
-			} else if (te != this)
-			{
-				return false;
-			}
-			
-		}
-		
-		return true;
+		return structure.isValidMultiblock(this);
 	}
 	
 	@Override
@@ -254,8 +147,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
-				: player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-						(double) this.zCoord + 0.5D) <= 64.0D;
+				: player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 	
 	@Override
@@ -275,6 +167,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 		return false;
 	}
 	
+	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
@@ -293,6 +186,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 		}
 	}
 	
+	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);
@@ -315,6 +209,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 		tag.setTag("stacks", stackTag);
 	}
 	
+	@Override
 	public void writeToPacket(ByteBuf buf)
 	{
 		super.writeToPacket(buf);
@@ -322,6 +217,7 @@ public class TEDeusMaster extends TEMultiblockMaster implements IInventory, IFlu
 			ByteBufUtils.writeItemStack(buf, stack);
 	}
 	
+	@Override
 	public void readFromPacket(ByteBuf buf)
 	{
 		boolean oldFormed = formed;

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BTerminal extends BTileEntityDEM
+public class BTerminal extends BMultitexturedTileEntity
 {
 	
 	public BTerminal()

@@ -18,16 +18,8 @@ import net.minecraftforge.client.model.IModelCustom;
 public class EssenceProcessorRenderer extends TileEntitySpecialRenderer
 {
 	private final IModelCustom		model		= AdvancedModelLoader
-			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceProcessor.obj"));;
+			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceProcessor.obj"));
 	private final ResourceLocation	textures	= (new ResourceLocation(Reference.MOD_ID + ":models/pallete.png"));
-	
-	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
-	{
-		int meta = world.getBlockMetadata(x, y, z);
-		GL11.glPushMatrix();
-		GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
-		GL11.glPopMatrix();
-	}
 	
 	private void adjustLightFixture(World world, int i, int j, int k, Block block)
 	{
@@ -43,7 +35,7 @@ public class EssenceProcessorRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{
-		adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
+		//adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
 		
 		int meta = te.getBlockMetadata();
 		

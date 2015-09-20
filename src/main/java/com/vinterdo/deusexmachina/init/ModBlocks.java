@@ -17,6 +17,7 @@ import com.vinterdo.deusexmachina.block.BGrayMatterFabricator;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BHeater;
+import com.vinterdo.deusexmachina.block.BShield;
 import com.vinterdo.deusexmachina.block.BTerminal;
 import com.vinterdo.deusexmachina.block.BTileEntityDEM;
 import com.vinterdo.deusexmachina.block.BTinOre;
@@ -53,6 +54,8 @@ public class ModBlocks
 	public static final BTileEntityDEM	deus		= new BDeus();
 	public static final BTileEntityDEM	deusMaster	= new BDeusMaster();
 	
+	public static final BTileEntityDEM shield = new BShield();
+	
 	public static void init()
 	{
 		GameRegistry.registerBlock(terminal, "terminal");
@@ -78,6 +81,8 @@ public class ModBlocks
 		
 		GameRegistry.registerBlock(deus, "deus");
 		GameRegistry.registerBlock(deusMaster, "deusMaster");
+		
+		GameRegistry.registerBlock(shield, "shield");
 		
 		OreDictionary.registerOre("oreCopper", copperOre);
 		OreDictionary.registerOre("oreEssence", essenceOre);

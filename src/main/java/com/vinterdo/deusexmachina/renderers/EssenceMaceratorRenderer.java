@@ -46,14 +46,11 @@ public class EssenceMaceratorRenderer extends TileEntitySpecialRenderer
 		adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
 		
 		int meta = te.getBlockMetadata();
+		meta = meta == 0 ? 0 : meta == 1 ? 3 : meta == 2 ? 1 : meta == 3 ? 2 : meta == 4 ? 2 : 0;
 		
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
 		GL11.glScalef(1 / 18f, 1 / 18f, 1 / 18f);
-		if (meta == 1)
-			meta = 4;
-		if (meta == 0)
-			meta = 1;
 		GL11.glRotatef(meta * (-90), 0.0F, 1.0F, 0.0F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 		GL11.glPushMatrix();
