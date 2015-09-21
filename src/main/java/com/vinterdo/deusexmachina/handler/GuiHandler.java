@@ -16,71 +16,79 @@ import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
-import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class GuiHandler implements IGuiHandler {
-	public enum GuiIDs {
+public class GuiHandler implements IGuiHandler
+{
+	public enum GuiIDs
+	{
 		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER;
 	}
-
+	
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch (GuiIDs.values()[ID]) {
-		case TERMINAL:
-			return null;
-		case ESSENCE_PROCESSOR:
-			return new ContainerEssenceProcessor(player.inventory, (TEEssenceProcessor) world.getTileEntity(x, y, z));
-		case HEATER:
-			return new ContainerHeater(player.inventory, (TEHeater) world.getTileEntity(x, y, z));
-		case ESSENCE_MACERATOR:
-			return new ContainerEssenceMacerator(player.inventory, (TEEssenceMacerator) world.getTileEntity(x, y, z));
-		case GRAY_MATTER_FABRICATOR:
-			return new ContainerGrayMatterFabricator(player.inventory,
-					(TEGrayMatterFabricatorMaster) world.getTileEntity(x, y, z));
-		case BLAST_FURNACE:
-			return new ContainerBlastFurnace(player.inventory, (TEBlastFurnaceMaster) world.getTileEntity(x, y, z));
-		case GRAY_MATTER_CRAFTER:
-			return new ContainerGrayMatterCrafter(player.inventory,
-					(TEGrayMatterCrafterMaster) world.getTileEntity(x, y, z));
-		case DEUS:
-			return new ContainerDeus(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		switch (GuiIDs.values()[ID])
+		{
+			case TERMINAL:
+				return null;
+			case ESSENCE_PROCESSOR:
+				return new ContainerEssenceProcessor(player.inventory,
+						(TEEssenceProcessor) world.getTileEntity(x, y, z));
+			case HEATER:
+				return new ContainerHeater(player.inventory, (TEHeater) world.getTileEntity(x, y, z));
+			case ESSENCE_MACERATOR:
+				return new ContainerEssenceMacerator(player.inventory,
+						(TEEssenceMacerator) world.getTileEntity(x, y, z));
+			case GRAY_MATTER_FABRICATOR:
+				return new ContainerGrayMatterFabricator(player.inventory,
+						(TEGrayMatterFabricatorMaster) world.getTileEntity(x, y, z));
+			case BLAST_FURNACE:
+				return new ContainerBlastFurnace(player.inventory, (TEBlastFurnaceMaster) world.getTileEntity(x, y, z));
+			case GRAY_MATTER_CRAFTER:
+				return new ContainerGrayMatterCrafter(player.inventory,
+						(TEGrayMatterCrafterMaster) world.getTileEntity(x, y, z));
+			case DEUS:
+				return new ContainerDeus(player.inventory, (TEDeusMaster) world.getTileEntity(x, y, z));
 		}
-
+		
 		throw new IllegalArgumentException("No gui with id " + ID);
 	}
-
+	
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch (GuiIDs.values()[ID]) {
-		case TERMINAL:
-			return new GuiTerminal();
-		case ESSENCE_PROCESSOR:
-			return new GuiEssenceProcessor(player.inventory, world.getTileEntity(x, y, z));
-		case HEATER:
-			return new GuiHeater(player.inventory, world.getTileEntity(x, y, z));
-		case ESSENCE_MACERATOR:
-			return new GuiEssenceMacerator(player.inventory, world.getTileEntity(x, y, z));
-		case GRAY_MATTER_FABRICATOR:
-			return new GuiGrayMatterFabricator(player.inventory, world.getTileEntity(x, y, z));
-		case GRAY_MATTER_CRAFTER:
-			return new GuiGrayMatterCrafter(player.inventory, world.getTileEntity(x, y, z));
-		case BLAST_FURNACE:
-			return new GuiBlastFurnace(player.inventory, world.getTileEntity(x, y, z));
-		case DEUS:
-			return new GuiDeus(player.inventory, world.getTileEntity(x, y, z));
-
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		switch (GuiIDs.values()[ID])
+		{
+			case TERMINAL:
+				return new GuiTerminal();
+			case ESSENCE_PROCESSOR:
+				return new GuiEssenceProcessor(player.inventory, world.getTileEntity(x, y, z));
+			case HEATER:
+				return new GuiHeater(player.inventory, world.getTileEntity(x, y, z));
+			case ESSENCE_MACERATOR:
+				return new GuiEssenceMacerator(player.inventory, world.getTileEntity(x, y, z));
+			case GRAY_MATTER_FABRICATOR:
+				return new GuiGrayMatterFabricator(player.inventory, world.getTileEntity(x, y, z));
+			case GRAY_MATTER_CRAFTER:
+				return new GuiGrayMatterCrafter(player.inventory, world.getTileEntity(x, y, z));
+			case BLAST_FURNACE:
+				return new GuiBlastFurnace(player.inventory, world.getTileEntity(x, y, z));
+			case DEUS:
+				return new GuiDeus(player.inventory, world.getTileEntity(x, y, z));
+				
 		}
-
+		
 		throw new IllegalArgumentException("No gui with id " + ID);
 	}
-
+	
 }

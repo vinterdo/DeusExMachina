@@ -5,9 +5,11 @@ import com.vinterdo.deusexmachina.item.ItemBronzeIngot;
 import com.vinterdo.deusexmachina.item.ItemCopperDust;
 import com.vinterdo.deusexmachina.item.ItemCopperIngot;
 import com.vinterdo.deusexmachina.item.ItemDEM;
+import com.vinterdo.deusexmachina.item.ItemDeusDataMatrix;
 import com.vinterdo.deusexmachina.item.ItemEssence;
 import com.vinterdo.deusexmachina.item.ItemEssenceContainer;
 import com.vinterdo.deusexmachina.item.ItemInfusedDiamond;
+import com.vinterdo.deusexmachina.item.ItemResearchCore;
 import com.vinterdo.deusexmachina.item.ItemSteelDust;
 import com.vinterdo.deusexmachina.item.ItemSteelIngot;
 import com.vinterdo.deusexmachina.item.ItemTinDust;
@@ -33,7 +35,9 @@ public class ModItems
 	public static final ItemDEM	steelDust	= new ItemSteelDust();
 	public static final ItemDEM	bronzeDust	= new ItemBronzeDust();
 	
-	public static final ItemDEM infusedDiamond = new ItemInfusedDiamond();
+	public static final ItemDEM	infusedDiamond	= new ItemInfusedDiamond();
+	public static final ItemDEM	researchCore	= new ItemResearchCore();
+	public static final ItemDEM	deusDataMatrix	= new ItemDeusDataMatrix();
 	
 	public static void init()
 	{
@@ -51,6 +55,8 @@ public class ModItems
 		GameRegistry.registerItem(bronzeDust, "bronzeDust");
 		
 		GameRegistry.registerItem(infusedDiamond, "infusedDiamond");
+		GameRegistry.registerItem(researchCore, "researchCore");
+		GameRegistry.registerItem(deusDataMatrix, "deusDataMatrix");
 		
 		OreDictionary.registerOre("ingotBronze", bronzeIngot);
 		OreDictionary.registerOre("ingotSteel", steelIngot);

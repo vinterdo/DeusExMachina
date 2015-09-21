@@ -1,0 +1,197 @@
+Techmod:
+
+crafting chest (chest z craftingiem)
+
+Todo:
+Pluginy do NEI
+Shield render in second pass (http://www.minecraftforge.net/wiki/Multiple_Pass_Render_Blocks)
+Lighting bug (GL11.glEnable(GL11.jakisEnum) ??? )
+Ogarnąć artykuł na forum
+Cleanup TODO
+Bloki, renderery i TE do maszyn do których są modele
+Configi
+Bounding boxy do rendererów
+Deus:
+	GUI
+	Deus brain (item wsadzany w deusa)
+	Techtree + renderowanie (node z techtree ma 2 stany: odkryty i nieodkryty)
+	Techtree jest zapisywane w deus brainie
+	Nieodkryty node można odkryć tylko jeżeli sasiaduje z odkrytym nodem
+	Odkrytego nodea mozna zapisac do data corea
+	Data core 
+Data bank 
+	Model + Blocki/TE + GUI + Mechanika
+	Dopisać do Craftera możliwosc uzywania Data Banku
+Matter shatterer i Matter composer
+Slot Interface
+Receptury
+Lokalizacje
+Aspekty Thaumcraft
+
+
+
+Progressing:
+wydobycie esencji, copperu i tinu
+Robimy bronze
+robimy essence processor, heater i kapsułki
+W essencje procesorze przetwarzamy kapsułki i essence ory na essencję
+Robimy essence macerator
+W essence maceratorze robimy dusty i potem bronze dust
+Przepalamy brąz (normalny piecyk)
+Robimy blast furnace 
+Robimy stal
+Ze stali robimy gray matter fabricator (zjada żelazo/copper/tin/stal oraz esencję, produkuje Gray Matter (ciecz))
+Robimy gray matter crafter (crafting z tankiem na gray matter, używa gray matteru do receptur)
+W gray matter crafterze robimy Gray Matter Core
+Kładziemy gray matter core i dokładamy mu komponenty, budując Deusa
+Robimy Steam Boiler (multiblock, zjada wodę i paliwo, produkuje parę)
+Dostarczamy parę z boilera do deusa
+Robimy Gray Matter Infused Diamon (gray matter crafter)
+Robimy Data Core (Infused Diamond, esencja, stal)
+Dajemy data core do Deusa, po pewnym czacie Deus zapisuje dane na corze (musi mieć dostarczaną parę, jaki core dostaniemy zalezy od surowców które mu damy)
+Robimy Data bank (skrzynka z możliwością wsadzania tylko data corów), kładziemy go koło Gray Matter Craftera
+W Data banku umieszczamy nasz Data Core, odblokowuje to możliwość zrobienia któregoś nowego bloku w Crafterze
+
+Data Cory:
+
+Matter shatterer - używa Gray Matteru i energii (pary) do rozbijania surowców na Life Fluid, Matter Fluid, Metal Fluid i Ether Fluid
+Matter Composer - używa Energii i fluidów do tworzenia materii 
+Essence liquifier - robi ciekłą esencję z esencji
+Essence generator - używa ciekłej Essencji do robienia energii
+Node Generator - używa thaumcraftowego nodea zjadając z niego aspekty do generowania energii
+Hyperenergetic furnace - duży, bardzo szybki multiblockowy piec
+Plant Incubator - sadzimy 1 roślinkę w środku, jej wzrost jest bardzo mocno przyspieszony
+Ether Condensator - powoli generuje Ether Fluid, zjada energię
+Matter Metalizer - zjada cobbla i energię, powoli generuje Metal Fluid
+Crusher, Vibrating Screen, washer -> potraja output z niektórych orów(pewnie tylko esencja), żre dużo energii
+Null Matter fabricator - robi Null Matter fluid z esencji i ender pereł
+	Mechanika: potrzebujemy infused ender pearl (gray matter crafter)
+	infused ender pearl kompresujemy tworzac end particle
+	Fabricator skada sie z 2 acceleratorów (każdy wymaga 1 end particla)
+	oraz collision chamber gdzie particle sie zdezaja tworzac Singularity
+	które jest pochlaniane tworzac Null matter
+Null matter stabilizer - robi Null Matter ingoty z fluidu, używa Gray Mattera
+Zero Point Module - Bardzo skomplikowany, ogromny multiblock który musimy wypełnić Null Matter Blockami (z ingotów). Po uruchomieniu nie da się go wyłączyć. Podłączamy do niego Energy stabilizer (w pakiecie data corea), który daje w chuj dużo RFów. ZPM działa dość długo, po pewnym czasie Null Matter się zużywa, zostawiając pusty ZPM. Po wypełnieniu go ponownie można uruchomić go ponownie. Daje około 100k rf/t
+Null matter może zostać użyty do zbudowania sieci teleportów:
+	Teleport network master (duzy multiblock z duzym zapotrzebowaniem na prad)
+	Teleport Gate (portal) - zlinkowany do mastera, uzyc looking glass
+	Teleport dialer - umozliwia wybranie polaczenia miedzy dwoma Gateami, moze ich być wiecej niz 1 w networku
+	Network logger - zapisuje kto uzywal teleportów i kiedy, stawiany obok mastera
+	Security terminal - permisje dla graczy gdzie sie moga teleportowac, stawiany obok mastera
+Temporal anomaly generator
+	Przyspiesza tick wszystkich bloków w pobliżu n kratek za dużo rfów
+Electrolytic separator (tworzy hydrogen z wody i energii)
+Essence Factory (duży multiblock do przetwarzania esencji)
+Refinery (multiblock przetwarzający Oil w Fuel (wymaga buildcrafta lub innego modu dodającego fuel i oil))
+Diesel generator
+Windmill (generowanie rf)
+Water Wheel (generowanie rf)
+Solar Thermal Turbine (produkuje rf)
+Plasma fabricator (zjada hydrogen i energię, robi plasmę - ta wymaga plasma conduitów do transportu)
+Plasma Reactor - zjada plasmę, robi rfy
+Ray gun - im fajerin mah lejzor!
+Assemby Line - działa jak Cyclic Assembler, tylko szybciej, multiblock
+Instant Macerator
+Instant Furnace
+Safe Chest - gracz się "binduje" do niego, kiedy umrze jego itemy trafiają do tego chesta
+Void Digger - kopie surowce 'z niczego' - wymaga bardzo dużo energii
+Charger - daje RF wszystkim maszynom z pewnego obszaru bezprzewodowo
+System tarcz (a'la mffs)
+	System sklada sie z mastera i pylonów
+	Master musi mieć energie, w nim tez zmienia sie ustawienia tarczy
+	Pylony mozna zbindowac miedzy soba, po 4 w pakiecie, musza one znajdowac sie w jednej plaszczyznie
+	Gdy pylony zostana zbindowane tworza tarcze miedzy soba i zaczynaja zjadac energie z mastera
+	Tarcza to jeden collider miedzy pylonami, ktory jest polprzezroczysty i animowany
+	W momencie udezenia w tarcze robi sie ona bardziej widoczna (alpha mask w rendererze)
+	Udezenia w tarcze zabieraja wiecej energii z mastera (tarcza to Entity z HP?)
+Trapped Star:
+	Tworzymy cubea z pylonów tarcz o wymiarach 128 x 128 x 128
+	Na środku tego czegoś stawiamy konstrukcję 9 x 9 x 9 - Fusion core
+	Dostarczamy do niego duuuuużo hydrogenu (około 10 kkk mb)
+	Dobudowujemy fusion preheater gdziekolwiek na brzegu pylonów
+	Do preheatera dostarczamy RF (będzie musiał przyjąć 10kkk RF)
+	Odpalamy tarcze (od tej pory muszą być włączone cały czas, wyłączene = wyzerowanie licznika RF)
+	Tarcze od tej pory będą pobierały coraz więcej energii - aż do momentu zakończenia wprowadzania energii
+	Gdy zakończymy wprowadzanie energii Fusion core eksploduje, zaczynając reakcję fuzyjną
+	Po około połowie reakcji tarcze są już w stanie zasilić się same
+	Reakcja trwa około godzinę, tworząc coraz większą płonącą kulę w środku tarcz (Star)
+	Im większa gwiazda w środku, tym więcej energii dostajemy (aż do 10kk rf/t)
+	Wyłączenie tarcz powoduje eksplozję o promieniu 256 kratek
+	Potem cały ten obszar "wyparowuje" (łącznie z bedrockiem) a każda istota znajdująca się w pobliżu zaczyna się palić i dostaje gigantyczny dmg
+CCTV:
+	master (z możliwocia zmiany podgladu)
+	monitor - renderowanie outputu z mastera w swiecie
+	camera - input (looking glass)
+	Camera drone 
+HoloMap
+	Renderuje teren w 3d nad "stołem" (jak w Avatarze :D)
+Data cable (?)
+	Kable do laczenia blokow z masterami, np CCTV, tarcze
+Void oil pump
+Maszyna do której gracz się "binduje", w przypadku śmierci itemy gracza są teleportowanie do inventory tej maszyny
+Omni-tool - narzędzie z możliwością rozwoju:
+	Kilof, siekiera, motyka, łopata, miecz itd... (możliwość wsadzenia dowolnego narzędzia do środka?)
+	Generator źródeł światła
+	Wrenche z EnderIo, BC, applieda, forestry itd
+	Wand z TC (z możliwością używania focusów?)
+	Coś jak Gravity gun
+	Teleporter (jak blink device z MPS)
+	Snajperka (Ze scopem)
+	Wireless terminal z AE
+	wielozadaniowy dev/null/
+	Podręczny ekwipunek (używający dysków z Applieda?)
+	Builders wand
+	Ender pouch (wpółdziałający z ender storage)
+	Requester z logistików
+	Flamethrower
+	Blood orb i paczka na sigile z Blood Magic
+	Chisel
+Inna opcja omni toola - wsadzamy w niego itemy, wybieramy je poprzez scrollowanie z shiftem, lpm, rpm normalnie używa itemu którego mamy wybranego w omni toolu
+Scaling device - pozwala zmienić wielkość postaci
+Blood generator
+	Robi krew z Blood magic z RF
+Duplicator:
+	Klonuje KAŻDY item który do niego wsadzimy za 1kkk RF
+Programowalny turret:
+	Turret base (element który odpowiada za logikę turretów, czyli to w co strzelają)
+	Logika turreta to jeden if(waruenk) gdzie warunek to jakieś wyrażenie boolowskie ustawiane w GUI
+	Warunki ustawia się w drzewo binarne używając operatorów boolowskich not, and, or, xor oraz używając stałych true, false, lub warunków typu isHostile, isPlayer, hasName(imie), isInRange(dystans)
+	Turret gun (sama wieżyczka, np. SMG, Flamethrower, Healer, Sniper, TNT cannon)
+MultiWiki
+	Książka do której można wsadzić wszystkie książki typu "InGameWiki", np Tinkerowe książki, Thaumonomicon, Lexica Botania
+Monorail - szybka, podwieszana kolejka (Interpolacja cosinusowa FTW)
+Auto Feeder - karmi graczy w jakiśm promieniu
+SuperChest - multiblock z możliwocia tworzenia tabów z chestami oraz craftingiem, kazdy tab to nowy chest, kazdy tab powoduje zuzycie RFów
+	możliwosć podpiecia applieda (network widzi jako tab)
+	możliwosć podpiecia innych inventory (które też widzi jako taby)
+	upgrade do ender chesta
+	zdalny dostep
+Pocket Dimension Gate
+	Portal do dimmensiona
+	Każdy Portal tworzy inny dimmension
+	Jest zasilany przez Teleport network master
+	Do dimmensiona można się dostać przez dowolny portal w sieci która zasila Pocket Dimension
+	Pocket dimmension można upgradować przez:
+		Temportal anomaly - przyspiesza tick w całym dimensionie
+		Effect spreader - efekty potionów w całym dimensionie
+		AutoLoader - chunkloaduje każdy chunk w dimensionie na którym jest jakieś tileentity
+		AntiMob - nie pozwala mobom się spawnić
+Black hole
+	Robionsy z Dense matter (9^9 cobblestonea)
+	Wybudowanie kuli o promieniu 50 bloków z bedrockium tworzy black hole - wsysa wszystko w promieniu 256 kratek (chyba że się otoczy go tarczami)
+	Do pylonów tarczy, która otacza black hole można doczepić Shield Compressory
+	Shield Compressory "zciskają" black hole który jest w środku zjadając gigantyczne ilości RF (potrzebne słońce w słoiku :D)
+	Proces kończy się gdy dziura zostanie zciśnięta do 1 kratki - wtedy dziura zmienia się w blok UnMatteru (pseudnaukowy bełkot - substancja tak bardzo skompresowana, że bozony higgsa - nadające mase matteri - zostały wypchnięte z jej środka - przez co sama nie posiada masy)
+	UnMatteru nie da się klonować w Duplicatorze (nie ma masy to nie da się sklonować, i chuj)
+UnMatter generator
+	Multiblock, składający się z 1 bloku UnMatteru który tworzy nieskończoną liczbę RF za darmo
+UnMatter armor - daje godmode + latanie
+UnMatter battery - nieskończony energy storage z automatycznym podpięciem pod tessearacty
+UnFurnace/UnMacerator/UnCrafter - automatycznie (bez czekania) przepala/maceruje/autocraftuje to co się do niego wrzuci
+
+
+
+
+Creative only:
+Server Eater - czorno dziurwa
+

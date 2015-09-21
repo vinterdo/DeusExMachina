@@ -34,7 +34,12 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		TEShield shield = (TEShield) te;
+		if (shield.hitStr > 0)
+		{
 		
+		}
 		float f1 = (float) this.field_147501_a.field_147560_j;
 		float f2 = (float) this.field_147501_a.field_147561_k;
 		float f3 = (float) this.field_147501_a.field_147558_l;
@@ -44,7 +49,7 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 		for (int i = 0; i < 8; ++i)
 		{
 			GL11.glPushMatrix();
-			float f5 = (8 - i) / 1.05f;
+			float f5 = (8 - i) / 1f;
 			float f6 = 0.0925F;
 			float f7 = 1.0F / (f5 + 1.0F);
 			
@@ -68,7 +73,7 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 			
 			float f8 = f4;
 			float f9 = f8 + ActiveRenderInfo.objectY;
-			float f10 = f8 + f5 + ActiveRenderInfo.objectY;
+			float f10 = f8 + ActiveRenderInfo.objectY;
 			float f11 = f9 / f10;
 			GL11.glPopMatrix();
 			GL11.glMatrixMode(GL11.GL_TEXTURE);
@@ -76,8 +81,8 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 			GL11.glPushMatrix();
 			GL11.glLoadIdentity();
 			GL11.glTranslatef(te.xCoord, te.yCoord, te.zCoord);
-			GL11.glTranslatef((Minecraft.getSystemTime() + 3654) % 7000L / 7000.0F,
-					(Minecraft.getSystemTime() + 2677) % 7000L / 7000.0F, Minecraft.getSystemTime() % 7000L / 7000.0F);
+			GL11.glTranslatef((Minecraft.getSystemTime()) % 7000L / 7000.0F,
+					(Minecraft.getSystemTime()) % 7000L / 7000.0F, Minecraft.getSystemTime() % 7000L / 7000.0F);
 			GL11.glScalef(f5, f5, f5);
 			GL11.glTranslatef(-f1, -f3, -f2);
 			f9 = f8 + ActiveRenderInfo.objectY;
