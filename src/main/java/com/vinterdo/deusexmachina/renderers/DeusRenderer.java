@@ -151,7 +151,7 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 			GL11.glEnable(GL11.GL_TEXTURE_GEN_Q);
 			GL11.glPopMatrix();
 			GL11.glMatrixMode(GL11.GL_TEXTURE);
-			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+			//GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
 			GL11.glPushMatrix();
 			GL11.glLoadIdentity();
 			GL11.glTranslatef(0.0F, Minecraft.getSystemTime() % 7000L / 7000.0F, 0.0F);

@@ -12,6 +12,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Recipes
 {
+	public static RecipeGrayMatter infusedDiamondRecipe;
+	
 	public static void init()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.essenceContainer, 8), "gig", "g g", "gig",
@@ -56,7 +58,7 @@ public class Recipes
 						new ItemStack(Items.diamond, 1), new ItemStack(ModItems.steelIngot, 1) },
 				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1),
 						new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1) } };
-		RecipeGrayMatter
-				.addRecipe(new RecipeGrayMatter(grid, 300, 5000, 2000, new ItemStack(ModItems.infusedDiamond, 1)));
+		infusedDiamondRecipe = new RecipeGrayMatter(grid, 300, 5000, 2000, new ItemStack(ModItems.infusedDiamond, 1));
+		RecipeGrayMatter.addRecipe(infusedDiamondRecipe);
 	}
 }

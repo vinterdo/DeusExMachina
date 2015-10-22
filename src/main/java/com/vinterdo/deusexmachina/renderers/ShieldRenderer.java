@@ -40,17 +40,14 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 		{
 		
 		}
-		float f1 = (float) this.field_147501_a.field_147560_j;
-		float f2 = (float) this.field_147501_a.field_147561_k;
-		float f3 = (float) this.field_147501_a.field_147558_l;
 		GL11.glDisable(GL11.GL_LIGHTING);
 		random.setSeed(31100L);
 		float f4 = 0.75F;
+		float f6 = 0.0925F;
 		for (int i = 0; i < 8; ++i)
 		{
 			GL11.glPushMatrix();
 			float f5 = (8 - i) / 1f;
-			float f6 = 0.0925F;
 			float f7 = 1.0F / (f5 + 1.0F);
 			
 			if (i == 0)
@@ -77,14 +74,14 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 			float f11 = f9 / f10;
 			GL11.glPopMatrix();
 			GL11.glMatrixMode(GL11.GL_TEXTURE);
-			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+			//GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
 			GL11.glPushMatrix();
 			GL11.glLoadIdentity();
 			GL11.glTranslatef(te.xCoord, te.yCoord, te.zCoord);
 			GL11.glTranslatef((Minecraft.getSystemTime()) % 7000L / 7000.0F,
 					(Minecraft.getSystemTime()) % 7000L / 7000.0F, Minecraft.getSystemTime() % 7000L / 7000.0F);
 			GL11.glScalef(f5, f5, f5);
-			GL11.glTranslatef(-f1, -f3, -f2);
+			//GL11.glTranslatef(-f1, -f3, -f2);
 			f9 = f8 + ActiveRenderInfo.objectY;
 			GL11.glTranslatef(ActiveRenderInfo.objectX * f5 / f9, ActiveRenderInfo.objectZ * f5 / f9, 0);
 			Tessellator tessellator = Tessellator.instance;
@@ -92,13 +89,6 @@ public class ShieldRenderer extends TileEntitySpecialRenderer
 			f11 = random.nextFloat() * 0.5F + 0.1F;
 			float f12 = random.nextFloat() * 0.5F + 0.4F;
 			float f13 = random.nextFloat() * 0.5F + 0.5F;
-			
-			if (i == 0)
-			{
-				f13 = 1.0F;
-				f12 = 1.0F;
-				f11 = 1.0F;
-			}
 			
 			tessellator.setColorRGBA_F(0.7f, 0.35f, 0f, 0.3F);
 			

@@ -85,7 +85,6 @@ dependencies {
      
      compile name: 'buildcraft', version: '7.0.13', classifier: "dev", ext: 'jar'
      
-     compile 'com.hea3ven:lib-colladamodel-deobf:1.0a1'
 
 }
 

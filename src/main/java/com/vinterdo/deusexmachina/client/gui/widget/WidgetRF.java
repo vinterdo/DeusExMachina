@@ -50,7 +50,6 @@ public class WidgetRF
 		
 		float percentage = (float) amt / (float) capacity;
 		float pheight = height * percentage;
-		GL11.glDisable(GL11.GL_LIGHTING);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(rfProgressbar);
 		GL11.glColor4d(1, 1, 1, 1);
 		Gui.func_146110_a(x, y + height - (int) pheight, 0, 0, 16, (int) pheight, 16, 16);

@@ -4,14 +4,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.reference.Reference;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
@@ -21,22 +17,9 @@ public class EssenceProcessorRenderer extends TileEntitySpecialRenderer
 			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/essenceProcessor.obj"));
 	private final ResourceLocation	textures	= (new ResourceLocation(Reference.MOD_ID + ":models/pallete.png"));
 	
-	private void adjustLightFixture(World world, int i, int j, int k, Block block)
-	{
-		Tessellator tess = Tessellator.instance;
-		float brightness = block.getLightValue(world, i, j, k);
-		int skyLight = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
-		int modulousModifier = skyLight % 65536;
-		int divModifier = skyLight / 65536;
-		tess.setColorOpaque_F(brightness, brightness, brightness);
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, modulousModifier, divModifier);
-	}
-	
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{
-		//adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
-		
 		int meta = te.getBlockMetadata();
 		
 		GL11.glPushMatrix();

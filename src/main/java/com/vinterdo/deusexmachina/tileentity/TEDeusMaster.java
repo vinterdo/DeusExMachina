@@ -13,6 +13,7 @@ import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyReceiver;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -169,5 +170,13 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 		super.writeToNBT(tag);
 		tank.writeToNBT(tag);
 		energy.writeToNBT(tag);
+	}
+	
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player)
+	{
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
+				: player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 128.0D;
+				
 	}
 }
