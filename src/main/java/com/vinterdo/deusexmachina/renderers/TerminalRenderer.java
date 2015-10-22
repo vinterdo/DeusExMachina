@@ -43,8 +43,6 @@ public class TerminalRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{
-		adjustLightFixture(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord, te.getBlockType());
-		
 		int meta = te.getBlockMetadata();
 		
 		GL11.glPushMatrix();
@@ -62,4 +60,5 @@ public class TerminalRenderer extends TileEntitySpecialRenderer
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}
+	
 }

@@ -199,7 +199,10 @@ public abstract class ContainerDEM<T extends TileEntity> extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return ((IInventory) te).isUseableByPlayer(player);
+		if (te instanceof IInventory)
+			return ((IInventory) te).isUseableByPlayer(player);
+		else
+			return true; // TODO: implement that
 	}
 	
 	@Override

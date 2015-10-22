@@ -16,6 +16,7 @@ import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.tileentity.TEIERGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.tileentity.TEShield;
+import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -43,6 +44,7 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEDeus.class, Reference.MOD_ID + ":" + "deus");
 		GameRegistry.registerTileEntity(TEDeusMaster.class, Reference.MOD_ID + ":" + "deusMaster");
 		GameRegistry.registerTileEntity(TEShield.class, Reference.MOD_ID + ":" + "shield");
+		GameRegistry.registerTileEntity(TETerminal.class, Reference.MOD_ID + ":" + "terminal");
 		
 	}
 }

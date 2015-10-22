@@ -1,67 +1,31 @@
 package com.vinterdo.deusexmachina.client.gui;
 
-import buildcraft.api.core.EnumColor;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import com.vinterdo.deusexmachina.inventory.ContainerTerminal;
+import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
-@SideOnly(Side.CLIENT)
-public class GuiTerminal extends GuiScreen
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntity;
+
+public class GuiTerminal extends GuiDEM
 {
-	private static String updateProgress = "";
+	public GuiTerminal(InventoryPlayer playerInv, TileEntity te)
+	{
+		super(new ContainerTerminal(playerInv, (TETerminal) te), "terminal");
+		
+		xSize = 256;
+		ySize = 256;
+	}
 	
 	@Override
 	public void initGui()
 	{
-		buttonList.clear();
-		buttonList.add(new GuiButton(0, width / 2 - 100, height / 4 + 72 + 12, "Update"));
-		buttonList.add(new GuiButton(1, width / 2 - 100, height / 4 + 96 + 12, "Cancel"));
-	}
-	
-	public static void updateInfo(String info)
-	{
-		updateProgress = info;
+		super.initGui();
 	}
 	
 	@Override
-	protected void actionPerformed(GuiButton guibutton)
+	protected void drawGuiContainerBackgroundLayer(float partialTick, int mousex, int mousey)
 	{
-		if (guibutton.id == 0)
-		{
-			// update
-		}
-		if (guibutton.id == 1)
-		{
-			mc.displayGuiScreen(null);
-		}
-	}
-	
-	public void writeText(String text, int yAxis)
-	{
-		drawString(fontRendererObj, text, width / 2 - 140, (height / 4 - 60) + 20 + yAxis, 0xa0a0a0);
-	}
-	
-	@Override
-	public boolean doesGuiPauseGame()
-	{
-		return false;
-	}
-	
-	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTick)
-	{
-		drawDefaultBackground();
-		drawCenteredString(fontRendererObj, EnumColor.BLUE + "Mekanism" + EnumColor.GRAY + " by aidancbrady", width / 2,
-				(height / 4 - 60) + 20, 0xffffff);
-				
-		int size = 36;
+		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
 		
-		writeText(EnumColor.GRAY + "Newest version: " + "latestVersionNumber", size + 9);
-		writeText(EnumColor.GRAY + "*blablablablablablabla", size + 18);
-		writeText(EnumColor.GRAY + "*blablablablablablabla", size + 27);
-		writeText(EnumColor.GRAY + updateProgress, size + 45);
-		
-		super.drawScreen(mouseX, mouseY, partialTick);
 	}
 }
