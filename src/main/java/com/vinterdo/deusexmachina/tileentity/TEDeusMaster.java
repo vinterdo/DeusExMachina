@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
+import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.multiblockstructures.MultiBlockStructure;
 import com.vinterdo.deusexmachina.multiblockstructures.StructureDeus;
 import com.vinterdo.deusexmachina.network.Synchronized;
@@ -53,7 +54,7 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	{
 		super();
 		tank.setFluid(new FluidStack(ModFluids.grayMatter, 0));
-		setNumOfStacks(17);
+		setNumOfStacks(3);
 	}
 	
 	@Override
@@ -88,6 +89,20 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	{
 		
 		return false;
+	}
+	
+	public void printResearch(String name)
+	{
+		ItemStack firstStack = stacks.get(0);
+		ItemStack secondStack = stacks.get(1);
+		if (firstStack != null && firstStack.getItem() == ModItems.researchCore && secondStack == null)
+		{
+			this.decrStackSize(0, 1);
+			ItemStack research = new ItemStack(ModItems.researchCore);
+			research.stackTagCompound = new NBTTagCompound();
+			research.stackTagCompound.setString("researchName", name);
+			stacks.set(1, research);
+		}
 	}
 	
 	@Override
@@ -178,5 +193,13 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
 				: player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 128.0D;
 				
+	}
+	
+	public void onButtonPressed(int id, String name)
+	{
+		if (id == 0)
+		{
+			this.printResearch(name);
+		}
 	}
 }

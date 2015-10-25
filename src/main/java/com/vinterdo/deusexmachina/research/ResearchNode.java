@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import org.lwjgl.opengl.GL11;
 
+import com.vinterdo.deusexmachina.client.gui.GuiButtonResearch;
+import com.vinterdo.deusexmachina.client.gui.GuiDeus;
 import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 
 import net.minecraft.client.Minecraft;
@@ -15,7 +17,88 @@ import net.minecraft.util.ResourceLocation;
 public class ResearchNode
 {
 	
-	RecipeGrayMatter			recipe;
+	RecipeGrayMatter recipe;
+	
+	public RecipeGrayMatter getRecipe()
+	{
+		return recipe;
+	}
+	
+	public void setRecipe(RecipeGrayMatter recipe)
+	{
+		this.recipe = recipe;
+	}
+	
+	public Collection<ResearchNode> getChildrens()
+	{
+		return childrens;
+	}
+	
+	public void setChildrens(Collection<ResearchNode> childrens)
+	{
+		this.childrens = childrens;
+	}
+	
+	public ResearchNode getParent()
+	{
+		return parent;
+	}
+	
+	public void setParent(ResearchNode parent)
+	{
+		this.parent = parent;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
+	public boolean isDiscovered()
+	{
+		return discovered;
+	}
+	
+	public void setDiscovered(boolean discovered)
+	{
+		this.discovered = discovered;
+	}
+	
+	public int getRfPerSecond()
+	{
+		return rfPerSecond;
+	}
+	
+	public void setRfPerSecond(int rfPerSecond)
+	{
+		this.rfPerSecond = rfPerSecond;
+	}
+	
+	public int getGrayMatterCost()
+	{
+		return grayMatterCost;
+	}
+	
+	public void setGrayMatterCost(int grayMatterCost)
+	{
+		this.grayMatterCost = grayMatterCost;
+	}
+	
+	public int getTime()
+	{
+		return time;
+	}
+	
+	public void setTime(int time)
+	{
+		this.time = time;
+	}
+	
 	Collection<ResearchNode>	childrens;
 	ResearchNode				parent;
 	String						name;
@@ -24,14 +107,15 @@ public class ResearchNode
 	int							grayMatterCost;
 	int							time;
 	ResourceLocation			icon;
-	
-	int	x;
-	int	y;
-	int	guiTop;
-	int	guiLeft;
+	GuiDeus						gui;
+	int							x;
+	int							y;
+	int							guiTop;
+	int							guiLeft;
+	private GuiButtonResearch	printButton;
 	
 	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, String name, int rfPerSecond, int grayMatterCost,
-			int time, int x, int y, ResourceLocation icon, int guiLeft, int guiTop)
+			int time, int x, int y, ResourceLocation icon, GuiDeus guiDeus)
 	{
 		super();
 		this.recipe = recipe;
@@ -44,11 +128,16 @@ public class ResearchNode
 		this.y = y;
 		this.childrens = new ArrayList<ResearchNode>();
 		this.icon = icon;
-		this.guiTop = guiTop;
-		this.guiLeft = guiLeft;
+		this.guiTop = guiDeus.getTop();
+		this.guiLeft = guiDeus.getLeft();
+		this.gui = guiDeus;
 		
 		if (parent != null)
 			parent.childrens.add(this);
+			
+		printButton = new GuiButtonResearch(0, x, y, 16, 16, "", this);
+		gui.addButton(printButton);
+		
 	}
 	
 	public void render(int mousex, int mousey, float partialTick, int offsetx, int offsety)
@@ -59,9 +148,13 @@ public class ResearchNode
 		int nodePosX = x + offsetx;
 		int nodePosY = y + offsety;
 		
+		printButton.xPosition = nodePosX;
+		printButton.yPosition = nodePosY;
+		
 		if (nodePosX - 5 + 16 > guiLeft && nodePosX + 16 - 16 < maxX && nodePosY - 5 + 16 > guiTop
 				&& nodePosY + 16 - 16 < maxY)
 		{
+			printButton.enabled = true;
 			GL11.glDisable(GL11.GL_LIGHTING);
 			
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
@@ -93,6 +186,10 @@ public class ResearchNode
 			int h = nodePosY + 16 > maxY ? 16 - olY : nodePosY < guiTop + 5 ? 16 + ogY : 16;
 			
 			Gui.func_146110_a(renderx, rendery, startx, starty, w, h, 16, 16);
+		} else
+		{
+			
+			printButton.enabled = false;
 		}
 		
 		int vertStartX = clamp(nodePosX + 8 - 3, guiLeft + 5, maxX);

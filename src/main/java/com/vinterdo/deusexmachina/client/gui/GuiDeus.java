@@ -5,9 +5,12 @@ import org.lwjgl.input.Mouse;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTank;
 import com.vinterdo.deusexmachina.inventory.ContainerDeus;
+import com.vinterdo.deusexmachina.network.MessageHandleGuiButtonResearch;
+import com.vinterdo.deusexmachina.network.NetworkHandler;
 import com.vinterdo.deusexmachina.research.ResearchTree;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
@@ -40,10 +43,26 @@ public class GuiDeus extends GuiDEM
 		widgetTank = new WidgetTank(this.te.tank, guiLeft + 152, guiTop + 19, 58, 16);
 		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 58, 16);
 		research = new ResearchTree(guiLeft, guiTop);
-		research.createTree();
+		research.createTree(this);
 		
 		offsetx = guiLeft;
 		offsety = guiTop;
+	}
+	
+	@Override
+	protected void actionPerformed(GuiButton button)
+	{
+		if (button.id == 0 && button instanceof GuiButtonResearch)
+		{
+			NetworkHandler.sendToServer(
+					new MessageHandleGuiButtonResearch(this.te, 0, ((GuiButtonResearch) button).research.getName()));
+			((GuiButtonResearch) button).research.setDiscovered(true);
+		}
+	}
+	
+	public void addButton(GuiButton button)
+	{
+		buttonList.add(button);
 	}
 	
 	@Override
@@ -69,5 +88,15 @@ public class GuiDeus extends GuiDEM
 		widgetTank.render(mousex, mousey, partialTick);
 		widgetEnergy.render(mousex, mousey, partialTick);
 		research.renderTree(mousex, mousey, partialTick, (int) offsetx, (int) offsety);
+	}
+	
+	public int getTop()
+	{
+		return guiTop;
+	}
+	
+	public int getLeft()
+	{
+		return guiLeft;
 	}
 }

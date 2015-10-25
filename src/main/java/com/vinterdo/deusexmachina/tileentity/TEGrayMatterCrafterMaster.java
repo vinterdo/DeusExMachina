@@ -76,7 +76,10 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 				
 				if (gmConsumed >= gmTarget && progress >= progressTarget)
 				{
-					this.addItemToRange(rec.output.copy(), 16, 17);
+					
+					ItemStack output = rec.output.copy();
+					output.getItem().onCreated(output, this.getWorldObj(), null);
+					this.addItemToRange(output, 16, 17);
 					
 					for (int y = 0; y < 4; y++)
 					{

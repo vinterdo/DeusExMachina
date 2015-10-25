@@ -183,4 +183,8 @@ public class TEDEM extends TileEntity
 		}
 	}
 	
+	public void onButtonPressed(int id)
+	{
+	}
+	
 }

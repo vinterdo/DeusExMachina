@@ -7,6 +7,7 @@ import com.vinterdo.deusexmachina.init.ModFluids;
 import com.vinterdo.deusexmachina.init.ModItems;
 import com.vinterdo.deusexmachina.init.ModTileEntities;
 import com.vinterdo.deusexmachina.network.DescriptionHandler;
+import com.vinterdo.deusexmachina.network.NetworkHandler;
 import com.vinterdo.deusexmachina.proxy.IProxy;
 import com.vinterdo.deusexmachina.recipes.Recipes;
 import com.vinterdo.deusexmachina.reference.ModIds;
@@ -48,6 +49,7 @@ public class DeusExMachina
 		ModBlocks.init();
 		ModTileEntities.init();
 		Recipes.init();
+		NetworkHandler.init();
 		DescriptionHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		GameRegistry.registerWorldGenerator(new WorldGeneratorOres(), 0);
