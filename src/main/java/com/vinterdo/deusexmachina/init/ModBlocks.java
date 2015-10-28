@@ -5,6 +5,7 @@ import com.vinterdo.deusexmachina.block.BBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.block.BCamo;
 import com.vinterdo.deusexmachina.block.BCopperOre;
 import com.vinterdo.deusexmachina.block.BDEM;
+import com.vinterdo.deusexmachina.block.BDataBank;
 import com.vinterdo.deusexmachina.block.BDeus;
 import com.vinterdo.deusexmachina.block.BDeusMaster;
 import com.vinterdo.deusexmachina.block.BEssenceMacerator;
@@ -29,33 +30,34 @@ import net.minecraftforge.oredict.OreDictionary;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks
 {
-	public static final BDEM	essenceOre	= new BEssenceOre();
-	public static final BDEM	tinOre		= new BTinOre();
-	public static final BDEM	copperOre	= new BCopperOre();
-	
-	public static final BTileEntityDEM terminal = new BTerminal();
-	
-	public static final BTileEntityDEM	essenceProcessor	= new BEssenceProcessor();
-	public static final BTileEntityDEM	camoBlock			= new BCamo();
-	public static final BTileEntityDEM	heater				= new BHeater();
-	public static final BTileEntityDEM	essenceMacerator	= new BEssenceMacerator();
-	
-	public static final BTileEntityDEM	blastFurnaceMaster	= new BBlastFurnaceMaster();
-	public static final BTileEntityDEM	blastFurnace		= new BBlastFurnace();
-	
+	public static final BDEM			essenceOre						= new BEssenceOre();
+	public static final BDEM			tinOre							= new BTinOre();
+	public static final BDEM			copperOre						= new BCopperOre();
+																		
+	public static final BTileEntityDEM	terminal						= new BTerminal();
+																		
+	public static final BTileEntityDEM	essenceProcessor				= new BEssenceProcessor();
+	public static final BTileEntityDEM	camoBlock						= new BCamo();
+	public static final BTileEntityDEM	heater							= new BHeater();
+	public static final BTileEntityDEM	essenceMacerator				= new BEssenceMacerator();
+																		
+	public static final BTileEntityDEM	blastFurnaceMaster				= new BBlastFurnaceMaster();
+	public static final BTileEntityDEM	blastFurnace					= new BBlastFurnace();
+																		
 	public static final BTileEntityDEM	grayMatterFabricatorMaster		= new BGrayMatterFabricatorMaster();
 	public static final BTileEntityDEM	grayMatterFabricator			= new BGrayMatterFabricator();
 	public static final BTileEntityDEM	grayMatterFabricatorEnergyPort	= new BGrayMatterFabricatorEnergyPort();
-	
-	public static final BTileEntityDEM	grayMatterCrafter		= new BGrayMatterCrafter();
-	public static final BTileEntityDEM	grayMatterCrafterMaster	= new BGrayMatterCrafterMaster();
-	public static final BTileEntityDEM	grayMatterCrafterPort	= new BGrayMatterCrafterPort();
-	
-	public static final BTileEntityDEM	deus		= new BDeus();
-	public static final BTileEntityDEM	deusMaster	= new BDeusMaster();
-	
-	public static final BTileEntityDEM shield = new BShield();
-	
+																		
+	public static final BTileEntityDEM	grayMatterCrafter				= new BGrayMatterCrafter();
+	public static final BTileEntityDEM	grayMatterCrafterMaster			= new BGrayMatterCrafterMaster();
+	public static final BTileEntityDEM	grayMatterCrafterPort			= new BGrayMatterCrafterPort();
+																		
+	public static final BTileEntityDEM	deus							= new BDeus();
+	public static final BTileEntityDEM	deusMaster						= new BDeusMaster();
+																		
+	public static final BTileEntityDEM	shield							= new BShield();
+	public static final BTileEntityDEM	dataBank						= new BDataBank();
+																		
 	public static void init()
 	{
 		GameRegistry.registerBlock(terminal, "terminal");
@@ -83,6 +85,7 @@ public class ModBlocks
 		GameRegistry.registerBlock(deusMaster, "deusMaster");
 		
 		GameRegistry.registerBlock(shield, "shield");
+		GameRegistry.registerBlock(dataBank, "dataBank");
 		
 		OreDictionary.registerOre("oreCopper", copperOre);
 		OreDictionary.registerOre("oreEssence", essenceOre);

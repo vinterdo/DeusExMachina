@@ -4,6 +4,7 @@ import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TECamoBlock;
+import com.vinterdo.deusexmachina.tileentity.TEDataBank;
 import com.vinterdo.deusexmachina.tileentity.TEDeus;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
@@ -45,6 +46,7 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEDeusMaster.class, Reference.MOD_ID + ":" + "deusMaster");
 		GameRegistry.registerTileEntity(TEShield.class, Reference.MOD_ID + ":" + "shield");
 		GameRegistry.registerTileEntity(TETerminal.class, Reference.MOD_ID + ":" + "terminal");
+		GameRegistry.registerTileEntity(TEDataBank.class, Reference.MOD_ID + ":" + "dataBank");
 		
 	}
 }

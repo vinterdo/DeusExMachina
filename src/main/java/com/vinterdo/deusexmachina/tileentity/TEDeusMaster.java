@@ -51,7 +51,7 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	public int								coreChanged;												// 0 - false, 1 - true
 											
 	public static final MultiBlockStructure	structure			= new StructureDeus();
-	private boolean							wasCorePresent		= false;
+	private ItemStack						oldStack			= null;
 																
 	public TEDeusMaster()
 	{
@@ -64,12 +64,9 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	public void updateEntity()
 	{
 		super.updateEntity();
-		coreChanged = (wasCorePresent && stacks.get(2) == null || !wasCorePresent && stacks.get(2) != null) ? 1 : 0;
-		if (coreChanged == 1)
-		{
-			coreChanged = 1;
-		}
-		wasCorePresent = stacks.get(2) != null;
+		coreChanged = oldStack == stacks.get(2) ? 1 : 0;
+		
+		oldStack = stacks.get(2);
 	}
 	
 	@Override

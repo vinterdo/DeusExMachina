@@ -1,6 +1,7 @@
 package com.vinterdo.deusexmachina.handler;
 
 import com.vinterdo.deusexmachina.client.gui.GuiBlastFurnace;
+import com.vinterdo.deusexmachina.client.gui.GuiDataBank;
 import com.vinterdo.deusexmachina.client.gui.GuiDeus;
 import com.vinterdo.deusexmachina.client.gui.GuiEssenceMacerator;
 import com.vinterdo.deusexmachina.client.gui.GuiEssenceProcessor;
@@ -9,6 +10,7 @@ import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterFabricator;
 import com.vinterdo.deusexmachina.client.gui.GuiHeater;
 import com.vinterdo.deusexmachina.client.gui.GuiTerminal;
 import com.vinterdo.deusexmachina.inventory.ContainerBlastFurnace;
+import com.vinterdo.deusexmachina.inventory.ContainerDataBank;
 import com.vinterdo.deusexmachina.inventory.ContainerDeus;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceMacerator;
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
@@ -17,6 +19,7 @@ import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.inventory.ContainerTerminal;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.TEDataBank;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
@@ -33,7 +36,7 @@ public class GuiHandler implements IGuiHandler
 {
 	public enum GuiIDs
 	{
-		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER;
+		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER, DATA_BANK;
 	}
 	
 	@Override
@@ -61,6 +64,8 @@ public class GuiHandler implements IGuiHandler
 						(TEGrayMatterCrafterMaster) world.getTileEntity(x, y, z));
 			case DEUS:
 				return new ContainerDeus(player.inventory, (TEDeusMaster) world.getTileEntity(x, y, z));
+			case DATA_BANK:
+				return new ContainerDataBank(player.inventory, (TEDataBank) world.getTileEntity(x, y, z));
 		}
 		
 		throw new IllegalArgumentException("No gui with id " + ID);
@@ -87,6 +92,8 @@ public class GuiHandler implements IGuiHandler
 				return new GuiBlastFurnace(player.inventory, world.getTileEntity(x, y, z));
 			case DEUS:
 				return new GuiDeus(player.inventory, world.getTileEntity(x, y, z));
+			case DATA_BANK:
+				return new GuiDataBank(player.inventory, world.getTileEntity(x, y, z));
 				
 		}
 		
