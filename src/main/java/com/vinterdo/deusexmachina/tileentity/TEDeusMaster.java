@@ -26,30 +26,33 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, IEnergyReceiver
 {
-	private static final int	FLUID_TANK_CAPACITY	= 10000;
-	private static final int	ENERGY_CAPACITY		= 100000;
-	private static final int	GM_PER_TICK			= 10;
+	private static final int				FLUID_TANK_CAPACITY	= 10000;
+	private static final int				ENERGY_CAPACITY		= 100000;
+	private static final int				GM_PER_TICK			= 10;
 	@Synchronized(id = 0)
 	@NBTSaved(name = "progress")
-	public int					progress;
+	public int								progress;
 	@Synchronized(id = 1)
 	@NBTSaved(name = "progressTarget")
-	public int					progressTarget;
+	public int								progressTarget;
 	@Synchronized(id = 2)
 	@NBTSaved(name = "tank")
-	public FluidTank			tank				= new FluidTank(FLUID_TANK_CAPACITY);
+	public FluidTank						tank				= new FluidTank(FLUID_TANK_CAPACITY);
 	@Synchronized(id = 3)
 	@NBTSaved(name = "energy")
-	public EnergyStorage		energy				= new EnergyStorage(ENERGY_CAPACITY);
+	public EnergyStorage					energy				= new EnergyStorage(ENERGY_CAPACITY);
 	@Synchronized(id = 4)
 	@NBTSaved(name = "gmConsumed")
-	public int					gmConsumed;
+	public int								gmConsumed;
 	@Synchronized(id = 5)
 	@NBTSaved(name = "gmTarget")
-	public int					gmTarget;
-	
-	public static final MultiBlockStructure structure = new StructureDeus();
-	
+	public int								gmTarget;
+	@Synchronized(id = 6)
+	public int								coreChanged;												// 0 - false, 1 - true
+											
+	public static final MultiBlockStructure	structure			= new StructureDeus();
+	private boolean							wasCorePresent		= false;
+																
 	public TEDeusMaster()
 	{
 		super();
@@ -61,7 +64,12 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	public void updateEntity()
 	{
 		super.updateEntity();
-		
+		coreChanged = (wasCorePresent && stacks.get(2) == null || !wasCorePresent && stacks.get(2) != null) ? 1 : 0;
+		if (coreChanged == 1)
+		{
+			coreChanged = 1;
+		}
+		wasCorePresent = stacks.get(2) != null;
 	}
 	
 	@Override

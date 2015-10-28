@@ -13,8 +13,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class Recipes
 {
 	public static RecipeGrayMatter	infusedDiamondRecipe;
-	private static RecipeGrayMatter	researchCoreRecipe;
-	
+	public static RecipeGrayMatter	researchCoreRecipe;
+									
 	public static void init()
 	{
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.essenceContainer, 8), "gig", "g g", "gig",
@@ -59,7 +59,8 @@ public class Recipes
 						new ItemStack(Items.diamond, 1), new ItemStack(ModItems.steelIngot, 1) },
 				{ new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1),
 						new ItemStack(ModItems.steelIngot, 1), new ItemStack(ModItems.steelIngot, 1) } };
-		infusedDiamondRecipe = new RecipeGrayMatter(grid, 300, 5000, 2000, new ItemStack(ModItems.infusedDiamond, 1));
+		infusedDiamondRecipe = new RecipeGrayMatter("Infused Diamond", grid, 300, 5000, 2000,
+				new ItemStack(ModItems.infusedDiamond, 1));
 		RecipeGrayMatter.addRecipe(infusedDiamondRecipe);
 		
 		ItemStack grid2[][] =
@@ -72,7 +73,8 @@ public class Recipes
 						new ItemStack(ModItems.infusedDiamond, 1), new ItemStack(Items.glowstone_dust, 1) },
 				{ new ItemStack(Items.iron_ingot, 1), new ItemStack(Items.ender_pearl, 1),
 						new ItemStack(Items.ender_pearl, 1), new ItemStack(Items.iron_ingot, 1) } };
-		researchCoreRecipe = new RecipeGrayMatter(grid2, 300, 5000, 2000, new ItemStack(ModItems.researchCore, 1));
+		researchCoreRecipe = new RecipeGrayMatter("Research Core", grid2, 300, 5000, 2000,
+				new ItemStack(ModItems.researchCore, 1));
 		RecipeGrayMatter.addRecipe(researchCoreRecipe);
 	}
 }

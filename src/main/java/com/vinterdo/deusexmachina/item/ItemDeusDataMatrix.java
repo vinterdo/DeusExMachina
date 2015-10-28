@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.item;
 import java.util.List;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
+import com.vinterdo.deusexmachina.research.ResearchTree;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,8 +28,11 @@ public class ItemDeusDataMatrix extends ItemDEM
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
-		if (itemStack.stackTagCompound == null)
-			itemStack.stackTagCompound = new NBTTagCompound();
+		
+		ResearchTree tree = new ResearchTree();
+		tree.createTree();
+		itemStack.stackTagCompound = tree.toNBT();
+		
 		return itemStack;
 	}
 	
@@ -37,7 +41,8 @@ public class ItemDeusDataMatrix extends ItemDEM
 	{
 		if (itemStack.stackTagCompound != null)
 		{
-		
+			//String research = itemStack.stackTagCompound.getString("researchName");
+			//list.add("Research: " + research);
 		}
 	}
 }

@@ -6,13 +6,16 @@ import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 
 public class MessageHandleGuiButtonResearch extends MessageBase<MessageHandleGuiButtonResearch>
 {
 	private int		x, y, z, id;
 	private String	name;
-	
+					
 	public MessageHandleGuiButtonResearch()
 	{
 	}
@@ -60,6 +63,17 @@ public class MessageHandleGuiButtonResearch extends MessageBase<MessageHandleGui
 		if (te instanceof TEDeusMaster)
 		{
 			((TEDeusMaster) te).onButtonPressed(message.id, message.name);
+			NBTTagList list = ((TEDeusMaster) te).getStackInSlot(2).stackTagCompound.getTagList("tree",
+					Constants.NBT.TAG_COMPOUND);
+			for (int i = 0; i < list.tagCount(); i++)
+			{
+				NBTTagCompound tag = list.getCompoundTagAt(i);
+				if (tag.getString("recipe").equals(message.name))
+				{
+					tag.setBoolean("discovered", true);
+					break;
+				}
+			}
 		}
 	}
 	

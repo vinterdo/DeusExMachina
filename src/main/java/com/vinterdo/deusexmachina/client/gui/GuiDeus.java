@@ -20,14 +20,14 @@ public class GuiDeus extends GuiDEM
 	private WidgetTank		widgetTank;
 	private WidgetRF		widgetEnergy;
 	private ResearchTree	research;
-	
-	protected float	offsetx	= guiLeft;
-	protected float	offsety	= guiTop;
-	
-	private boolean	wasMouseDown	= false;
-	private int		oldMouseX;
-	private int		oldMouseY;
-	
+							
+	protected float			offsetx			= guiLeft;
+	protected float			offsety			= guiTop;
+											
+	private boolean			wasMouseDown	= false;
+	private int				oldMouseX;
+	private int				oldMouseY;
+							
 	public GuiDeus(InventoryPlayer playerInv, TileEntity te)
 	{
 		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus");
@@ -42,11 +42,23 @@ public class GuiDeus extends GuiDEM
 		super.initGui();
 		widgetTank = new WidgetTank(this.te.tank, guiLeft + 152, guiTop + 19, 58, 16);
 		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 58, 16);
-		research = new ResearchTree(guiLeft, guiTop);
-		research.createTree(this);
+		research = te.getStackInSlot(2) == null ? new ResearchTree()
+				: te.getStackInSlot(2).stackTagCompound == null ? new ResearchTree()
+						: ResearchTree.fromNBT(te.getStackInSlot(2).stackTagCompound);
+		research.setRender(this);
 		
 		offsetx = guiLeft;
 		offsety = guiTop;
+		
+	}
+	
+	@Override
+	public void onGuiClosed()
+	{
+		super.onGuiClosed();
+		if (research.getRoot() != null && te.getStackInSlot(2) != null)
+			te.getStackInSlot(2).stackTagCompound = research.toNBT();
+			
 	}
 	
 	@Override
@@ -88,6 +100,14 @@ public class GuiDeus extends GuiDEM
 		widgetTank.render(mousex, mousey, partialTick);
 		widgetEnergy.render(mousex, mousey, partialTick);
 		research.renderTree(mousex, mousey, partialTick, (int) offsetx, (int) offsety);
+		
+		if (te.coreChanged == 1)
+		{
+			research = te.getStackInSlot(2) == null ? new ResearchTree()
+					: te.getStackInSlot(2).stackTagCompound == null ? new ResearchTree()
+							: ResearchTree.fromNBT(te.getStackInSlot(2).stackTagCompound);
+			research.setRender(this);
+		}
 	}
 	
 	public int getTop()

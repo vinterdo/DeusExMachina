@@ -1,6 +1,7 @@
 package com.vinterdo.deusexmachina.recipes;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import com.vinterdo.deusexmachina.helpers.Helper;
 
@@ -8,18 +9,21 @@ import net.minecraft.item.ItemStack;
 
 public class RecipeGrayMatter
 {
-	private static ArrayList<RecipeGrayMatter> recipes = new ArrayList<RecipeGrayMatter>();
-	
-	public int	grayMatter;
-	public int	rfPerTick;
-	public int	time;
-	
-	public ItemStack[][] grid;
-	
-	public ItemStack output;
-	
-	public RecipeGrayMatter(ItemStack[][] grid, int rfPerTick, int grayMatter, int time, ItemStack output)
+	private static HashMap<String, RecipeGrayMatter>	recipes	= new HashMap<String, RecipeGrayMatter>();
+																
+	public int											grayMatter;
+	public int											rfPerTick;
+	public int											time;
+														
+	private String										name;
+														
+	public ItemStack[][]								grid;
+														
+	public ItemStack									output;
+														
+	public RecipeGrayMatter(String name, ItemStack[][] grid, int rfPerTick, int grayMatter, int time, ItemStack output)
 	{
+		this.name = name;
 		this.grid = grid;
 		this.rfPerTick = rfPerTick;
 		this.grayMatter = grayMatter;
@@ -29,15 +33,20 @@ public class RecipeGrayMatter
 	
 	public static void addRecipe(RecipeGrayMatter rec)
 	{
-		recipes.add(rec);
+		recipes.put(rec.getName(), rec);
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 	
 	public static RecipeGrayMatter getMatchingRecipe(ItemStack[][] grid)
 	{
-		for (int i = 0; i < recipes.size(); i++)
+		for (Entry<String, RecipeGrayMatter> recipe : recipes.entrySet())
 		{
-			if (gridsMatch(recipes.get(i), grid))
-				return recipes.get(i);
+			if (gridsMatch(recipe.getValue(), grid))
+				return recipe.getValue();
 		}
 		return null;
 	}
@@ -62,5 +71,10 @@ public class RecipeGrayMatter
 			}
 		}
 		return true;
+	}
+	
+	public static RecipeGrayMatter getRecipe(String name)
+	{
+		return recipes.get(name);
 	}
 }

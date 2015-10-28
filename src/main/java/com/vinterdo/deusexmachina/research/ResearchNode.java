@@ -12,6 +12,7 @@ import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 public class ResearchNode
@@ -47,6 +48,8 @@ public class ResearchNode
 	public void setParent(ResearchNode parent)
 	{
 		this.parent = parent;
+		if (parent != null)
+			parent.childrens.add(this);
 	}
 	
 	public String getName()
@@ -113,14 +116,14 @@ public class ResearchNode
 	int							guiTop;
 	int							guiLeft;
 	private GuiButtonResearch	printButton;
-	
-	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, String name, int rfPerSecond, int grayMatterCost,
-			int time, int x, int y, ResourceLocation icon, GuiDeus guiDeus)
+								
+	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, int rfPerSecond, int grayMatterCost, int time,
+			int x, int y, ResourceLocation icon)
 	{
 		super();
 		this.recipe = recipe;
 		this.parent = parent;
-		this.name = name;
+		this.name = recipe.getName();
 		this.rfPerSecond = rfPerSecond;
 		this.grayMatterCost = grayMatterCost;
 		this.time = time;
@@ -128,16 +131,19 @@ public class ResearchNode
 		this.y = y;
 		this.childrens = new ArrayList<ResearchNode>();
 		this.icon = icon;
-		this.guiTop = guiDeus.getTop();
-		this.guiLeft = guiDeus.getLeft();
-		this.gui = guiDeus;
 		
 		if (parent != null)
 			parent.childrens.add(this);
-			
+	}
+	
+	void setRender(GuiDeus gui)
+	{
+		this.gui = gui;
+		guiLeft = gui.getLeft();
+		guiTop = gui.getTop();
+		
 		printButton = new GuiButtonResearch(0, x, y, 16, 16, "", this);
 		gui.addButton(printButton);
-		
 	}
 	
 	public void render(int mousex, int mousey, float partialTick, int offsetx, int offsety)
@@ -216,5 +222,29 @@ public class ResearchNode
 	private static int clamp(int val, int min, int max)
 	{
 		return Math.max(min, Math.min(max, val));
+	}
+	
+	public NBTTagCompound toNBT()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setString("parent", this.parent == null ? "NULL" : this.parent.getName());
+		tag.setBoolean("discovered", discovered);
+		tag.setInteger("rfPerSec", this.rfPerSecond);
+		tag.setInteger("time", this.time);
+		tag.setInteger("x", this.x);
+		tag.setInteger("y", this.y);
+		tag.setInteger("grayMatterCost", this.grayMatterCost);
+		tag.setString("icon", icon.getResourceDomain() + ":" + icon.getResourcePath());
+		tag.setString("recipe", recipe.getName());
+		return tag;
+	}
+	
+	public static ResearchNode fromNBT(NBTTagCompound tag)
+	{
+		ResearchNode node = new ResearchNode(RecipeGrayMatter.getRecipe(tag.getString("recipe")), null,
+				tag.getInteger("rfPerSec"), tag.getInteger("grayMatterCost"), tag.getInteger("time"),
+				tag.getInteger("x"), tag.getInteger("y"), new ResourceLocation(tag.getString("icon")));
+		node.setDiscovered(tag.getBoolean("discovered"));
+		return node;
 	}
 }
