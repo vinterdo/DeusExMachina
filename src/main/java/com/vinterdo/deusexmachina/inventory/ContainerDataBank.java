@@ -12,16 +12,16 @@ public class ContainerDataBank extends ContainerDEM<TEDataBank>
 	{
 		super(te);
 		
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 9; i++)
 		{
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < 9; j++)
 			{
 				this.addSlotToContainer(
-						new SlotItemOnly(te, j + i * 3, 7 + j * 19, 14 + i * 19, ModItems.researchCore));
+						new SlotItemOnly(te, j + i * 9, 8 + j * 18, 12 + i * 18, ModItems.researchCore));
 			}
 		}
 		
-		addPlayerSlots(playerInv, 8, 84);
+		addPlayerSlots(playerInv, 8, 174);
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class ContainerDataBank extends ContainerDEM<TEDataBank>
 	{
 		if (itemstack1.getItem() == ModItems.researchCore)
 		{
-			if (!this.mergeItemStack(itemstack1, 0, 9, false))
+			if (!this.mergeItemStack(itemstack1, 0, 81, false))
 				return true;
 		}
 		

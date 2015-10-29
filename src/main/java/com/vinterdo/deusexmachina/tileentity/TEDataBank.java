@@ -11,7 +11,7 @@ public class TEDataBank extends TEI
 	public TEDataBank()
 	{
 		super();
-		this.setNumOfStacks(9);
+		this.setNumOfStacks(9 * 9);
 	}
 	
 	@Override

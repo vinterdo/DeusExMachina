@@ -12,7 +12,6 @@ public class GuiDataBank extends GuiDEM
 	{
 		super(new ContainerDataBank(playerInv, (TEDataBank) te), "dataBank");
 		
-		xSize = 256;
 		ySize = 256;
 	}
 	
