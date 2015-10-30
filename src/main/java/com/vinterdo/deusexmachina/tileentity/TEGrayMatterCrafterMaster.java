@@ -45,7 +45,7 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 	@Synchronized(id = 5)
 	@NBTSaved(name = "gmTarget")
 	public int					gmTarget;
-	
+								
 	public TEGrayMatterCrafterMaster()
 	{
 		super();
@@ -69,7 +69,8 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 				}
 			}
 			RecipeGrayMatter rec = RecipeGrayMatter.getMatchingRecipe(grid);
-			if (rec != null && super.calcSpaceForStack(rec.output, 16, 17) >= rec.output.stackSize)
+			if (rec != null && (rec.isPublic || isRecipePresentInDataBank(rec))
+					&& super.calcSpaceForStack(rec.output, 16, 17) >= rec.output.stackSize)
 			{
 				gmTarget = rec.grayMatter;
 				progressTarget = rec.time;
@@ -116,6 +117,26 @@ public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IF
 				}
 			}
 		}
+	}
+	
+	private boolean isRecipePresentInDataBank(RecipeGrayMatter rec)
+	{
+		TEDataBank[] dataBanks = new TEDataBank[4];
+		dataBanks[0] = this.getWorldObj().getTileEntity(xCoord + 2, yCoord - 2, zCoord) instanceof TEDataBank
+				? (TEDataBank) this.getWorldObj().getTileEntity(xCoord + 2, yCoord - 2, zCoord) : null;
+		dataBanks[1] = this.getWorldObj().getTileEntity(xCoord - 2, yCoord - 2, zCoord) instanceof TEDataBank
+				? (TEDataBank) this.getWorldObj().getTileEntity(xCoord - 2, yCoord - 2, zCoord) : null;
+		dataBanks[2] = this.getWorldObj().getTileEntity(xCoord, yCoord - 2, zCoord + 2) instanceof TEDataBank
+				? (TEDataBank) this.getWorldObj().getTileEntity(xCoord, yCoord - 2, zCoord + 2) : null;
+		dataBanks[3] = this.getWorldObj().getTileEntity(xCoord, yCoord - 2, zCoord - 2) instanceof TEDataBank
+				? (TEDataBank) this.getWorldObj().getTileEntity(xCoord, yCoord - 2, zCoord - 2) : null;
+				
+		for (int i = 0; i < 4; i++)
+		{
+			if (dataBanks[i] != null && dataBanks[i].containsRecipe(rec))
+				return true;
+		}
+		return false;
 	}
 	
 	@Override

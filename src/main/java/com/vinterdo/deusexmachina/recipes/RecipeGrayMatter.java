@@ -21,7 +21,10 @@ public class RecipeGrayMatter
 														
 	public ItemStack									output;
 														
-	public RecipeGrayMatter(String name, ItemStack[][] grid, int rfPerTick, int grayMatter, int time, ItemStack output)
+	public boolean										isPublic;
+														
+	public RecipeGrayMatter(String name, ItemStack[][] grid, int rfPerTick, int grayMatter, int time, ItemStack output,
+			boolean isPublic)
 	{
 		this.name = name;
 		this.grid = grid;
@@ -29,6 +32,7 @@ public class RecipeGrayMatter
 		this.grayMatter = grayMatter;
 		this.time = time;
 		this.output = output;
+		this.isPublic = isPublic;
 	}
 	
 	public static void addRecipe(RecipeGrayMatter rec)
