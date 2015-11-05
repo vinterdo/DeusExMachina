@@ -30,15 +30,15 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = "required-after:colladamodel@[1.0a1,)")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class DeusExMachina
 {
 	@Instance(Reference.MOD_ID)
-	public static DeusExMachina instance;
-	
+	public static DeusExMachina	instance;
+								
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-	public static IProxy proxy;
-	
+	public static IProxy		proxy;
+								
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{

@@ -35,9 +35,6 @@ repositories {
         name 'CB Repo'
         url "http://chickenbones.net/maven/"
     }
-    maven {
-        url = "https://raw.github.com/hea3ven/lib-colladamodel/mvn-repo/"
-    }
     ivy {
         name "CoFHCore"
         artifactPattern 'http://addons-origin.cursecdn.com/files/2246/920/[module]-[revision].[ext]'
