@@ -6,23 +6,25 @@ import com.vinterdo.deusexmachina.reference.Reference;
 
 import cofh.api.energy.EnergyStorage;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 
-public class WidgetRF
+public class WidgetRF extends WidgetTooltip
 {
-	private EnergyStorage	energy;
-	private int				x;
-	private int				y;
-	private int				height;
-	private int				width;
-	
-	private static ResourceLocation rfProgressbar = new ResourceLocation(
+	private EnergyStorage			energy;
+	private int						x;
+	private int						y;
+	private int						height;
+	private int						width;
+									
+	private static ResourceLocation	rfProgressbar	= new ResourceLocation(
 			Reference.MOD_ID + ":textures/gui/rfProgressbar.png");
 			
 	public WidgetRF(EnergyStorage energy, int x, int y, int height, int width)
 	{
+		super("", x, y, 22, 120, height, width);
 		this.energy = energy;
 		this.x = x;
 		this.y = y;
@@ -32,6 +34,7 @@ public class WidgetRF
 	
 	public WidgetRF(EnergyStorage energy, int x, int y)
 	{
+		super("", x, y, 22, 120, 64, 16);
 		this.energy = energy;
 		this.x = x;
 		this.y = y;
@@ -39,8 +42,10 @@ public class WidgetRF
 		height = 64;
 	}
 	
-	public void render(int mouseX, int mouseY, float partialTick)
+	@Override
+	public void render(int mouseX, int mouseY, float partialTick, FontRenderer fontRendererObj)
 	{
+		super.setText("RF: " + energy.getEnergyStored() + "/" + energy.getMaxEnergyStored());
 		GL11.glDisable(GL11.GL_LIGHTING);
 		
 		int amt = energy.getEnergyStored();
@@ -53,6 +58,8 @@ public class WidgetRF
 		Minecraft.getMinecraft().getTextureManager().bindTexture(rfProgressbar);
 		GL11.glColor4d(1, 1, 1, 1);
 		Gui.func_146110_a(x, y + height - (int) pheight, 0, 0, 16, (int) pheight, 16, 16);
+		
+		super.render(mouseX, mouseY, partialTick, fontRendererObj);
 	}
 	
 }

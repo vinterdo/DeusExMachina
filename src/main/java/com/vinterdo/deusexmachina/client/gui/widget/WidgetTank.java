@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
@@ -13,16 +14,17 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 
-public class WidgetTank
+public class WidgetTank extends WidgetTooltip
 {
 	private final IFluidTank	tank;
 	int							x;
 	int							y;
 	int							height;
 	int							width;
-	
+								
 	public WidgetTank(IFluidTank tank, int x, int y, int height, int width)
 	{
+		super("", x, y, 22, 120, height, width);
 		this.tank = tank;
 		this.x = x;
 		this.y = y;
@@ -32,6 +34,7 @@ public class WidgetTank
 	
 	public WidgetTank(IFluidTank tank, int x, int y)
 	{
+		super("", x, y, 22, 120, 64, 16);
 		this.tank = tank;
 		this.x = x;
 		this.y = y;
@@ -39,7 +42,8 @@ public class WidgetTank
 		height = 64;
 	}
 	
-	public void render(int mouseX, int mouseY, float partialTick)
+	@Override
+	public void render(int mouseX, int mouseY, float partialTick, FontRenderer fontRendererObj)
 	{
 		GL11.glDisable(GL11.GL_LIGHTING);
 		
@@ -47,6 +51,8 @@ public class WidgetTank
 		IIcon icon = fluid != null ? fluid.getStillIcon() : null;
 		int amt = tank.getFluidAmount();
 		int capacity = tank.getCapacity();
+		
+		super.setText(fluid == null ? amt + "/" + capacity : fluid.getName() + " : " + amt + "/" + capacity);
 		
 		if (fluid != null && icon != null && amt > 0 && capacity > 0)
 		{
@@ -85,6 +91,7 @@ public class WidgetTank
 		GL11.glColor4d(1, 1, 1, 1);
 		//Minecraft.getMinecraft().getTextureManager().bindTexture(Textures.WIDGET_TANK);
 		//Gui.func_146110_a(x, y, 0, 0, 16, 64, 16, 64);
+		super.render(mouseX, mouseY, partialTick, fontRendererObj);
 	}
 	
 	public FluidStack getFluid()

@@ -53,27 +53,28 @@ public class MessageHandleGuiButtonResearch extends MessageBase<MessageHandleGui
 	@Override
 	public void handleClientSide(MessageHandleGuiButtonResearch message, EntityPlayer player)
 	{
-	
 	}
 	
 	@Override
 	public void handleServerSide(MessageHandleGuiButtonResearch message, EntityPlayer player)
 	{
 		TileEntity te = player.worldObj.getTileEntity(message.x, message.y, message.z);
-		if (te instanceof TEDeusMaster)
+		if (te instanceof TEDeusMaster && ((TEDeusMaster) te).getStackInSlot(2) != null
+				&& ((TEDeusMaster) te).getStackInSlot(2).stackTagCompound != null)
 		{
-			((TEDeusMaster) te).onButtonPressed(message.id, message.name);
 			NBTTagList list = ((TEDeusMaster) te).getStackInSlot(2).stackTagCompound.getTagList("tree",
 					Constants.NBT.TAG_COMPOUND);
+			NBTTagCompound tag = null;
 			for (int i = 0; i < list.tagCount(); i++)
 			{
-				NBTTagCompound tag = list.getCompoundTagAt(i);
+				tag = list.getCompoundTagAt(i);
 				if (tag.getString("recipe").equals(message.name))
 				{
-					tag.setBoolean("discovered", true);
+					//tag.setBoolean("discovered", true);
 					break;
 				}
 			}
+			((TEDeusMaster) te).onButtonPressed(message.id, tag);
 		}
 	}
 	

@@ -8,7 +8,9 @@ import com.vinterdo.deusexmachina.research.ResearchTree;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 public class ItemDeusDataMatrix extends ItemDEM
 {
@@ -41,8 +43,15 @@ public class ItemDeusDataMatrix extends ItemDEM
 	{
 		if (itemStack.stackTagCompound != null)
 		{
-			//String research = itemStack.stackTagCompound.getString("researchName");
-			//list.add("Research: " + research);
+			NBTTagList nbtlist = itemStack.stackTagCompound.getTagList("tree", Constants.NBT.TAG_COMPOUND);
+			NBTTagCompound tag = null;
+			for (int i = 0; i < nbtlist.tagCount(); i++)
+			{
+				tag = nbtlist.getCompoundTagAt(i);
+				if (tag.getBoolean("discovered"))
+					list.add(tag.getString("recipe"));
+					
+			}
 		}
 	}
 }
