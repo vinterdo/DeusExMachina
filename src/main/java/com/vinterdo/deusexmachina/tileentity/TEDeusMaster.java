@@ -53,7 +53,11 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	@NBTSaved(name = "gmTarget")
 	public int								gmTarget;
 	@Synchronized(id = 6)
-	public int								coreChanged;													// 0 - false, 1 - true
+	public int								coreChanged;
+	@Synchronized(id = 7)
+	public int								highlightX;
+	@Synchronized(id = 8)
+	public int								highlightY;														// 0 - false, 1 - true
 											
 	public static final MultiBlockStructure	structure				= new StructureDeus();
 	private ItemStack						oldStack				= null;
@@ -90,15 +94,17 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 	@Override
 	public void updateEntity()
 	{
+		coreChanged = oldStack == stacks.get(2) ? 1 : 0;
 		if (!worldObj.isRemote && formed)
 		{
-			coreChanged = oldStack == stacks.get(2) ? 1 : 0;
 			oldStack = stacks.get(2);
 			
 			switch (state)
 			{
 				case 0: // IDLE
 					// do nothing :)
+					highlightX = Integer.MIN_VALUE;
+					highlightY = Integer.MIN_VALUE;
 					break;
 					
 				case 1: // PRINTING
@@ -109,6 +115,8 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 						return;
 					}
 					
+					highlightX = activeResearch.getInteger("x");
+					highlightY = activeResearch.getInteger("y");
 					progressTarget = PRINTING_TIME;
 					if (progress < progressTarget)
 					{
@@ -135,6 +143,8 @@ public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, 
 						return;
 					}
 					
+					highlightX = activeResearch.getInteger("x");
+					highlightY = activeResearch.getInteger("y");
 					gmTarget = activeResearch.getInteger("grayMatterCost");
 					progressTarget = activeResearch.getInteger("time");
 					if (progress < progressTarget || gmConsumed < activeResearch.getInteger("grayMatterCost"))

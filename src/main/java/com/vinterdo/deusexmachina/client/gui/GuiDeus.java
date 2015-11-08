@@ -78,10 +78,18 @@ public class GuiDeus extends GuiDEM
 		buttonList.add(button);
 	}
 	
+	private static int clamp(int val, int min, int max)
+	{
+		return Math.max(min, Math.min(max, val));
+	}
+	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mousex, int mousey)
 	{
 		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
+		
+		int maxX = guiLeft + 229;
+		int maxY = guiTop + 171;
 		
 		if (wasMouseDown)
 		{
@@ -98,6 +106,12 @@ public class GuiDeus extends GuiDEM
 		{
 			wasMouseDown = false;
 		}
+		
+		Gui.drawRect(clamp(te.highlightX + (int) offsetx - 2, guiLeft + 5, maxX),
+				clamp(te.highlightY + (int) offsety - 2, guiTop + 5, maxY),
+				clamp(te.highlightX + 18 + (int) offsetx, guiLeft + 5, maxX),
+				clamp(te.highlightY + 18 + (int) offsety, guiTop + 5, maxY), 0xFF00FFFF);
+				
 		widgetTank.render(mousex, mousey, partialTick);
 		widgetEnergy.render(mousex, mousey, partialTick);
 		research.renderTree(mousex, mousey, partialTick, (int) offsetx, (int) offsety);

@@ -59,7 +59,8 @@ public class MessageHandleGuiButtonResearch extends MessageBase<MessageHandleGui
 	public void handleServerSide(MessageHandleGuiButtonResearch message, EntityPlayer player)
 	{
 		TileEntity te = player.worldObj.getTileEntity(message.x, message.y, message.z);
-		if (te instanceof TEDeusMaster)
+		if (te instanceof TEDeusMaster && ((TEDeusMaster) te).getStackInSlot(2) != null
+				&& ((TEDeusMaster) te).getStackInSlot(2).stackTagCompound != null)
 		{
 			NBTTagList list = ((TEDeusMaster) te).getStackInSlot(2).stackTagCompound.getTagList("tree",
 					Constants.NBT.TAG_COMPOUND);
