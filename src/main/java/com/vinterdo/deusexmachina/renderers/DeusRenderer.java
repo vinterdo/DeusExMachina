@@ -11,17 +11,14 @@ import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 import assets.deusexmachina.models.ModelBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
@@ -34,31 +31,13 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 			Reference.MOD_ID + ":textures/effects/end_portal.png");
 	private static final Random				random				= new Random(31100L);
 	FloatBuffer								floatBuffer			= GLAllocation.createDirectFloatBuffer(16);
-	
-	private final IModelCustom		model		= AdvancedModelLoader
+																
+	private final IModelCustom				model				= AdvancedModelLoader
 			.loadModel(new ResourceLocation(Reference.MOD_ID + ":models/deus.obj"));
-	private final ModelBlock		modelBlock	= new ModelBlock();
-	private final ResourceLocation	textures	= (new ResourceLocation(Reference.MOD_ID + ":models/pallete2.png"));
-	
-	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
-	{
-		int meta = world.getBlockMetadata(x, y, z);
-		GL11.glPushMatrix();
-		GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
-		GL11.glPopMatrix();
-	}
-	
-	private void adjustLightFixture(World world, int i, int j, int k, Block block)
-	{
-		Tessellator tess = Tessellator.instance;
-		float brightness = block.getLightValue(world, i, j, k);
-		int skyLight = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
-		int modulousModifier = skyLight % 65536;
-		int divModifier = skyLight / 65536;
-		tess.setColorOpaque_F(brightness, brightness, brightness);
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, modulousModifier, divModifier);
-	}
-	
+	private final ModelBlock				modelBlock			= new ModelBlock();
+	private final ResourceLocation			textures			= (new ResourceLocation(
+			Reference.MOD_ID + ":models/pallete2.png"));
+			
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
 	{

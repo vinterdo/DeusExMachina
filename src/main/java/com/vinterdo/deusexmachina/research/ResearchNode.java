@@ -166,18 +166,6 @@ public class ResearchNode
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 			
 			Minecraft.getMinecraft().getTextureManager().bindTexture(icon);
-			if (discovered)
-			{
-				
-				GL11.glColor4d(1, 1, 1, 1);
-			} else if (parent != null && parent.discovered || parent == null)
-			{
-				double highligh = Math.sin((System.currentTimeMillis() % 500) * Math.PI * 2 / 500f) * 0.3;
-				GL11.glColor4d(0.7 + highligh, 0.7 + highligh, 0.7 + highligh, 1);
-			} else
-			{
-				GL11.glColor4d(0.5, 0.5, 0.5, 1);
-			}
 			
 			int olX = nodePosX + 16 - maxX;
 			int ogX = nodePosX - guiLeft - 5;
@@ -190,6 +178,26 @@ public class ResearchNode
 			int starty = nodePosY < guiTop + 5 ? -ogY : 0;
 			int w = nodePosX + 16 > maxX ? 16 - olX : nodePosX < guiLeft + 5 ? 16 + ogX : 16;
 			int h = nodePosY + 16 > maxY ? 16 - olY : nodePosY < guiTop + 5 ? 16 + ogY : 16;
+			
+			if (gui.te.activeResearch != null && gui.te.activeResearch.getString("recipe").equals(this.name))
+			{
+				GL11.glColor4d(0.5, 0.5, 0.5, 1);
+				Gui.func_146110_a(renderx - 3, rendery - 3, startx, starty, w + 6, h + 6, 22, 22);
+			}
+			
+			if (discovered)
+			{
+				
+				GL11.glColor4d(1, 1, 1, 1);
+				
+			} else if (parent != null && parent.discovered || parent == null)
+			{
+				double highligh = Math.sin((System.currentTimeMillis() % 500) * Math.PI * 2 / 500f) * 0.3;
+				GL11.glColor4d(0.7 + highligh, 0.7 + highligh, 0.7 + highligh, 1);
+			} else
+			{
+				GL11.glColor4d(0.5, 0.5, 0.5, 1);
+			}
 			
 			Gui.func_146110_a(renderx, rendery, startx, starty, w, h, 16, 16);
 		} else

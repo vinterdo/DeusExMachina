@@ -10,13 +10,14 @@ import com.vinterdo.deusexmachina.network.NetworkHandler;
 import com.vinterdo.deusexmachina.research.ResearchTree;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
 
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class GuiDeus extends GuiDEM
 {
-	TEDeusMaster			te;
+	public TEDeusMaster		te;
 	private WidgetTank		widgetTank;
 	private WidgetRF		widgetEnergy;
 	private ResearchTree	research;
@@ -40,7 +41,7 @@ public class GuiDeus extends GuiDEM
 	public void initGui()
 	{
 		super.initGui();
-		widgetTank = new WidgetTank(this.te.tank, guiLeft + 152, guiTop + 19, 58, 16);
+		widgetTank = new WidgetTank(this.te.tank, guiLeft + 233, guiTop + 192, 58, 16);
 		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 58, 16);
 		research = te.getStackInSlot(2) == null ? new ResearchTree()
 				: te.getStackInSlot(2).stackTagCompound == null ? new ResearchTree()
@@ -56,9 +57,9 @@ public class GuiDeus extends GuiDEM
 	public void onGuiClosed()
 	{
 		super.onGuiClosed();
-		if (research.getRoot() != null && te.getStackInSlot(2) != null)
-			te.getStackInSlot(2).stackTagCompound = research.toNBT();
-			
+		//if (research.getRoot() != null && te.getStackInSlot(2) != null)
+		//	te.getStackInSlot(2).stackTagCompound = research.toNBT();
+		
 	}
 	
 	@Override
@@ -68,7 +69,7 @@ public class GuiDeus extends GuiDEM
 		{
 			NetworkHandler.sendToServer(
 					new MessageHandleGuiButtonResearch(this.te, 0, ((GuiButtonResearch) button).research.getName()));
-			((GuiButtonResearch) button).research.setDiscovered(true);
+					
 		}
 	}
 	
@@ -108,6 +109,12 @@ public class GuiDeus extends GuiDEM
 							: ResearchTree.fromNBT(te.getStackInSlot(2).stackTagCompound);
 			research.setRender(this);
 		}
+		
+		Gui.drawRect(guiLeft + 197, guiTop + 192, guiLeft + 201,
+				(int) (guiTop + 192 + (te.progress * 1f / te.progressTarget * 1f) * 58), 0xFF00FFFF);
+				
+		Gui.drawRect(guiLeft + 203, guiTop + 192, guiLeft + 207,
+				(int) (guiTop + 192 + (te.gmConsumed * 1f / te.gmTarget * 1f) * 58), 0xFF888888);
 	}
 	
 	public int getTop()
