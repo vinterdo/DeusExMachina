@@ -1,9 +1,13 @@
 package com.vinterdo.deusexmachina.client.gui;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.lwjgl.input.Mouse;
 
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTank;
+import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
 import com.vinterdo.deusexmachina.inventory.ContainerDeus;
 import com.vinterdo.deusexmachina.network.MessageHandleGuiButtonResearch;
 import com.vinterdo.deusexmachina.network.NetworkHandler;
@@ -17,18 +21,19 @@ import net.minecraft.tileentity.TileEntity;
 
 public class GuiDeus extends GuiDEM
 {
-	public TEDeusMaster		te;
-	private WidgetTank		widgetTank;
-	private WidgetRF		widgetEnergy;
-	private ResearchTree	research;
-							
-	protected float			offsetx			= guiLeft;
-	protected float			offsety			= guiTop;
-											
-	private boolean			wasMouseDown	= false;
-	private int				oldMouseX;
-	private int				oldMouseY;
-							
+	public TEDeusMaster			te;
+	private WidgetTank			widgetTank;
+	private WidgetRF			widgetEnergy;
+	private ResearchTree		research;
+	private List<WidgetTooltip>	tooltips;
+								
+	protected float				offsetx			= guiLeft;
+	protected float				offsety			= guiTop;
+												
+	private boolean				wasMouseDown	= false;
+	private int					oldMouseX;
+	private int					oldMouseY;
+								
 	public GuiDeus(InventoryPlayer playerInv, TileEntity te)
 	{
 		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus");
@@ -41,6 +46,7 @@ public class GuiDeus extends GuiDEM
 	public void initGui()
 	{
 		super.initGui();
+		tooltips = new LinkedList<WidgetTooltip>();
 		widgetTank = new WidgetTank(this.te.tank, guiLeft + 233, guiTop + 192, 58, 16);
 		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 58, 16);
 		research = te.getStackInSlot(2) == null ? new ResearchTree()
@@ -51,6 +57,16 @@ public class GuiDeus extends GuiDEM
 		offsetx = guiLeft;
 		offsety = guiTop;
 		
+	}
+	
+	public void addTooltip(WidgetTooltip tip)
+	{
+		tooltips.add(tip);
+	}
+	
+	public void removeTooltip(WidgetTooltip tip)
+	{
+		tooltips.remove(tip);
 	}
 	
 	@Override
@@ -129,6 +145,17 @@ public class GuiDeus extends GuiDEM
 				
 		Gui.drawRect(guiLeft + 203, guiTop + 192, guiLeft + 207,
 				(int) (guiTop + 192 + (te.gmConsumed * 1f / te.gmTarget * 1f) * 58), 0xFF888888);
+				
+	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mousex, int mousey)
+	{
+		super.drawGuiContainerForegroundLayer(mousex, mousey);
+		for (WidgetTooltip wt : tooltips)
+		{
+			wt.render(mousex - guiLeft, mousey - guiTop, 0, this.fontRendererObj);
+		}
 	}
 	
 	public int getTop()

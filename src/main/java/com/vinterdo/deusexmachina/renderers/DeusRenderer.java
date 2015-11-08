@@ -75,6 +75,7 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 			
 			renderEndBlock(x, y, z);
 		}
+		
 	}
 	
 	private void renderEnd(double x, double y, double z)

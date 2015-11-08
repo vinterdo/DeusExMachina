@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.client.gui.GuiButtonResearch;
 import com.vinterdo.deusexmachina.client.gui.GuiDeus;
+import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
 import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 
 import net.minecraft.client.Minecraft;
@@ -116,6 +117,7 @@ public class ResearchNode
 	int							guiTop;
 	int							guiLeft;
 	private GuiButtonResearch	printButton;
+	private WidgetTooltip		tip;
 								
 	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, int rfPerSecond, int grayMatterCost, int time,
 			int x, int y, ResourceLocation icon)
@@ -144,6 +146,8 @@ public class ResearchNode
 		
 		printButton = new GuiButtonResearch(0, x, y, 16, 16, "", this);
 		gui.addButton(printButton);
+		tip = new WidgetTooltip(name, x, y, 22, 120, 16, 16);
+		gui.addTooltip(tip);
 	}
 	
 	public void render(int mousex, int mousey, float partialTick, int offsetx, int offsety)
@@ -156,6 +160,9 @@ public class ResearchNode
 		
 		printButton.xPosition = nodePosX;
 		printButton.yPosition = nodePosY;
+		
+		tip.setX(clamp(x + offsetx - gui.getLeft(), 5, 229));
+		tip.setY(clamp(y + offsety - gui.getTop(), 5, 171));
 		
 		if (nodePosX - 5 + 16 > guiLeft && nodePosX + 16 - 16 < maxX && nodePosY - 5 + 16 > guiTop
 				&& nodePosY + 16 - 16 < maxY)
@@ -178,6 +185,9 @@ public class ResearchNode
 			int starty = nodePosY < guiTop + 5 ? -ogY : 0;
 			int w = nodePosX + 16 > maxX ? 16 - olX : nodePosX < guiLeft + 5 ? 16 + ogX : 16;
 			int h = nodePosY + 16 > maxY ? 16 - olY : nodePosY < guiTop + 5 ? 16 + ogY : 16;
+			
+			tip.setAreaheight(h);
+			tip.setAreawidth(w);
 			
 			if (gui.te.activeResearch != null && gui.te.activeResearch.getString("recipe").equals(this.name))
 			{
@@ -204,6 +214,8 @@ public class ResearchNode
 		{
 			
 			printButton.enabled = false;
+			tip.setAreaheight(0);
+			tip.setAreawidth(0);
 		}
 		
 		int vertStartX = clamp(nodePosX + 8 - 3, guiLeft + 5, maxX);
