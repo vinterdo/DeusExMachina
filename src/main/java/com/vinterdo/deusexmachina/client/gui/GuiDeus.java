@@ -128,8 +128,8 @@ public class GuiDeus extends GuiDEM
 				clamp(te.highlightX + 18 + (int) offsetx, guiLeft + 5, maxX),
 				clamp(te.highlightY + 18 + (int) offsety, guiTop + 5, maxY), 0xFF00FFFF);
 				
-		widgetTank.render(mousex, mousey, partialTick);
-		widgetEnergy.render(mousex, mousey, partialTick);
+		widgetTank.render(mousex, mousey, partialTick, this.fontRendererObj);
+		widgetEnergy.render(mousex, mousey, partialTick, this.fontRendererObj);
 		research.renderTree(mousex, mousey, partialTick, (int) offsetx, (int) offsety);
 		
 		if (te.coreChanged == 1)

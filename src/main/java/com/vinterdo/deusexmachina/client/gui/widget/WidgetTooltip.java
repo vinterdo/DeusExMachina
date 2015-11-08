@@ -125,7 +125,8 @@ public class WidgetTooltip
 			
 			Minecraft.getMinecraft().getTextureManager().bindTexture(tooltipBg);
 			GL11.glColor4d(1, 1, 1, 1);
-			Gui.func_146110_a(mouseX, mouseY, 0, 0, width, height, width, height);
+			Gui.func_146110_a(mouseX, mouseY, 0, 0, Math.max(width, text.length() * 6 + 6), height,
+					Math.max(width, text.length() * 6 + 6), height);
 			fontRendererObj.drawString(text, mouseX + 6, mouseY + 6, 0xFFFFFFFF);
 		}
 	}

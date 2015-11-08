@@ -13,7 +13,7 @@ public class GuiGrayMatterCrafter extends GuiDEM
 	TEGrayMatterCrafterMaster	te;
 	private WidgetTank			widgetTank;
 	private WidgetRF			widgetEnergy;
-	
+								
 	public GuiGrayMatterCrafter(InventoryPlayer playerInv, TileEntity te)
 	{
 		super(new ContainerGrayMatterCrafter(playerInv, (TEGrayMatterCrafterMaster) te), "grayMatterCrafter");
@@ -39,7 +39,7 @@ public class GuiGrayMatterCrafter extends GuiDEM
 			this.drawTexturedModalRect(guiLeft + 82, guiTop + 38, 176, 0, i1 + 1, 16);
 		}
 		
-		widgetTank.render(mousex, mousey, partialTick);
-		widgetEnergy.render(mousex, mousey, partialTick);
+		widgetTank.render(mousex, mousey, partialTick, this.fontRendererObj);
+		widgetEnergy.render(mousex, mousey, partialTick, this.fontRendererObj);
 	}
 }
