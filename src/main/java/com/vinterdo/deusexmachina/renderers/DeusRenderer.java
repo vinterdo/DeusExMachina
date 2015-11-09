@@ -68,7 +68,7 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef((float) x + 0.5F, (float) y - 6, (float) z + 0.5F);
-			GL11.glScalef(1 / 18f, 1 / 18f, 1 / 18f);
+			GL11.glScalef(1 / 16f, 1 / 18f, 1 / 16f);
 			if (meta == 1)
 				meta = 4;
 			if (meta == 0)
@@ -178,25 +178,28 @@ public class DeusRenderer extends TileEntitySpecialRenderer
 			tessellator.setColorRGBA_F(f11 * f7, f12 * f7, f13 * f7, 1.0F);
 			tessellator.setColorRGBA_F(f11 * f7, f12 * f7, f13 * f7, 0.5F);
 			
-			tessellator.addVertexWithUV(x + 2.2D, y + 2.4D, z - 2.2D, 0, 0);
-			tessellator.addVertexWithUV(x + 2.2D, y + 2.4D, z + 2.2D, 0, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y, z + 2.2D, 1, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y, z - 2.2D, 1, 0);
+			double offset = 2.45D;
 			
-			tessellator.addVertexWithUV(x - 2.2D, y, z - 2.2D, 0, 0);
-			tessellator.addVertexWithUV(x - 2.2D, y + 2.4D, z - 2.2D, 0, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y + 2.4D, z - 2.2D, 1, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y, z - 2.2D, 1, 0);
+			double offsetY = 2.4D;
+			tessellator.addVertexWithUV(x + offset, y + offsetY, z - offset, 0, 0);
+			tessellator.addVertexWithUV(x + offset, y + offsetY, z + offset, 0, 1);
+			tessellator.addVertexWithUV(x + offset, y, z + offset, 1, 1);
+			tessellator.addVertexWithUV(x + offset, y, z - offset, 1, 0);
 			
-			tessellator.addVertexWithUV(x - 2.2D, y, z - 2.2D, 0, 0);
-			tessellator.addVertexWithUV(x - 2.2D, y, z + 2.2D, 0, 1);
-			tessellator.addVertexWithUV(x - 2.2D, y + 2.4D, z + 2.2D, 1, 1);
-			tessellator.addVertexWithUV(x - 2.2D, y + 2.4D, z - 2.2D, 1, 0);
+			tessellator.addVertexWithUV(x - offset, y, z - offset, 0, 0);
+			tessellator.addVertexWithUV(x - offset, y + offsetY, z - offset, 0, 1);
+			tessellator.addVertexWithUV(x + offset, y + offsetY, z - offset, 1, 1);
+			tessellator.addVertexWithUV(x + offset, y, z - offset, 1, 0);
 			
-			tessellator.addVertexWithUV(x - 2.2D, y + 2.4D, z + 2.2D, 0, 0);
-			tessellator.addVertexWithUV(x - 2.2D, y, z + 2.2D, 0, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y, z + 2.2D, 1, 1);
-			tessellator.addVertexWithUV(x + 2.2D, y + 2.4D, z + 2.2D, 1, 0);
+			tessellator.addVertexWithUV(x - offset, y, z - offset, 0, 0);
+			tessellator.addVertexWithUV(x - offset, y, z + offset, 0, 1);
+			tessellator.addVertexWithUV(x - offset, y + offsetY, z + offset, 1, 1);
+			tessellator.addVertexWithUV(x - offset, y + offsetY, z - offset, 1, 0);
+			
+			tessellator.addVertexWithUV(x - offset, y + offsetY, z + offset, 0, 0);
+			tessellator.addVertexWithUV(x - offset, y, z + offset, 0, 1);
+			tessellator.addVertexWithUV(x + offset, y, z + offset, 1, 1);
+			tessellator.addVertexWithUV(x + offset, y + offsetY, z + offset, 1, 0);
 			
 			tessellator.draw();
 			GL11.glPopMatrix();

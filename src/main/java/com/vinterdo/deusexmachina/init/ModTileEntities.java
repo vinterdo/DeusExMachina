@@ -17,6 +17,8 @@ import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.tileentity.TEIERGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.tileentity.TEShield;
+import com.vinterdo.deusexmachina.tileentity.TETeleportMaster;
+import com.vinterdo.deusexmachina.tileentity.TETeleportMasterMaster;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -47,6 +49,8 @@ public class ModTileEntities
 		GameRegistry.registerTileEntity(TEShield.class, Reference.MOD_ID + ":" + "shield");
 		GameRegistry.registerTileEntity(TETerminal.class, Reference.MOD_ID + ":" + "terminal");
 		GameRegistry.registerTileEntity(TEDataBank.class, Reference.MOD_ID + ":" + "dataBank");
+		GameRegistry.registerTileEntity(TETeleportMaster.class, Reference.MOD_ID + ":" + "teleportMaster");
+		GameRegistry.registerTileEntity(TETeleportMasterMaster.class, Reference.MOD_ID + ":" + "teleportMasterMaster");
 		
 	}
 }
