@@ -1,3 +1,4 @@
+package com.vinterdo.deusexmachina.nei;
 /*package com.vinterdo.deusexmachina.nei;
 
 import codechicken.nei.recipe.TemplateRecipeHandler;

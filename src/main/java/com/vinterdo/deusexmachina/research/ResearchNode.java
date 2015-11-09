@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.client.gui.GuiButtonResearch;
 import com.vinterdo.deusexmachina.client.gui.GuiDeus;
+import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
 import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 
 import net.minecraft.client.Minecraft;
@@ -116,6 +117,7 @@ public class ResearchNode
 	int							guiTop;
 	int							guiLeft;
 	private GuiButtonResearch	printButton;
+	private WidgetTooltip		tip;
 								
 	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, int rfPerSecond, int grayMatterCost, int time,
 			int x, int y, ResourceLocation icon)
@@ -144,6 +146,8 @@ public class ResearchNode
 		
 		printButton = new GuiButtonResearch(0, x, y, 16, 16, "", this);
 		gui.addButton(printButton);
+		tip = new WidgetTooltip(name, x, y, 22, 120, 16, 16);
+		gui.addTooltip(tip);
 	}
 	
 	public void render(int mousex, int mousey, float partialTick, int offsetx, int offsety)
@@ -157,6 +161,9 @@ public class ResearchNode
 		printButton.xPosition = nodePosX;
 		printButton.yPosition = nodePosY;
 		
+		tip.setX(clamp(x + offsetx - gui.getLeft(), 5, 229));
+		tip.setY(clamp(y + offsety - gui.getTop(), 5, 171));
+		
 		if (nodePosX - 5 + 16 > guiLeft && nodePosX + 16 - 16 < maxX && nodePosY - 5 + 16 > guiTop
 				&& nodePosY + 16 - 16 < maxY)
 		{
@@ -166,18 +173,6 @@ public class ResearchNode
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 			
 			Minecraft.getMinecraft().getTextureManager().bindTexture(icon);
-			if (discovered)
-			{
-				
-				GL11.glColor4d(1, 1, 1, 1);
-			} else if (parent != null && parent.discovered || parent == null)
-			{
-				double highligh = Math.sin((System.currentTimeMillis() % 500) * Math.PI * 2 / 500f) * 0.3;
-				GL11.glColor4d(0.7 + highligh, 0.7 + highligh, 0.7 + highligh, 1);
-			} else
-			{
-				GL11.glColor4d(0.5, 0.5, 0.5, 1);
-			}
 			
 			int olX = nodePosX + 16 - maxX;
 			int ogX = nodePosX - guiLeft - 5;
@@ -191,11 +186,36 @@ public class ResearchNode
 			int w = nodePosX + 16 > maxX ? 16 - olX : nodePosX < guiLeft + 5 ? 16 + ogX : 16;
 			int h = nodePosY + 16 > maxY ? 16 - olY : nodePosY < guiTop + 5 ? 16 + ogY : 16;
 			
+			tip.setAreaheight(h);
+			tip.setAreawidth(w);
+			
+			if (gui.te.activeResearch != null && gui.te.activeResearch.getString("recipe").equals(this.name))
+			{
+				GL11.glColor4d(0.5, 0.5, 0.5, 1);
+				Gui.func_146110_a(renderx - 3, rendery - 3, startx, starty, w + 6, h + 6, 22, 22);
+			}
+			
+			if (discovered)
+			{
+				
+				GL11.glColor4d(1, 1, 1, 1);
+				
+			} else if (parent != null && parent.discovered || parent == null)
+			{
+				double highligh = Math.sin((System.currentTimeMillis() % 500) * Math.PI * 2 / 500f) * 0.3;
+				GL11.glColor4d(0.7 + highligh, 0.7 + highligh, 0.7 + highligh, 1);
+			} else
+			{
+				GL11.glColor4d(0.5, 0.5, 0.5, 1);
+			}
+			
 			Gui.func_146110_a(renderx, rendery, startx, starty, w, h, 16, 16);
 		} else
 		{
 			
 			printButton.enabled = false;
+			tip.setAreaheight(0);
+			tip.setAreawidth(0);
 		}
 		
 		int vertStartX = clamp(nodePosX + 8 - 3, guiLeft + 5, maxX);

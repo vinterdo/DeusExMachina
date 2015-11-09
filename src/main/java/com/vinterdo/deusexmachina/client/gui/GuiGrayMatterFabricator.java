@@ -23,9 +23,9 @@ public class GuiGrayMatterFabricator extends GuiDEM
 	ResourceLocation				essenceTex	= new ResourceLocation(
 			Reference.MOD_ID + ":textures/gui/essenceProgressbar.png");
 			
-	WidgetTank	widgetTank;
-	WidgetRF	widgetEnergy;
-	
+	WidgetTank						widgetTank;
+	WidgetRF						widgetEnergy;
+									
 	public GuiGrayMatterFabricator(InventoryPlayer playerInv, TileEntity te)
 	{
 		super(new ContainerGrayMatterFabricator(playerInv, (TEGrayMatterFabricatorMaster) te), "grayMatterFabricator");
@@ -46,8 +46,8 @@ public class GuiGrayMatterFabricator extends GuiDEM
 	{
 		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
 		
-		widgetTank.render(mousex, mousey, partialTick);
-		widgetEnergy.render(mousex, mousey, partialTick);
+		widgetTank.render(mousex, mousey, partialTick, this.fontRendererObj);
+		widgetEnergy.render(mousex, mousey, partialTick, this.fontRendererObj);
 		
 		drawMatterProgressbar();
 		drawEssenceProgressbar();

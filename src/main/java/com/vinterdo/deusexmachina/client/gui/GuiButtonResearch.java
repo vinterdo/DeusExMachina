@@ -19,6 +19,7 @@ public class GuiButtonResearch extends GuiButton
 	@Override
 	public void drawButton(Minecraft m, int x, int y)
 	{
-	
+		//GL11.glColor4f(1f, 1f, 1f, 0.1f);
+		//super.drawButton(m, x, y);
 	}
 }

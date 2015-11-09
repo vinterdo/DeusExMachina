@@ -70,6 +70,7 @@ public class ResearchTree
 	
 	public void setRender(GuiDeus gui)
 	{
+		
 		for (Entry<String, ResearchNode> node : nodes.entrySet())
 		{
 			node.getValue().setRender(gui);
