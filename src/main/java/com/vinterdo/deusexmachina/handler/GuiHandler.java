@@ -8,6 +8,7 @@ import com.vinterdo.deusexmachina.client.gui.GuiEssenceProcessor;
 import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterCrafter;
 import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterFabricator;
 import com.vinterdo.deusexmachina.client.gui.GuiHeater;
+import com.vinterdo.deusexmachina.client.gui.GuiTeleportMaster;
 import com.vinterdo.deusexmachina.client.gui.GuiTerminal;
 import com.vinterdo.deusexmachina.inventory.ContainerBlastFurnace;
 import com.vinterdo.deusexmachina.inventory.ContainerDataBank;
@@ -17,6 +18,7 @@ import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
+import com.vinterdo.deusexmachina.inventory.ContainerTeleportMaster;
 import com.vinterdo.deusexmachina.inventory.ContainerTerminal;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
 import com.vinterdo.deusexmachina.tileentity.TEDataBank;
@@ -26,6 +28,7 @@ import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
+import com.vinterdo.deusexmachina.tileentity.TETeleportMasterMaster;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -36,7 +39,7 @@ public class GuiHandler implements IGuiHandler
 {
 	public enum GuiIDs
 	{
-		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER, DATA_BANK;
+		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER, DATA_BANK, TELEPORT_MASTER;
 	}
 	
 	@Override
@@ -66,6 +69,9 @@ public class GuiHandler implements IGuiHandler
 				return new ContainerDeus(player.inventory, (TEDeusMaster) world.getTileEntity(x, y, z));
 			case DATA_BANK:
 				return new ContainerDataBank(player.inventory, (TEDataBank) world.getTileEntity(x, y, z));
+			case TELEPORT_MASTER:
+				return new ContainerTeleportMaster(player.inventory,
+						(TETeleportMasterMaster) world.getTileEntity(x, y, z));
 		}
 		
 		throw new IllegalArgumentException("No gui with id " + ID);
@@ -94,6 +100,8 @@ public class GuiHandler implements IGuiHandler
 				return new GuiDeus(player.inventory, world.getTileEntity(x, y, z));
 			case DATA_BANK:
 				return new GuiDataBank(player.inventory, world.getTileEntity(x, y, z));
+			case TELEPORT_MASTER:
+				return new GuiTeleportMaster(player.inventory, world.getTileEntity(x, y, z));
 				
 		}
 		

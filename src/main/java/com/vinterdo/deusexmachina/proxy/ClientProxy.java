@@ -7,6 +7,7 @@ import com.vinterdo.deusexmachina.renderers.EssenceMaceratorRenderer;
 import com.vinterdo.deusexmachina.renderers.EssenceProcessorRenderer;
 import com.vinterdo.deusexmachina.renderers.GrayMatterCrafterRenderer;
 import com.vinterdo.deusexmachina.renderers.GrayMatterFabricatorRenderer;
+import com.vinterdo.deusexmachina.renderers.RendererTeleportMaster;
 import com.vinterdo.deusexmachina.renderers.ShieldRenderer;
 import com.vinterdo.deusexmachina.renderers.TerminalRenderer;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
@@ -17,6 +18,7 @@ import com.vinterdo.deusexmachina.tileentity.TEEssenceProcessor;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEShield;
+import com.vinterdo.deusexmachina.tileentity.TETeleportMasterMaster;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -45,5 +47,6 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TEEssenceMacerator.class, new EssenceMaceratorRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TEShield.class, new ShieldRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TEDataBank.class, new DataBankRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TETeleportMasterMaster.class, new RendererTeleportMaster());
 	}
 }
