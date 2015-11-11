@@ -21,6 +21,7 @@ import net.minecraftforge.event.world.BlockEvent;
 public class ItemRayGun extends ItemDEM 
 {
 	int maxEnergy = 1000; //TODO : Change value
+	int energyUsage = 20; //TODO : Change value
 	
 	public ItemRayGun() 
 	{
@@ -56,7 +57,7 @@ public class ItemRayGun extends ItemDEM
     }
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {	
     	int x = player.rayTrace(100,1.0f).blockX;
     	int y = player.rayTrace(100,1.0f).blockY;
@@ -83,6 +84,15 @@ public class ItemRayGun extends ItemDEM
 							}
 						}
 					}
+					
+					if (itemStack.stackTagCompound == null) 
+					{
+						createTags(itemStack);
+					}
+					
+					int energy = itemStack.stackTagCompound.getInteger("energy");
+					energy -= energyUsage;
+					itemStack.stackTagCompound.setInteger("energy", energy);
 	
 					/*world.playAuxSFXAtEntity(
 							null,
@@ -99,7 +109,7 @@ public class ItemRayGun extends ItemDEM
 	    	}
     	}
 	
-    	return par1ItemStack;
+    	return itemStack;
     }
 	
 	public void mineStack(ItemStack stack, World world, int x, int y, int z) 
