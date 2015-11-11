@@ -11,18 +11,49 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 
-public class ItemRayGun extends ItemDEM {
-
+public class ItemRayGun extends ItemDEM 
+{
+	int maxEnergy = 1000; //TODO : Change value
+	
 	public ItemRayGun() 
 	{
 		super();
-		this.setUnlocalizedName("rayGun").setCreativeTab(CreativeTabDEM.DEM_TAB);
+		this.setUnlocalizedName("rayGun").setCreativeTab(CreativeTabDEM.DEM_TAB).setMaxStackSize(1);
 	}
+	
+	public void createTags(ItemStack itemStack)
+	{
+		itemStack.stackTagCompound = new NBTTagCompound();
+		itemStack.stackTagCompound.setInteger("maxEnergy", maxEnergy);
+		itemStack.stackTagCompound.setInteger("energy", maxEnergy);
+	}
+	
+	@Override
+	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
+	{
+		createTags(itemStack);
+	}
+	
+	@Override
+	public void addInformation(ItemStack itemStack, EntityPlayer player,
+            List list, boolean par4) 
+	{
+			if (itemStack.stackTagCompound == null) 
+			{
+				createTags(itemStack);
+			}
+			
+			int energy = itemStack.stackTagCompound.getInteger("energy");
+			int menergy = itemStack.stackTagCompound.getInteger("maxEnergy");
+			list.add(EnumChatFormatting.BLUE + "Energy: " + energy + "/" + menergy);
+    }
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
