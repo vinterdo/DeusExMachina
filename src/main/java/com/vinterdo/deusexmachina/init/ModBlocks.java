@@ -19,6 +19,8 @@ import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BHeater;
 import com.vinterdo.deusexmachina.block.BShield;
+import com.vinterdo.deusexmachina.block.BTeleportGate;
+import com.vinterdo.deusexmachina.block.BTeleportGateMaster;
 import com.vinterdo.deusexmachina.block.BTeleportMaster;
 import com.vinterdo.deusexmachina.block.BTeleportMasterMaster;
 import com.vinterdo.deusexmachina.block.BTerminal;
@@ -62,6 +64,9 @@ public class ModBlocks
 																		
 	public static final BTileEntityDEM	teleportMaster					= new BTeleportMaster();
 	public static final BTileEntityDEM	teleportMasterMaster			= new BTeleportMasterMaster();
+	
+	public static final BTileEntityDEM	teleportGate					= new BTeleportGate(); 
+	public static final BTileEntityDEM	teleportGateMaster			= new BTeleportGateMaster();
 																		
 	public static void init()
 	{
@@ -91,6 +96,9 @@ public class ModBlocks
 		
 		GameRegistry.registerBlock(teleportMaster, "teleportMaster");
 		GameRegistry.registerBlock(teleportMasterMaster, "teleportMasterMaster");
+
+		GameRegistry.registerBlock(teleportGate, "teleportGate");
+		GameRegistry.registerBlock(teleportGateMaster, "teleportGateMaster");
 		
 		GameRegistry.registerBlock(shield, "shield");
 		GameRegistry.registerBlock(dataBank, "dataBank");

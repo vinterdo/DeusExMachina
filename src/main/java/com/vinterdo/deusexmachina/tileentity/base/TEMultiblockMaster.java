@@ -6,12 +6,14 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TEMultiblockMaster extends TEDEM
 {
 	protected ArrayList<TEMultiblock>	members;
 	protected boolean					formed			= false;
 	boolean								shouldReform	= false;
+	public ForgeDirection rotation = ForgeDirection.UNKNOWN;
 	
 	public boolean isFormed()
 	{
@@ -92,6 +94,7 @@ public abstract class TEMultiblockMaster extends TEDEM
 	{
 		super.writeToPacket(buf);
 		ByteBufUtils.writeVarShort(buf, formed ? 1 : 0);
+		ByteBufUtils.writeVarShort(buf, rotation.ordinal());
 	}
 	
 	@Override
@@ -99,6 +102,8 @@ public abstract class TEMultiblockMaster extends TEDEM
 	{
 		super.readFromPacket(buf);
 		formed = ByteBufUtils.readVarShort(buf) == 0 ? false : true;
+		rotation = ForgeDirection.values()[ByteBufUtils.readVarShort(buf)];
+		//ByteBufUtils.writeVarShort(buf, formed ? 1 : 0);
 	}
 	
 	@Override
