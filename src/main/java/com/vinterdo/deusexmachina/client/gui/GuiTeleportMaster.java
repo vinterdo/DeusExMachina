@@ -16,6 +16,8 @@ public class GuiTeleportMaster extends GuiDEM
 	{
 		super(new ContainerTeleportMaster(playerInv, (TETeleportMasterMaster) te), "teleportMaster");
 		this.te = (TETeleportMasterMaster) te;
+		xSize = 256;
+		ySize = 256;
 	}
 	
 	@Override
