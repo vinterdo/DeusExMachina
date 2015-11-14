@@ -30,7 +30,7 @@ public class TETeleportMasterMaster extends TEIMultiblockMaster implements IEner
 	public TETeleportMasterMaster()
 	{
 		super();
-		setNumOfStacks(1);
+		setNumOfStacks(52);
 	}
 	
 	@Override
