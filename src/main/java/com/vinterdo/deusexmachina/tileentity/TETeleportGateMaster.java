@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.multiblockstructures.MultiBlockStructure;
+import com.vinterdo.deusexmachina.multiblockstructures.StructureTeleportGate;
 import com.vinterdo.deusexmachina.multiblockstructures.StructureTeleportMaster;
 import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
@@ -16,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TETeleportMasterMaster extends TEIMultiblockMaster implements IEnergyReceiver
+public class TETeleportGateMaster extends TEIMultiblockMaster implements IEnergyReceiver
 {
 	public static final int					ENERGY_CAPACITY	= 100000;
 	public static final int					ENERGY_CONSUME	= 320;
@@ -25,9 +26,9 @@ public class TETeleportMasterMaster extends TEIMultiblockMaster implements IEner
 	@NBTSaved(name = "energy")
 	public EnergyStorage					energy			= new EnergyStorage(ENERGY_CAPACITY);
 															
-	public static final MultiBlockStructure	structure		= new StructureTeleportMaster();
+	public static final MultiBlockStructure	structure		= new StructureTeleportGate();
 															
-	public TETeleportMasterMaster()
+	public TETeleportGateMaster()
 	{
 		super();
 		setNumOfStacks(1);
@@ -61,7 +62,7 @@ public class TETeleportMasterMaster extends TEIMultiblockMaster implements IEner
 	@Override
 	public String getInventoryName()
 	{
-		return ModBlocks.teleportMasterMaster.getUnlocalizedName() + ".name";
+		return ModBlocks.teleportGateMaster.getUnlocalizedName() + ".name";
 	}
 	
 	@Override

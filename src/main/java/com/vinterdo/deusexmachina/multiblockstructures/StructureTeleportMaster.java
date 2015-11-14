@@ -10,7 +10,22 @@ import net.minecraft.tileentity.TileEntity;
 
 public class StructureTeleportMaster extends MultiBlockStructure
 {
-	
+	public StructureTeleportMaster()
+	{
+		super();
+		for (int x = 0; x < 5; x++)
+		{
+			for (int y = 0; y < 5; y++)
+			{
+				for (int z = 0; z < 5; z++)
+				{
+					if(!(x == 2 && y == 4 && z == 2))
+						this.addBlock(TETeleportMaster.class, x - 2, y - 4, z - 2);
+				}
+			}
+		}
+	}
+	/*
 	@Override
 	public boolean isValidMultiblock(TEMultiblockMaster temm)
 	{
@@ -62,5 +77,5 @@ public class StructureTeleportMaster extends MultiBlockStructure
 		}
 		
 	}
-	
+	*/
 }
