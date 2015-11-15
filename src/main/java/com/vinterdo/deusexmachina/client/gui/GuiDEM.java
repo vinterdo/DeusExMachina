@@ -1,20 +1,22 @@
 package com.vinterdo.deusexmachina.client.gui;
 
-import com.vinterdo.deusexmachina.reference.Reference;
-
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
+import com.vinterdo.deusexmachina.client.gui.generic.Canvas;
+import com.vinterdo.deusexmachina.reference.Reference;
 
 public abstract class GuiDEM extends GuiContainer
 {
-	private ResourceLocation guiTexture;
+	private ResourceLocation	guiTexture;
+	public Canvas				canvas;
 	
 	public GuiDEM(Container container, String guiTextureName)
 	{
 		super(container);
+		canvas = new Canvas(this);
 		guiTexture = new ResourceLocation(Reference.MOD_ID.toLowerCase() + ":textures/gui/" + guiTextureName + ".png");
 	}
 	
@@ -23,5 +25,12 @@ public abstract class GuiDEM extends GuiContainer
 	{
 		mc.getTextureManager().bindTexture(guiTexture);
 		this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		canvas.update();
+		canvas.render();
+	}
+	
+	public FontRenderer getFontRenderer()
+	{
+		return this.fontRendererObj;
 	}
 }
