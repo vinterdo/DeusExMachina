@@ -19,6 +19,9 @@ import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BHeater;
 import com.vinterdo.deusexmachina.block.BShield;
+import com.vinterdo.deusexmachina.block.BShieldPylon;
+import com.vinterdo.deusexmachina.block.BShieldPylonBase;
+import com.vinterdo.deusexmachina.block.BShieldPylonEnding;
 import com.vinterdo.deusexmachina.block.BTeleportGate;
 import com.vinterdo.deusexmachina.block.BTeleportGateMaster;
 import com.vinterdo.deusexmachina.block.BTeleportMaster;
@@ -60,13 +63,16 @@ public class ModBlocks
 	public static final BTileEntityDEM	deusMaster						= new BDeusMaster();
 																		
 	public static final BTileEntityDEM	shield							= new BShield();
+	public static final BTileEntityDEM	shieldPylon						= new BShieldPylon();
+	public static final BTileEntityDEM	shieldPylonBase					= new BShieldPylonBase();
+	public static final BTileEntityDEM	shieldPylonEnding				= new BShieldPylonEnding();
 	public static final BTileEntityDEM	dataBank						= new BDataBank();
 																		
 	public static final BTileEntityDEM	teleportMaster					= new BTeleportMaster();
 	public static final BTileEntityDEM	teleportMasterMaster			= new BTeleportMasterMaster();
 	
 	public static final BTileEntityDEM	teleportGate					= new BTeleportGate(); 
-	public static final BTileEntityDEM	teleportGateMaster			= new BTeleportGateMaster();
+	public static final BTileEntityDEM	teleportGateMaster				= new BTeleportGateMaster();
 																		
 	public static void init()
 	{
