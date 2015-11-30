@@ -11,8 +11,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.vinterdo.deusexmachina.client.gui.GuiButtonResearch;
 import com.vinterdo.deusexmachina.client.gui.GuiDeus;
+import com.vinterdo.deusexmachina.client.gui.widget.GuiButtonResearch;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
 import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
 

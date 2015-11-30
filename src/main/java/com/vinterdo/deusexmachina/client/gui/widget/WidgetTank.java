@@ -1,5 +1,11 @@
 package com.vinterdo.deusexmachina.client.gui.widget;
 
+import org.lwjgl.opengl.GL11;
+
+import com.vinterdo.deusexmachina.client.gui.generic.Canvas;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -9,26 +15,19 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 
-import org.lwjgl.opengl.GL11;
-
-import com.vinterdo.deusexmachina.client.gui.generic.Canvas;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class WidgetTank extends WidgetTooltip
 {
-	private final IFluidTank	tank;
+	private final IFluidTank tank;
 	
-	public WidgetTank(IFluidTank tank, int x, int y, int height, int width, Canvas canvas)
+	public WidgetTank(IFluidTank tank, int x, int y, int width, int height, Canvas canvas)
 	{
-		super("", x, y, 22, 120, height, width, canvas);
+		super("", x, y, 120, 20, width, height, canvas);
 		this.tank = tank;
 	}
 	
 	public WidgetTank(IFluidTank tank, int x, int y, Canvas canvas)
 	{
-		super("", x, y, 22, 120, 64, 16, canvas);
+		super("", x, y, 120, 20, 22, 120, canvas);
 		this.tank = tank;
 	}
 	
@@ -49,11 +48,11 @@ public class WidgetTank extends WidgetTooltip
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 			
 			double fluidPercentage = amt / (double) capacity;
-			double fluidHeight = height * fluidPercentage;
+			double fluidHeight = areaheight * fluidPercentage;
 			
 			GL11.glPushMatrix();
 			{
-				GL11.glTranslated(0, height, 0);
+				GL11.glTranslated(0, areaheight, 0);
 				GL11.glEnable(GL11.GL_BLEND);
 				while (fluidHeight > 0)
 				{
@@ -63,11 +62,11 @@ public class WidgetTank extends WidgetTooltip
 					t.startDrawingQuads();
 					t.setColorOpaque_I(fluid.getColor(tank.getFluid()));
 					{
-						t.addVertexWithUV(start.x, start.y, 0, icon.getMinU(),
-								icon.getMinV() + (icon.getMaxV() - icon.getMinV()) * (1 - moved / icon.getIconHeight()));
+						t.addVertexWithUV(start.x, start.y, 0, icon.getMinU(), icon.getMinV()
+								+ (icon.getMaxV() - icon.getMinV()) * (1 - moved / icon.getIconHeight()));
 						t.addVertexWithUV(start.x, start.y + moved, 0, icon.getMinU(), icon.getMaxV());
-						t.addVertexWithUV(start.x + width, start.y + moved, 0, icon.getMaxU(), icon.getMaxV());
-						t.addVertexWithUV(start.x + width, start.y, 0, icon.getMaxU(), icon.getMinV()
+						t.addVertexWithUV(start.x + areawidth, start.y + moved, 0, icon.getMaxU(), icon.getMaxV());
+						t.addVertexWithUV(start.x + areawidth, start.y, 0, icon.getMaxU(), icon.getMinV()
 								+ (icon.getMaxV() - icon.getMinV()) * (1 - moved / icon.getIconHeight()));
 					}
 					t.draw();

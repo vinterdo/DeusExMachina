@@ -1,23 +1,26 @@
 package com.vinterdo.deusexmachina.client.gui.widget;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.client.gui.generic.Canvas;
 import com.vinterdo.deusexmachina.client.gui.generic.Widget;
 import com.vinterdo.deusexmachina.reference.Reference;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.ResourceLocation;
+
 public class WidgetTooltip extends Widget
 {
 	
-	private int		areaheight;
-	private int		areawidth;
-	private String	text;
-	
+	protected static ResourceLocation	tooltipBg	= new ResourceLocation(
+			Reference.MOD_ID + ":textures/gui/tooltipBg.png");
+			
+	protected int						areaheight;
+	protected int						areawidth;
+	protected String					text;
+										
 	public int getAreaheight()
 	{
 		return areaheight;
@@ -48,9 +51,7 @@ public class WidgetTooltip extends Widget
 		this.text = text;
 	}
 	
-	private static ResourceLocation	tooltipBg	= new ResourceLocation(Reference.MOD_ID + ":textures/gui/tooltipBg.png");
-	
-	public WidgetTooltip(String text, int x, int y, int height, int width, int areaheight, int areawidth, Canvas canvas)
+	public WidgetTooltip(String text, int x, int y, int width, int height, int areawidth, int areaheight, Canvas canvas)
 	{
 		super(x, y, width, height, canvas);
 		this.text = text;
@@ -88,7 +89,7 @@ public class WidgetTooltip extends Widget
 	@Override
 	public void update()
 	{
-		
+	
 	}
 	
 	public void setX(int x)

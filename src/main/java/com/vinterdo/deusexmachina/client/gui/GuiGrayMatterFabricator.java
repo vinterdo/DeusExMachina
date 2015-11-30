@@ -1,12 +1,5 @@
 package com.vinterdo.deusexmachina.client.gui;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
@@ -15,17 +8,24 @@ import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
 public class GuiGrayMatterFabricator extends GuiDEM
 {
 	TEGrayMatterFabricatorMaster	te;
-	ResourceLocation				matterTex	= new ResourceLocation(Reference.MOD_ID
-														+ ":textures/gui/matterProgressbar.png");
-	ResourceLocation				essenceTex	= new ResourceLocation(Reference.MOD_ID
-														+ ":textures/gui/essenceProgressbar.png");
-	
+	ResourceLocation				matterTex	= new ResourceLocation(
+			Reference.MOD_ID + ":textures/gui/matterProgressbar.png");
+	ResourceLocation				essenceTex	= new ResourceLocation(
+			Reference.MOD_ID + ":textures/gui/essenceProgressbar.png");
+			
 	WidgetTank						widgetTank;
 	WidgetRF						widgetEnergy;
-	
+									
 	public GuiGrayMatterFabricator(InventoryPlayer playerInv, TileEntity te)
 	{
 		super(new ContainerGrayMatterFabricator(playerInv, (TEGrayMatterFabricatorMaster) te), "grayMatterFabricator");
@@ -37,8 +37,8 @@ public class GuiGrayMatterFabricator extends GuiDEM
 	{
 		super.initGui();
 		
-		widgetTank = new WidgetTank(this.te.tank, guiLeft + 134, guiTop + 14, 58, 16, canvas);
-		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 114, guiTop + 14, 58, 16, canvas);
+		widgetTank = new WidgetTank(this.te.tank, guiLeft + 134, guiTop + 14, 16, 58, canvas);
+		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 114, guiTop + 14, 16, 58, canvas);
 	}
 	
 	@Override
