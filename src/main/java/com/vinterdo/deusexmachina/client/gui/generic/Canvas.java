@@ -2,9 +2,9 @@ package com.vinterdo.deusexmachina.client.gui.generic;
 
 import java.util.LinkedList;
 
-import net.minecraft.client.gui.FontRenderer;
-
 import com.vinterdo.deusexmachina.client.gui.GuiDEM;
+
+import net.minecraft.client.gui.FontRenderer;
 
 public class Canvas
 {
@@ -16,7 +16,7 @@ public class Canvas
 	public int					mousey;
 	public float				partialTick;
 	private GuiDEM				gui;
-	
+								
 	public Canvas(GuiDEM gui)
 	{
 		widgets = new LinkedList<Widget>();
@@ -49,7 +49,7 @@ public class Canvas
 		widgets.add(w);
 	}
 	
-	private void removeWidget(Widget w)
+	public void removeWidget(Widget w)
 	{
 		this.widgets.remove(w);
 		

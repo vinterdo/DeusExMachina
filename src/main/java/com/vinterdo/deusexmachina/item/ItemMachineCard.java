@@ -33,8 +33,13 @@ public class ItemMachineCard extends ItemDEM
 		stack.stackTagCompound.setInteger("z", z);
 		stack.stackTagCompound.setInteger("world", world.provider.dimensionId);
 		stack.stackTagCompound.setString("name", world.getBlock(x, y, z).getLocalizedName());
-		
 		return false;
+	}
+	
+	@Override
+	public int getItemStackLimit()
+	{
+		return 1;
 	}
 	
 	@Override

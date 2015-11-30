@@ -2,18 +2,18 @@ package com.vinterdo.deusexmachina.client.gui;
 
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiHeater extends GuiDEM
 {
 	TEHeater				te;
 	public static final int	MAX_BURN_TIME	= 4000;
-	
-	public GuiHeater(InventoryPlayer playerInv, TileEntity te)
+											
+	public GuiHeater(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerHeater(playerInv, (TEHeater) te), "heater");
+		super(new ContainerHeater(playerInv, (TEHeater) te), "heater", te);
 		this.te = (TEHeater) te;
 	}
 	

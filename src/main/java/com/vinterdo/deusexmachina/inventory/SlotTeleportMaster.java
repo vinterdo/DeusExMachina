@@ -12,21 +12,20 @@ public class SlotTeleportMaster extends SlotItemOnly
 {
 	TETeleportMasterMaster te;
 	
-	public SlotTeleportMaster(TETeleportMasterMaster p_i1824_1_, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_)
+	public SlotTeleportMaster(TETeleportMasterMaster te, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_)
 	{
-		super(p_i1824_1_, p_i1824_2_, p_i1824_3_, p_i1824_4_, ModItems.machineCard);
-		this.te = p_i1824_1_;
-		
+		super(te, p_i1824_2_, p_i1824_3_, p_i1824_4_, ModItems.machineCard);
+		this.te = te;
 	}
 	
 	@Override
-	public void putStack(ItemStack p_75215_1_)
+	public void putStack(ItemStack stack)
 	{
 		ItemStack oldStack = this.inventory.getStackInSlot(this.slotNumber);
 		
-		super.putStack(p_75215_1_);
+		super.putStack(stack);
 		
-		TileEntity gate = ItemMachineCard.getTargetTE(p_75215_1_);
+		TileEntity gate = ItemMachineCard.getTargetTE(stack);
 		if (gate != null && gate instanceof TETeleportGateMaster)
 		{
 			if (!te.teleports.contains(gate))
@@ -34,13 +33,12 @@ public class SlotTeleportMaster extends SlotItemOnly
 				te.teleports.set(this.slotNumber, (TETeleportGateMaster) gate);
 			}
 		}
-		
 	}
 	
 	@Override
-	public ItemStack decrStackSize(int slot)
+	public ItemStack decrStackSize(int amount)
 	{
-		te.teleports.set(slot, null);
-		return super.decrStackSize(slot);
+		te.teleports.set(this.slotNumber, null);
+		return super.decrStackSize(amount);
 	}
 }

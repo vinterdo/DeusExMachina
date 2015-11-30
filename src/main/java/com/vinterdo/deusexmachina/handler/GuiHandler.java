@@ -33,6 +33,7 @@ import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.tileentity.TETeleportGateMaster;
 import com.vinterdo.deusexmachina.tileentity.TETeleportMasterMaster;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,8 +77,7 @@ public class GuiHandler implements IGuiHandler
 				return new ContainerTeleportMaster(player.inventory,
 						(TETeleportMasterMaster) world.getTileEntity(x, y, z));
 			case TELEPORT_GATE:
-				return new ContainerTeleportGate(player.inventory,
-						(TETeleportGateMaster) world.getTileEntity(x, y, z));
+				return new ContainerTeleportGate(player.inventory, (TETeleportGateMaster) world.getTileEntity(x, y, z));
 		}
 		
 		throw new IllegalArgumentException("No gui with id " + ID);
@@ -89,27 +89,27 @@ public class GuiHandler implements IGuiHandler
 		switch (GuiIDs.values()[ID])
 		{
 			case TERMINAL:
-				return new GuiTerminal(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiTerminal(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case ESSENCE_PROCESSOR:
-				return new GuiEssenceProcessor(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiEssenceProcessor(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case HEATER:
-				return new GuiHeater(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiHeater(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case ESSENCE_MACERATOR:
-				return new GuiEssenceMacerator(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiEssenceMacerator(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case GRAY_MATTER_FABRICATOR:
-				return new GuiGrayMatterFabricator(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiGrayMatterFabricator(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case GRAY_MATTER_CRAFTER:
-				return new GuiGrayMatterCrafter(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiGrayMatterCrafter(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case BLAST_FURNACE:
-				return new GuiBlastFurnace(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiBlastFurnace(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case DEUS:
-				return new GuiDeus(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiDeus(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case DATA_BANK:
-				return new GuiDataBank(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiDataBank(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case TELEPORT_MASTER:
-				return new GuiTeleportMaster(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiTeleportMaster(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case TELEPORT_GATE:
-				return new GuiTeleportGate(player.inventory, world.getTileEntity(x, y, z));
+				return new GuiTeleportGate(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 				
 		}
 		

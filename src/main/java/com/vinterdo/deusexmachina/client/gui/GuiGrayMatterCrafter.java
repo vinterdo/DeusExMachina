@@ -4,9 +4,9 @@ import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTank;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterCrafterMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiGrayMatterCrafter extends GuiDEM
 {
@@ -14,9 +14,9 @@ public class GuiGrayMatterCrafter extends GuiDEM
 	private WidgetTank			widgetTank;
 	private WidgetRF			widgetEnergy;
 								
-	public GuiGrayMatterCrafter(InventoryPlayer playerInv, TileEntity te)
+	public GuiGrayMatterCrafter(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerGrayMatterCrafter(playerInv, (TEGrayMatterCrafterMaster) te), "grayMatterCrafter");
+		super(new ContainerGrayMatterCrafter(playerInv, (TEGrayMatterCrafterMaster) te), "grayMatterCrafter", te);
 		this.te = (TEGrayMatterCrafterMaster) te;
 	}
 	

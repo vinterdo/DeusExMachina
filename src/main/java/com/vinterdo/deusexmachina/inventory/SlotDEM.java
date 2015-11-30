@@ -2,6 +2,7 @@ package com.vinterdo.deusexmachina.inventory;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class SlotDEM extends Slot
 {
@@ -11,4 +12,21 @@ public class SlotDEM extends Slot
 		super(p_i1824_1_, p_i1824_2_, p_i1824_3_, p_i1824_4_);
 	}
 	
+	@Override
+	public ItemStack decrStackSize(int amount)
+	{
+		onSlotAccessed();
+		return super.decrStackSize(amount);
+	}
+	
+	@Override
+	public void putStack(ItemStack stack)
+	{
+		onSlotAccessed();
+		super.putStack(stack);
+	}
+	
+	public void onSlotAccessed()
+	{
+	}
 }

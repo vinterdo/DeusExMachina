@@ -14,11 +14,11 @@ import com.vinterdo.deusexmachina.network.MessageHandleGuiButtonResearch;
 import com.vinterdo.deusexmachina.network.NetworkHandler;
 import com.vinterdo.deusexmachina.research.ResearchTree;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiDeus extends GuiDEM
 {
@@ -35,9 +35,9 @@ public class GuiDeus extends GuiDEM
 	private int					oldMouseX;
 	private int					oldMouseY;
 								
-	public GuiDeus(InventoryPlayer playerInv, TileEntity te)
+	public GuiDeus(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus");
+		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus", te);
 		this.te = (TEDeusMaster) te;
 		xSize = 256;
 		ySize = 256;

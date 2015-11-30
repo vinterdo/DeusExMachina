@@ -2,10 +2,13 @@ package com.vinterdo.deusexmachina.tileentity.base;
 
 import java.lang.reflect.Field;
 
+import com.vinterdo.deusexmachina.client.gui.GuiDEM;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.network.DescriptionHandler;
 
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +17,9 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TEDEM extends TileEntity
 {
+	@SideOnly(Side.CLIENT)
+	public GuiDEM gui;
+	
 	public TEDEM()
 	{
 		super();

@@ -1,20 +1,20 @@
 package com.vinterdo.deusexmachina.client.gui;
 
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
-
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.inventory.ContainerTeleportGate;
 import com.vinterdo.deusexmachina.tileentity.TETeleportGateMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
+
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiTeleportGate extends GuiDEM
 {
 	TETeleportGateMaster	te;
 	private WidgetRF		widgetEnergy;
-	
-	public GuiTeleportGate(InventoryPlayer playerInv, TileEntity te)
+							
+	public GuiTeleportGate(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerTeleportGate(playerInv, (TETeleportGateMaster) te), "teleportGate");
+		super(new ContainerTeleportGate(playerInv, (TETeleportGateMaster) te), "teleportGate", te);
 		this.te = (TETeleportGateMaster) te;
 	}
 	
