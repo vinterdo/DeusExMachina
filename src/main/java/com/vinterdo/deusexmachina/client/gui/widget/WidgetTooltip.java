@@ -70,6 +70,11 @@ public class WidgetTooltip extends Widget
 	@Override
 	public void render()
 	{
+	}
+	
+	@Override
+	public void postRender()
+	{
 		if (canvas.mousex > start.x && canvas.mousex < start.x + areawidth && canvas.mousey > start.y
 				&& canvas.mousey < start.y + areaheight)
 		{

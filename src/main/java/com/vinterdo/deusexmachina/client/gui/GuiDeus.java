@@ -139,17 +139,12 @@ public class GuiDeus extends GuiDEM
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mousex, int mousey)
-	{
-		super.drawGuiContainerForegroundLayer(mousex, mousey);
-		
-	}
-	
 	public int getTop()
 	{
 		return guiTop;
 	}
 	
+	@Override
 	public int getLeft()
 	{
 		return guiLeft;

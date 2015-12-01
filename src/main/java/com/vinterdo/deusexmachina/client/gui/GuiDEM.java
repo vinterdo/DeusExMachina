@@ -26,6 +26,10 @@ public abstract class GuiDEM extends GuiContainer
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mouseX, int mouseY)
 	{
+		canvas.mousex = mouseX;
+		canvas.mousey = mouseY;
+		canvas.partialTick = partialTick;
+		
 		if (shouldRefresh)
 			refresh();
 			
@@ -33,10 +37,13 @@ public abstract class GuiDEM extends GuiContainer
 		this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		canvas.update();
 		canvas.render();
-		
-		canvas.mousex = mouseX;
-		canvas.mousey = mouseY;
-		canvas.partialTick = partialTick;
+	}
+	
+	@Override
+	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
+	{
+		super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
+		canvas.postRender();
 	}
 	
 	public FontRenderer getFontRenderer()
@@ -52,5 +59,15 @@ public abstract class GuiDEM extends GuiContainer
 	public void refresh()
 	{
 	
+	}
+	
+	public int getLeft()
+	{
+		return guiLeft;
+	}
+	
+	public int getTop()
+	{
+		return guiTop;
 	}
 }

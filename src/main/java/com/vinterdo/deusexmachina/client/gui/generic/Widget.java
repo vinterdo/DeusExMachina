@@ -6,7 +6,7 @@ public abstract class Widget
 	protected int		width;
 	protected int		height;
 	protected Canvas	canvas;
-	
+						
 	public Widget(Point start, int width, int height, Canvas canvas)
 	{
 		super();
@@ -25,12 +25,15 @@ public abstract class Widget
 		this.width = width;
 		this.height = height;
 		this.canvas = canvas;
-		canvas.addWidget(this);
+		if (canvas != null)
+			canvas.addWidget(this);
 	}
 	
 	public abstract void update();
 	
 	public abstract void render();
+	
+	public abstract void postRender();
 	
 	public Point getStart()
 	{
