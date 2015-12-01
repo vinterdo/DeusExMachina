@@ -33,12 +33,17 @@ public class SlotTeleportMaster extends SlotItemOnly
 				te.teleports.set(this.slotNumber, (TETeleportGateMaster) gate);
 			}
 		}
+		
+		if (te.gui != null)
+			te.gui.markToRefresh();
 	}
 	
 	@Override
 	public ItemStack decrStackSize(int amount)
 	{
 		te.teleports.set(this.slotNumber, null);
+		if (te.gui != null)
+			te.gui.markToRefresh();
 		return super.decrStackSize(amount);
 	}
 }

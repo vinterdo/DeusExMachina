@@ -45,8 +45,8 @@ public class GuiTeleportMaster extends GuiDEM
 		{
 			if (teleport != null)
 			{
-				int x = i % 2 == 0 ? 6 : 108;
-				int y = 6 + i / 2 * 24;
+				int x = 6;
+				int y = 6 + i * 24;
 				teleports.add(new WidgetTeleportButton(teleport, guiLeft + x, guiTop + y, canvas));
 				i++;
 			}
