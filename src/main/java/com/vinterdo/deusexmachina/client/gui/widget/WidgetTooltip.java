@@ -1,14 +1,9 @@
 package com.vinterdo.deusexmachina.client.gui.widget;
 
-import org.lwjgl.opengl.GL11;
-
 import com.vinterdo.deusexmachina.client.gui.generic.Canvas;
 import com.vinterdo.deusexmachina.client.gui.generic.Widget;
 import com.vinterdo.deusexmachina.reference.Reference;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 
 public class WidgetTooltip extends Widget
@@ -75,18 +70,12 @@ public class WidgetTooltip extends Widget
 	@Override
 	public void postRender()
 	{
-		if (canvas.mousex > start.x && canvas.mousex < start.x + areawidth && canvas.mousey > start.y
-				&& canvas.mousey < start.y + areaheight)
+		if (canvas.mousex > getStartX() && canvas.mousex < getStartX() + areawidth && canvas.mousey > getStartY()
+				&& canvas.mousey < getStartY() + areaheight)
 		{
-			
-			GL11.glDisable(GL11.GL_LIGHTING);
-			
-			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-			
-			Minecraft.getMinecraft().getTextureManager().bindTexture(tooltipBg);
-			GL11.glColor4d(1, 1, 1, 1);
-			Gui.func_146110_a(canvas.mousex, canvas.mousey, 0, 0, Math.max(width, text.length() * 6 + 6), height,
+			canvas.drawTex(tooltipBg, canvas.mousex, canvas.mousey, Math.max(width, text.length() * 6 + 6), height,
 					Math.max(width, text.length() * 6 + 6), height);
+					
 			canvas.getFontRenderer().drawString(text, canvas.mousex + 6, canvas.mousey + 6, 0xFFFFFFFF);
 		}
 	}
@@ -95,18 +84,6 @@ public class WidgetTooltip extends Widget
 	public void update()
 	{
 	
-	}
-	
-	public void setX(int x)
-	{
-		this.start.setX(x);
-		
-	}
-	
-	public void setY(int y)
-	{
-		this.start.setY(y);
-		
 	}
 	
 }

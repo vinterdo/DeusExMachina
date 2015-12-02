@@ -15,9 +15,6 @@ import net.minecraft.util.ResourceLocation;
 public class Canvas extends Widget
 {
 	private LinkedList<Widget>	widgets;
-	public Point				start;
-	public int					width;
-	public int					height;
 	public int					mousex;
 	public int					mousey;
 	public float				partialTick;
@@ -27,8 +24,15 @@ public class Canvas extends Widget
 	{
 		super(gui.getLeft(), gui.getTop(), gui.width, gui.height, null);
 		widgets = new LinkedList<Widget>();
-		start = new Point(0, 0);
 		this.gui = gui;
+	}
+	
+	public Canvas(GuiDEM gui, Canvas parent)
+	{
+		super(gui.getLeft(), gui.getTop(), gui.width, gui.height, null);
+		widgets = new LinkedList<Widget>();
+		this.gui = gui;
+		parent.addWidget(this);
 	}
 	
 	@Override
@@ -43,6 +47,14 @@ public class Canvas extends Widget
 	@Override
 	public void update()
 	{
+		if (canvas != null)
+		{
+			
+			mousex = canvas.mousex;
+			mousey = canvas.mousey;
+			partialTick = canvas.partialTick;
+		}
+		
 		for (Widget w : widgets)
 		{
 			w.update();
@@ -83,14 +95,20 @@ public class Canvas extends Widget
 		
 		Minecraft.getMinecraft().getTextureManager().bindTexture(tex);
 		GL11.glColor4d(1, 1, 1, 1);
-		Gui.func_146110_a(start.x + x, start.y + y, 0, 0, width, height, sourceWidth, sourceHeight);
+		int drawx = clamp(x, start.x, start.x + this.width);
+		int drawy = clamp(y, start.y, start.y + this.height);
+		int drawwidth = Math.min(width, Math.min(x + width - start.x, -(x - (start.x + this.width))));
+		int drawheight = Math.min(height, Math.min(y + height - start.y, -(y - (start.y + this.height))));
+		int drawsourcew = sourceWidth;
+		int drawsourceh = sourceHeight;
+		Gui.func_146110_a(drawx, drawy, 0, 0, drawwidth, drawheight, drawsourcew, drawsourceh);
 	}
 	
 	public void drawString(String text, int x, int y, int maxWidth, int color)
 	{
 		if (text.length() > maxWidth / 5)
 			text = text.substring(0, maxWidth / 5);
-		getFontRenderer().drawString(text, this.start.x + x, this.start.y + y, color);
+		getFontRenderer().drawString(text, x, y, color);
 	}
 	
 	@Override
@@ -100,5 +118,10 @@ public class Canvas extends Widget
 		{
 			w.postRender();
 		}
+	}
+	
+	private static int clamp(int val, int min, int max)
+	{
+		return Math.max(min, Math.min(max, val));
 	}
 }

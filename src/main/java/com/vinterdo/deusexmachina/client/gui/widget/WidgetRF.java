@@ -45,8 +45,9 @@ public class WidgetRF extends WidgetTooltip
 		float pheight = areaheight * percentage;
 		Minecraft.getMinecraft().getTextureManager().bindTexture(rfProgressbar);
 		GL11.glColor4d(1, 1, 1, 1);
-		Gui.func_146110_a(start.x, start.y + areaheight - (int) pheight, 0, 0, areawidth, (int) pheight, 16, 16);
-		
+		Gui.func_146110_a(getStartX(), getStartY() + areaheight - (int) pheight, 0, 0, areawidth, (int) pheight, 16,
+				16);
+				
 		super.render();
 	}
 	

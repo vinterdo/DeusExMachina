@@ -62,11 +62,12 @@ public class WidgetTank extends WidgetTooltip
 					t.startDrawingQuads();
 					t.setColorOpaque_I(fluid.getColor(tank.getFluid()));
 					{
-						t.addVertexWithUV(start.x, start.y, 0, icon.getMinU(), icon.getMinV()
+						t.addVertexWithUV(getStartX(), getStartY(), 0, icon.getMinU(), icon.getMinV()
 								+ (icon.getMaxV() - icon.getMinV()) * (1 - moved / icon.getIconHeight()));
-						t.addVertexWithUV(start.x, start.y + moved, 0, icon.getMinU(), icon.getMaxV());
-						t.addVertexWithUV(start.x + areawidth, start.y + moved, 0, icon.getMaxU(), icon.getMaxV());
-						t.addVertexWithUV(start.x + areawidth, start.y, 0, icon.getMaxU(), icon.getMinV()
+						t.addVertexWithUV(getStartX(), getStartY() + moved, 0, icon.getMinU(), icon.getMaxV());
+						t.addVertexWithUV(getStartX() + areawidth, getStartY() + moved, 0, icon.getMaxU(),
+								icon.getMaxV());
+						t.addVertexWithUV(getStartX() + areawidth, getStartY(), 0, icon.getMaxU(), icon.getMinV()
 								+ (icon.getMaxV() - icon.getMinV()) * (1 - moved / icon.getIconHeight()));
 					}
 					t.draw();

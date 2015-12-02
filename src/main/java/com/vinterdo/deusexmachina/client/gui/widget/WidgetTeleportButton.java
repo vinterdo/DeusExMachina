@@ -26,8 +26,10 @@ public class WidgetTeleportButton extends WidgetTooltip
 	{
 		if (gate != null)
 		{
-			canvas.drawTex(tooltipBg, start.x, start.y, width, height);
-			canvas.drawString(textButton, this.start.x + 6, this.start.y + 6, areawidth - 6, 0xFFFFFFFF);
+			int xStart = getStartX();
+			int yStart = getStartY();
+			canvas.drawTex(tooltipBg, xStart, yStart, width, height);
+			canvas.drawString(textButton, xStart + 6, yStart + 6, areawidth - 6, 0xFFFFFFFF);
 		}
 		
 		super.render();

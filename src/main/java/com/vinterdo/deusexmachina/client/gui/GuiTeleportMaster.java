@@ -2,6 +2,8 @@ package com.vinterdo.deusexmachina.client.gui;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.client.gui.generic.Point;
+import com.vinterdo.deusexmachina.client.gui.widget.CanvasScrollableY;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTeleportButton;
 import com.vinterdo.deusexmachina.inventory.ContainerTeleportMaster;
@@ -15,8 +17,11 @@ public class GuiTeleportMaster extends GuiDEM
 {
 	TETeleportMasterMaster					te;
 	private WidgetRF						widgetEnergy;
+											
 	private ArrayList<WidgetTeleportButton>	teleports	= new ArrayList<WidgetTeleportButton>();
 														
+	private CanvasScrollableY				buttonsCanvas;
+											
 	public GuiTeleportMaster(InventoryPlayer playerInv, TEDEM te)
 	{
 		super(new ContainerTeleportMaster(playerInv, (TETeleportMasterMaster) te), "teleportMaster", te);
@@ -35,19 +40,26 @@ public class GuiTeleportMaster extends GuiDEM
 	
 	private void resetTeleports()
 	{
+		int offsetY = buttonsCanvas != null ? buttonsCanvas.getOffsetY() : 0;
+		canvas.removeWidget(buttonsCanvas);
 		for (WidgetTeleportButton widgetTeleport : teleports)
 		{
-			canvas.removeWidget(widgetTeleport);
+			buttonsCanvas.removeWidget(widgetTeleport);
 		}
 		
+		buttonsCanvas = new CanvasScrollableY(this, canvas);
+		buttonsCanvas.setStart(new Point(6 + guiLeft, 5 + guiTop));
+		buttonsCanvas.setOffsetY(offsetY);
+		buttonsCanvas.width = 166;
+		buttonsCanvas.height = 166;
 		int i = 0;
 		for (TETeleportGateMaster teleport : te.teleports)
 		{
 			if (teleport != null)
 			{
 				int x = 6;
-				int y = 6 + i * 24;
-				teleports.add(new WidgetTeleportButton(teleport, guiLeft + x, guiTop + y, canvas));
+				int y = i * 24;
+				teleports.add(new WidgetTeleportButton(teleport, x, y, buttonsCanvas));
 				i++;
 			}
 		}

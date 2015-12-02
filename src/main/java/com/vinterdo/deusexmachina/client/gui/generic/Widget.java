@@ -3,8 +3,8 @@ package com.vinterdo.deusexmachina.client.gui.generic;
 public abstract class Widget
 {
 	protected Point		start;
-	protected int		width;
-	protected int		height;
+	public int			width;
+	public int			height;
 	protected Canvas	canvas;
 						
 	public Widget(Point start, int width, int height, Canvas canvas)
@@ -73,5 +73,35 @@ public abstract class Widget
 	public void setCanvas(Canvas canvas)
 	{
 		this.canvas = canvas;
+	}
+	
+	public int getStartX()
+	{
+		if (canvas != null)
+		{
+			return canvas.getStartX() + this.start.x;
+		}
+		return start.x;
+	}
+	
+	public int getStartY()
+	{
+		if (canvas != null)
+		{
+			return canvas.getStartY() + this.start.y;
+		}
+		return start.y;
+	}
+	
+	public void setX(int x)
+	{
+		this.start.setX(x);
+		
+	}
+	
+	public void setY(int y)
+	{
+		this.start.setY(y);
+		
 	}
 }

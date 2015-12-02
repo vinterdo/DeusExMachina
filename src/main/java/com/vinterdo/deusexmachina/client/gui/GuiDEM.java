@@ -19,6 +19,8 @@ public abstract class GuiDEM extends GuiContainer
 	{
 		super(container);
 		canvas = new Canvas(this);
+		canvas.height = 10000;
+		canvas.width = 10000;
 		guiTexture = new ResourceLocation(Reference.MOD_ID.toLowerCase() + ":textures/gui/" + guiTextureName + ".png");
 		te.gui = this;
 	}
@@ -37,6 +39,13 @@ public abstract class GuiDEM extends GuiContainer
 		this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		canvas.update();
 		canvas.render();
+	}
+	
+	@Override
+	public void initGui()
+	{
+		super.initGui();
+		//canvas.setStart(new Point(guiLeft, guiTop));
 	}
 	
 	@Override
