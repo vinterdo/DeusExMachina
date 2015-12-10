@@ -107,6 +107,9 @@ public class ModBlocks
 		GameRegistry.registerBlock(teleportGateMaster, "teleportGateMaster");
 		
 		GameRegistry.registerBlock(shield, "shield");
+		GameRegistry.registerBlock(shieldPylon, "shieldPylon");
+		GameRegistry.registerBlock(shieldPylonBase, "shieldPylonBase");
+		GameRegistry.registerBlock(shieldPylonEnding, "shieldPylonEnding");
 		GameRegistry.registerBlock(dataBank, "dataBank");
 		
 		OreDictionary.registerOre("oreCopper", copperOre);
