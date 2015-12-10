@@ -2,17 +2,17 @@ package com.vinterdo.deusexmachina.client.gui;
 
 import com.vinterdo.deusexmachina.inventory.ContainerBlastFurnace;
 import com.vinterdo.deusexmachina.tileentity.TEBlastFurnaceMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiBlastFurnace extends GuiDEM
 {
 	TEBlastFurnaceMaster te;
 	
-	public GuiBlastFurnace(InventoryPlayer playerInv, TileEntity te)
+	public GuiBlastFurnace(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerBlastFurnace(playerInv, (TEBlastFurnaceMaster) te), "blastFurnace");
+		super(new ContainerBlastFurnace(playerInv, (TEBlastFurnaceMaster) te), "blastFurnace", te);
 		this.te = (TEBlastFurnaceMaster) te;
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.input.Mouse;
 
+import com.vinterdo.deusexmachina.client.gui.widget.GuiButtonResearch;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTank;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
@@ -13,11 +14,11 @@ import com.vinterdo.deusexmachina.network.MessageHandleGuiButtonResearch;
 import com.vinterdo.deusexmachina.network.NetworkHandler;
 import com.vinterdo.deusexmachina.research.ResearchTree;
 import com.vinterdo.deusexmachina.tileentity.TEDeusMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiDeus extends GuiDEM
 {
@@ -34,9 +35,9 @@ public class GuiDeus extends GuiDEM
 	private int					oldMouseX;
 	private int					oldMouseY;
 								
-	public GuiDeus(InventoryPlayer playerInv, TileEntity te)
+	public GuiDeus(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus");
+		super(new ContainerDeus(playerInv, (TEDeusMaster) te), "deus", te);
 		this.te = (TEDeusMaster) te;
 		xSize = 256;
 		ySize = 256;
@@ -47,8 +48,8 @@ public class GuiDeus extends GuiDEM
 	{
 		super.initGui();
 		tooltips = new LinkedList<WidgetTooltip>();
-		widgetTank = new WidgetTank(this.te.tank, guiLeft + 233, guiTop + 192, 58, 16);
-		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 58, 16);
+		widgetTank = new WidgetTank(this.te.tank, guiLeft + 233, guiTop + 192, 16, 58, canvas);
+		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 215, guiTop + 192, 16, 58, canvas);
 		research = te.getStackInSlot(2) == null ? new ResearchTree()
 				: te.getStackInSlot(2).stackTagCompound == null ? new ResearchTree()
 						: ResearchTree.fromNBT(te.getStackInSlot(2).stackTagCompound);
@@ -67,15 +68,6 @@ public class GuiDeus extends GuiDEM
 	public void removeTooltip(WidgetTooltip tip)
 	{
 		tooltips.remove(tip);
-	}
-	
-	@Override
-	public void onGuiClosed()
-	{
-		super.onGuiClosed();
-		//if (research.getRoot() != null && te.getStackInSlot(2) != null)
-		//	te.getStackInSlot(2).stackTagCompound = research.toNBT();
-		
 	}
 	
 	@Override
@@ -128,8 +120,6 @@ public class GuiDeus extends GuiDEM
 				clamp(te.highlightX + 18 + (int) offsetx, guiLeft + 5, maxX),
 				clamp(te.highlightY + 18 + (int) offsety, guiTop + 5, maxY), 0xFF00FFFF);
 				
-		widgetTank.render(mousex, mousey, partialTick, this.fontRendererObj);
-		widgetEnergy.render(mousex, mousey, partialTick, this.fontRendererObj);
 		research.renderTree(mousex, mousey, partialTick, (int) offsetx, (int) offsety);
 		
 		if (te.coreChanged == 1)
@@ -149,20 +139,12 @@ public class GuiDeus extends GuiDEM
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mousex, int mousey)
-	{
-		super.drawGuiContainerForegroundLayer(mousex, mousey);
-		for (WidgetTooltip wt : tooltips)
-		{
-			wt.render(mousex - guiLeft, mousey - guiTop, 0, this.fontRendererObj);
-		}
-	}
-	
 	public int getTop()
 	{
 		return guiTop;
 	}
 	
+	@Override
 	public int getLeft()
 	{
 		return guiLeft;

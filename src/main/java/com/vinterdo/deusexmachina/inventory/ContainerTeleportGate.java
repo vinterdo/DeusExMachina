@@ -14,6 +14,6 @@ public class ContainerTeleportGate extends ContainerDEM<TETeleportGateMaster>
 		
 		this.addSlotToContainer(new SlotOutput(te, 0, 111, 33));
 		
-		addPlayerSlots(playerInv, 8, 84);
+		//addPlayerSlots(playerInv, 8, 84);
 	}
 }

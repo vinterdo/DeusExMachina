@@ -2,15 +2,15 @@ package com.vinterdo.deusexmachina.client.gui;
 
 import com.vinterdo.deusexmachina.inventory.ContainerTerminal;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiTerminal extends GuiDEM
 {
-	public GuiTerminal(InventoryPlayer playerInv, TileEntity te)
+	public GuiTerminal(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerTerminal(playerInv, (TETerminal) te), "terminal");
+		super(new ContainerTerminal(playerInv, (TETerminal) te), "terminal", te);
 		
 		xSize = 256;
 		ySize = 256;

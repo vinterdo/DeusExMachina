@@ -9,6 +9,7 @@ import com.vinterdo.deusexmachina.item.ItemDeusDataMatrix;
 import com.vinterdo.deusexmachina.item.ItemEssence;
 import com.vinterdo.deusexmachina.item.ItemEssenceContainer;
 import com.vinterdo.deusexmachina.item.ItemInfusedDiamond;
+import com.vinterdo.deusexmachina.item.ItemMachineCard;
 import com.vinterdo.deusexmachina.item.ItemResearchCore;
 import com.vinterdo.deusexmachina.item.ItemSteelDust;
 import com.vinterdo.deusexmachina.item.ItemSteelIngot;
@@ -38,6 +39,8 @@ public class ModItems
 	public static final ItemDEM	infusedDiamond	= new ItemInfusedDiamond();
 	public static final ItemDEM	researchCore	= new ItemResearchCore();
 	public static final ItemDEM	deusDataMatrix	= new ItemDeusDataMatrix();
+
+	public static final ItemDEM	machineCard	= new ItemMachineCard();
 	
 	public static void init()
 	{
@@ -57,6 +60,7 @@ public class ModItems
 		GameRegistry.registerItem(infusedDiamond, "infusedDiamond");
 		GameRegistry.registerItem(researchCore, "researchCore");
 		GameRegistry.registerItem(deusDataMatrix, "deusDataMatrix");
+		GameRegistry.registerItem(machineCard, "machineCard");
 		
 		OreDictionary.registerOre("ingotBronze", bronzeIngot);
 		OreDictionary.registerOre("ingotSteel", steelIngot);
@@ -68,6 +72,7 @@ public class ModItems
 		OreDictionary.registerOre("dustSteel", steelDust);
 		OreDictionary.registerOre("essence", essence);
 		OreDictionary.registerOre("containerEssence", essenceContainer);
+
 		
 	}
 }

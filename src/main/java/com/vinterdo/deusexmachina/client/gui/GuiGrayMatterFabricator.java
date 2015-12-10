@@ -7,12 +7,12 @@ import com.vinterdo.deusexmachina.client.gui.widget.WidgetTank;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiGrayMatterFabricator extends GuiDEM
@@ -26,9 +26,10 @@ public class GuiGrayMatterFabricator extends GuiDEM
 	WidgetTank						widgetTank;
 	WidgetRF						widgetEnergy;
 									
-	public GuiGrayMatterFabricator(InventoryPlayer playerInv, TileEntity te)
+	public GuiGrayMatterFabricator(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerGrayMatterFabricator(playerInv, (TEGrayMatterFabricatorMaster) te), "grayMatterFabricator");
+		super(new ContainerGrayMatterFabricator(playerInv, (TEGrayMatterFabricatorMaster) te), "grayMatterFabricator",
+				te);
 		this.te = (TEGrayMatterFabricatorMaster) te;
 	}
 	
@@ -37,17 +38,14 @@ public class GuiGrayMatterFabricator extends GuiDEM
 	{
 		super.initGui();
 		
-		widgetTank = new WidgetTank(this.te.tank, guiLeft + 134, guiTop + 14, 58, 16);
-		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 114, guiTop + 14, 58, 16);
+		widgetTank = new WidgetTank(this.te.tank, guiLeft + 134, guiTop + 14, 16, 58, canvas);
+		widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 114, guiTop + 14, 16, 58, canvas);
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTick, int mousex, int mousey)
 	{
 		super.drawGuiContainerBackgroundLayer(partialTick, mousex, mousey);
-		
-		widgetTank.render(mousex, mousey, partialTick, this.fontRendererObj);
-		widgetEnergy.render(mousex, mousey, partialTick, this.fontRendererObj);
 		
 		drawMatterProgressbar();
 		drawEssenceProgressbar();

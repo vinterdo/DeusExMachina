@@ -11,8 +11,15 @@ public class ContainerTeleportMaster extends ContainerDEM<TETeleportMasterMaster
 	{
 		super(_te);
 		
-		this.addSlotToContainer(new SlotOutput(te, 0, 111, 33));
+		for (int x = 0; x < 4; x++)
+		{
+			for (int y = 0; y < 13; y++)
+			{
+				
+				this.addSlotToContainer(new SlotTeleportMaster(te, x + y * 4, 181 + x * 18, 6 + y * 18));
+			}
+		}
 		
-		addPlayerSlots(playerInv, 8, 84);
+		addPlayerSlots(playerInv, 8, 174);
 	}
 }

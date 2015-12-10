@@ -1,11 +1,10 @@
 package com.vinterdo.deusexmachina.inventory;
 
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class SlotItemOnly extends Slot
+public class SlotItemOnly extends SlotDEM
 {
 	private Item item;
 	
