@@ -1,5 +1,6 @@
 package com.vinterdo.deusexmachina.tileentity;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
@@ -38,8 +39,8 @@ public class TEEssenceMacerator extends TEI
 		return (float) progress / (float) progressTarget;
 	}
 	
-	public static final int	PROGRESS_MULTIPLER	= 100;
-	public static final int	ESSENCE_POWER		= 100;
+	public static final int	PROGRESS_MULTIPLER	= ConfigurationHandler.EMProgressMultiplier;
+	public static final int	ESSENCE_POWER		= ConfigurationHandler.EMEssencePower;
 	
 	@Override
 	public void updateEntity()

@@ -2,6 +2,7 @@ package com.vinterdo.deusexmachina.tileentity;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
@@ -24,9 +25,9 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEGrayMatterCrafterMaster extends TEIMultiblockMaster implements IFluidHandler, IEnergyReceiver
 {
-	private static final int	FLUID_TANK_CAPACITY	= 10000;
-	private static final int	ENERGY_CAPACITY		= 100000;
-	private static final int	GM_PER_TICK			= 10;
+	private static final int	FLUID_TANK_CAPACITY	= ConfigurationHandler.GMCMFluidTankCapacity;
+	private static final int	ENERGY_CAPACITY		= ConfigurationHandler.GMCMEnergyCapacity;
+	private static final int	GM_PER_TICK			= ConfigurationHandler.GMCMGMPerTick;
 	@Synchronized(id = 0)
 	@NBTSaved(name = "progress")
 	public int					progress;

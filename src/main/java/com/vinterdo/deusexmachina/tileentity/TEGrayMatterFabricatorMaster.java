@@ -2,6 +2,7 @@ package com.vinterdo.deusexmachina.tileentity;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
@@ -24,11 +25,11 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEGrayMatterFabricatorMaster extends TEIMultiblockMaster implements IFluidHandler, IEnergyReceiver
 {
-	public static final int	ESSENCE_MAX_STORAGE	= 1000;
-	public static final int	MATTER_MAX_STORAGE	= 1000;
-	public static final int	FLUID_TANK_CAPACITY	= 10000;
-	public static final int	ENERGY_CAPACITY		= 100000;
-	public static final int	ENERGY_CONSUME		= 320;
+	public static final int	ESSENCE_MAX_STORAGE	= ConfigurationHandler.GMFMEssenceMaxStorage;
+	public static final int	MATTER_MAX_STORAGE	= ConfigurationHandler.GMFMMatterMaxStorage;
+	public static final int	FLUID_TANK_CAPACITY	= ConfigurationHandler.GMFMFluidTankCapacity;
+	public static final int	ENERGY_CAPACITY		= ConfigurationHandler.GMFMEnergyCapacity;
+	public static final int	ENERGY_CONSUME		= ConfigurationHandler.GMFMEnergyConsumption;
 	
 	@Synchronized(id = 0)
 	@NBTSaved(name = "essence")

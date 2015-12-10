@@ -1,5 +1,6 @@
 package com.vinterdo.deusexmachina.tileentity;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
@@ -17,8 +18,8 @@ public class TEEssenceProcessor extends TEI
 	@Synchronized(id = 1)
 	@NBTSaved(name = "progress")
 	public int				progress;
-	public static final int	PROGRESS_MULTIPLER	= 1;
-	public static final int	PROGRESS_TARGET		= 100;
+	public static final int	PROGRESS_MULTIPLER	= ConfigurationHandler.EPProgressMultiplier;
+	public static final int	PROGRESS_TARGET		= ConfigurationHandler.EPProgressTarget;
 	
 	public TEEssenceProcessor()
 	{

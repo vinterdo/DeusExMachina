@@ -2,6 +2,7 @@ package com.vinterdo.deusexmachina.tileentity;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModFluids;
@@ -29,11 +30,11 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TEDeusMaster extends TEIMultiblockMaster implements IFluidHandler, IEnergyReceiver
 {
-	private static final int				FLUID_TANK_CAPACITY		= 10000;
-	private static final int				ENERGY_CAPACITY			= 100000;
-	private static final int				GM_PER_TICK				= 10;
-	private static final int				PRINTING_TIME			= 1200;
-	private static final int				PRINTING_RF_PER_TICK	= 100;
+	private static final int				FLUID_TANK_CAPACITY		= ConfigurationHandler.DMFluidTankCapacity;
+	private static final int				ENERGY_CAPACITY			= ConfigurationHandler.DMEnergyCapacity;
+	private static final int				GM_PER_TICK				= ConfigurationHandler.DMGMPerTick;
+	private static final int				PRINTING_TIME			= ConfigurationHandler.DMPrintingTime;
+	private static final int				PRINTING_RF_PER_TICK	= ConfigurationHandler.DMPrintingRFPerTick;
 	@Synchronized(id = 0)
 	@NBTSaved(name = "progress")
 	public int								progress				= 0;

@@ -15,25 +15,26 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGeneratorOres implements IWorldGenerator
 {
-	Configuration config = ConfigurationHandler.configuration;
 	
-	boolean generateCopper = config.get("OreGen" + config.CATEGORY_SPLITTER + "Copper", "generateCopper", true).getBoolean();
-	int copperMinHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Copper", "generateCopperHeightMin", 5).getInt();
-	int copperMaxHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Copper", "generateCopperHeightMax", 64).getInt();
-	int copperVeinsPerChunk = config.get("OreGen" + config.CATEGORY_SPLITTER + "Copper", "generateCopperVeinsPerChunk", 6).getInt();
-	int copperBlocksPerVein = config.get("OreGen" + config.CATEGORY_SPLITTER + "Copper", "generateCopperBlocksPerVein", 2).getInt();
+	// Get values from config
 	
-	boolean generateEssence = config.get("OreGen" + config.CATEGORY_SPLITTER + "Essence", "generateEssence", true).getBoolean();
-	int essenceMinHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Essence", "generateEssenceHeightMin", 5).getInt();
-	int essenceMaxHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Essence", "generateEssenceHeightMax", 64).getInt();
-	int essenceVeinsPerChunk = config.get("OreGen" + config.CATEGORY_SPLITTER + "Essence", "generateEssenceVeinsPerChunk", 6).getInt();
-	int essenceBlocksPerVein = config.get("OreGen" + config.CATEGORY_SPLITTER + "Essence", "generateEssenceBlocksPerVein", 2).getInt();
+	boolean generateCopper = ConfigurationHandler.generateCopper;
+	int copperMinHeight = ConfigurationHandler.generateCopperMinHeight;
+	int copperMaxHeight = ConfigurationHandler.generateCopperMaxHeight;
+	int copperVeinsPerChunk = ConfigurationHandler.generateCopperVeinsPerChunk;
+	int copperBlocksPerVein = ConfigurationHandler.generateCopperBlocksPerVein;
 	
-	boolean generateTin = config.get("OreGen" + config.CATEGORY_SPLITTER + "Tin", "generateTin", true).getBoolean();
-	int tinMinHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Tin", "generateTinHeightMin", 5).getInt();
-	int tinMaxHeight = config.get("OreGen" + config.CATEGORY_SPLITTER + "Tin", "generateTinHeightMax", 64).getInt();
-	int tinVeinsPerChunk = config.get("OreGen" + config.CATEGORY_SPLITTER + "Tin", "generateTinVeinsPerChunk", 6).getInt();
-	int tinBlocksPerVein = config.get("OreGen" + config.CATEGORY_SPLITTER + "Tin", "generateTinBlocksPerVein", 2).getInt();
+	boolean generateEssence = ConfigurationHandler.generateEssence;
+	int essenceMinHeight = ConfigurationHandler.generateEssenceMinHeight;
+	int essenceMaxHeight = ConfigurationHandler.generateEssenceMaxHeight;
+	int essenceVeinsPerChunk = ConfigurationHandler.generateEssenceVeinsPerChunk;
+	int essenceBlocksPerVein = ConfigurationHandler.generateEssenceBlocksPerVein;
+	
+	boolean generateTin = ConfigurationHandler.generateTin;
+	int tinMinHeight = ConfigurationHandler.generateTinMinHeight;
+	int tinMaxHeight = ConfigurationHandler.generateTinMaxHeight;
+	int tinVeinsPerChunk = ConfigurationHandler.generateTinVeinsPerChunk;
+	int tinBlocksPerVein = ConfigurationHandler.generateTinBlocksPerVein;
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator,
