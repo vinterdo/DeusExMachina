@@ -41,9 +41,9 @@ public class BShieldPylon extends BTileEntityDEM
 		return false;
 	}
 	
-	@Override
+	/*	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
-	}
+	}*/
 }
