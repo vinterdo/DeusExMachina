@@ -11,6 +11,8 @@ import com.vinterdo.deusexmachina.block.BDeusMaster;
 import com.vinterdo.deusexmachina.block.BEssenceMacerator;
 import com.vinterdo.deusexmachina.block.BEssenceOre;
 import com.vinterdo.deusexmachina.block.BEssenceProcessor;
+import com.vinterdo.deusexmachina.block.BEtherCondenser;
+import com.vinterdo.deusexmachina.block.BEtherCondenserMaster;
 import com.vinterdo.deusexmachina.block.BGrayMatterCrafter;
 import com.vinterdo.deusexmachina.block.BGrayMatterCrafterMaster;
 import com.vinterdo.deusexmachina.block.BGrayMatterCrafterPort;
@@ -61,6 +63,9 @@ public class ModBlocks
 																		
 	public static final BTileEntityDEM	deus							= new BDeus();
 	public static final BTileEntityDEM	deusMaster						= new BDeusMaster();
+	
+	public static final BTileEntityDEM	etherCondenser					= new BEtherCondenser();
+	public static final BTileEntityDEM	etherCondenserMaster			= new BEtherCondenserMaster();
 																		
 	public static final BTileEntityDEM	shield							= new BShield();
 	public static final BTileEntityDEM	shieldPylon						= new BShieldPylon();
@@ -99,6 +104,9 @@ public class ModBlocks
 		
 		GameRegistry.registerBlock(deus, "deus");
 		GameRegistry.registerBlock(deusMaster, "deusMaster");
+		
+		GameRegistry.registerBlock(etherCondenser, "etherCondenser");
+		GameRegistry.registerBlock(etherCondenserMaster, "etherCondenserMaster");
 		
 		GameRegistry.registerBlock(teleportMaster, "teleportMaster");
 		GameRegistry.registerBlock(teleportMasterMaster, "teleportMasterMaster");
