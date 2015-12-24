@@ -2,8 +2,10 @@ package com.vinterdo.deusexmachina.init;
 
 import com.vinterdo.deusexmachina.fluids.BFluidGrayMatter;
 import com.vinterdo.deusexmachina.fluids.BLifeFluid;
+import com.vinterdo.deusexmachina.fluids.BMatterFluid;
 import com.vinterdo.deusexmachina.fluids.FluidGrayMatter;
 import com.vinterdo.deusexmachina.fluids.LifeFluid;
+import com.vinterdo.deusexmachina.fluids.MatterFluid;
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
@@ -20,9 +22,11 @@ public class ModFluids
 {
 	public static Fluid grayMatter = new FluidGrayMatter();
 	public static Fluid lifeFluid = new LifeFluid();
+	public static Fluid matterFluid = new MatterFluid();
 	
 	public static Block grayMatterBlock;
 	public static Block lifeFluidBlock;
+	public static Block matterFluidBlock;
 	
 	public static void init()
 	{
@@ -37,6 +41,12 @@ public class ModFluids
 		GameRegistry.registerBlock(lifeFluidBlock,
 				Reference.MOD_ID + "_" + lifeFluidBlock.getUnlocalizedName().substring(5));
 		lifeFluid.setUnlocalizedName(lifeFluid.getUnlocalizedName());
+		
+		FluidRegistry.registerFluid(matterFluid);
+		matterFluidBlock = new BMatterFluid();
+		GameRegistry.registerBlock(matterFluidBlock,
+				Reference.MOD_ID + "_" + matterFluidBlock.getUnlocalizedName().substring(5));
+		matterFluid.setUnlocalizedName(matterFluid.getUnlocalizedName());
 	}
 	
 	public static class TextureHook
