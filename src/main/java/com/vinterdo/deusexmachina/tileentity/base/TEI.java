@@ -36,12 +36,16 @@ public class TEI extends TEDEM implements IInventory
 	@Override
 	public ItemStack getStackInSlot(int slot)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		return stacks.get(slot);
 	}
 	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		if (this.stacks.get(slot) != null)
 		{
 			ItemStack itemstack;
@@ -72,6 +76,8 @@ public class TEI extends TEDEM implements IInventory
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		ItemStack itemstack = stacks.get(slot);
 		stacks.set(slot, null);
 		return itemstack;
@@ -80,6 +86,8 @@ public class TEI extends TEDEM implements IInventory
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		stacks.set(slot, stack);
 		
 		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -178,6 +186,8 @@ public class TEI extends TEDEM implements IInventory
 	@Override
 	public void readFromPacket(ByteBuf buf)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		super.readFromPacket(buf);
 		
 		for (int i = 0; i < stacks.size(); i++)
@@ -198,6 +208,8 @@ public class TEI extends TEDEM implements IInventory
 	
 	public void addItemToRange(ItemStack stack, int rangeStart, int rangeEnd)
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		for (int i = rangeStart; i < rangeEnd; i++)
 		{
@@ -229,6 +241,8 @@ public class TEI extends TEDEM implements IInventory
 	
 	public void dropInventoryInWorld()
 	{
+		if (gui != null)
+			gui.markToRefresh();
 		for (int i = 0; i < (stacks != null ? stacks.size() : 0); i++)
 			if (stacks.get(i) != null)
 				worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord, zCoord, stacks.get(i)));

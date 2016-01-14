@@ -1,4 +1,4 @@
-package com.vinterdo.deusexmachina.client.gui;
+package com.vinterdo.deusexmachina.client.gui.widget;
 
 import com.vinterdo.deusexmachina.research.ResearchNode;
 
@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 
 public class GuiButtonResearch extends GuiButton
 {
-	ResearchNode research;
+	public ResearchNode research;
 	
 	public GuiButtonResearch(int p_i1021_1_, int p_i1021_2_, int p_i1021_3_, int p_i1021_4_, int p_i1021_5_,
 			String p_i1021_6_, ResearchNode research)

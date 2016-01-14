@@ -6,7 +6,6 @@ import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.multiblockstructures.MultiBlockStructure;
 import com.vinterdo.deusexmachina.multiblockstructures.StructureTeleportGate;
-import com.vinterdo.deusexmachina.multiblockstructures.StructureTeleportMaster;
 import com.vinterdo.deusexmachina.network.Synchronized;
 import com.vinterdo.deusexmachina.tileentity.base.TEIMultiblockMaster;
 import com.vinterdo.deusexmachina.tileentity.base.TEMultiblock;
@@ -28,6 +27,8 @@ public class TETeleportGateMaster extends TEIMultiblockMaster implements IEnergy
 															
 	public static final MultiBlockStructure	structure		= new StructureTeleportGate();
 															
+	public TETeleportMasterMaster			teleportMaster;
+											
 	public TETeleportGateMaster()
 	{
 		super();

@@ -2,17 +2,17 @@ package com.vinterdo.deusexmachina.client.gui;
 
 import com.vinterdo.deusexmachina.inventory.ContainerEssenceMacerator;
 import com.vinterdo.deusexmachina.tileentity.TEEssenceMacerator;
+import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 public class GuiEssenceMacerator extends GuiDEM
 {
 	TEEssenceMacerator te;
 	
-	public GuiEssenceMacerator(InventoryPlayer playerInv, TileEntity te)
+	public GuiEssenceMacerator(InventoryPlayer playerInv, TEDEM te)
 	{
-		super(new ContainerEssenceMacerator(playerInv, (TEEssenceMacerator) te), "essenceMacerator");
+		super(new ContainerEssenceMacerator(playerInv, (TEEssenceMacerator) te), "essenceMacerator", te);
 		this.te = (TEEssenceMacerator) te;
 	}
 	

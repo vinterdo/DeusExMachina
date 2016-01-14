@@ -2,6 +2,7 @@ package com.vinterdo.deusexmachina.tileentity;
 
 import java.util.ArrayList;
 
+import com.vinterdo.deusexmachina.handler.ConfigurationHandler;
 import com.vinterdo.deusexmachina.helpers.NBTSaved;
 import com.vinterdo.deusexmachina.init.ModBlocks;
 import com.vinterdo.deusexmachina.init.ModItems;
@@ -29,12 +30,12 @@ public class TEBlastFurnaceMaster extends TEIMultiblockMaster
 	@NBTSaved(name = "progressTarget")
 	public int	progressTarget;
 	
-	public static final int	PROGRESS_MULT		= 8;
-	public static final int	SMELT_TIME			= 400;
-	public static final int	SMELT_TIME_STEEL	= 3200;
-	public static final int	HEATER_MULT			= 1;
-	public static final int	MAX_BURNING_TIME	= 10000;	// it only apply to burningTime stored from heaters
-	public static final int	BURN_CONSUME		= 8;
+	public static final int	PROGRESS_MULT		= ConfigurationHandler.BFMProgressMultiplier;
+	public static final int	SMELT_TIME			= ConfigurationHandler.BFMSmeltTime;
+	public static final int	SMELT_TIME_STEEL	= ConfigurationHandler.BFMSmeltTimeSteel;
+	public static final int	HEATER_MULT			= ConfigurationHandler.BFMHeaterMult;
+	public static final int	MAX_BURNING_TIME	= ConfigurationHandler.BFMMaxBurningTime;	// it only apply to burningTime stored from heaters
+	public static final int	BURN_CONSUME		= ConfigurationHandler.BFMFuelConsumption;
 	
 	public static final MultiBlockStructure structure = new StructureBlastFurnace();
 	

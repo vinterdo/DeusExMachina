@@ -24,13 +24,20 @@ public class TETeleportMasterMaster extends TEIMultiblockMaster implements IEner
 	@Synchronized(id = 0)
 	@NBTSaved(name = "energy")
 	public EnergyStorage					energy			= new EnergyStorage(ENERGY_CAPACITY);
-															
+	public ArrayList<TETeleportGateMaster>	teleports;
+											
 	public static final MultiBlockStructure	structure		= new StructureTeleportMaster();
 															
 	public TETeleportMasterMaster()
 	{
 		super();
-		setNumOfStacks(1);
+		setNumOfStacks(52);
+		teleports = new ArrayList<TETeleportGateMaster>(52);
+		
+		for (int i = 0; i < 52; i++)
+		{
+			teleports.add(null);
+		}
 	}
 	
 	@Override

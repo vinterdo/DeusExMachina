@@ -3,23 +3,23 @@ package com.vinterdo.deusexmachina.research;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.lwjgl.opengl.GL11;
-
-import com.vinterdo.deusexmachina.client.gui.GuiButtonResearch;
-import com.vinterdo.deusexmachina.client.gui.GuiDeus;
-import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
-import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
+import com.vinterdo.deusexmachina.client.gui.GuiDeus;
+import com.vinterdo.deusexmachina.client.gui.widget.GuiButtonResearch;
+import com.vinterdo.deusexmachina.client.gui.widget.WidgetTooltip;
+import com.vinterdo.deusexmachina.recipes.RecipeGrayMatter;
+
 public class ResearchNode
 {
 	
-	RecipeGrayMatter recipe;
+	RecipeGrayMatter	recipe;
 	
 	public RecipeGrayMatter getRecipe()
 	{
@@ -49,8 +49,7 @@ public class ResearchNode
 	public void setParent(ResearchNode parent)
 	{
 		this.parent = parent;
-		if (parent != null)
-			parent.childrens.add(this);
+		if (parent != null) parent.childrens.add(this);
 	}
 	
 	public String getName()
@@ -118,7 +117,7 @@ public class ResearchNode
 	int							guiLeft;
 	private GuiButtonResearch	printButton;
 	private WidgetTooltip		tip;
-								
+	
 	public ResearchNode(RecipeGrayMatter recipe, ResearchNode parent, int rfPerSecond, int grayMatterCost, int time,
 			int x, int y, ResourceLocation icon)
 	{
@@ -134,8 +133,7 @@ public class ResearchNode
 		this.childrens = new ArrayList<ResearchNode>();
 		this.icon = icon;
 		
-		if (parent != null)
-			parent.childrens.add(this);
+		if (parent != null) parent.childrens.add(this);
 	}
 	
 	void setRender(GuiDeus gui)
@@ -146,7 +144,7 @@ public class ResearchNode
 		
 		printButton = new GuiButtonResearch(0, x, y, 16, 16, "", this);
 		gui.addButton(printButton);
-		tip = new WidgetTooltip(name, x, y, 22, 120, 16, 16);
+		tip = new WidgetTooltip(name, x, y, 22, 120, 16, 16, gui.canvas);
 		gui.addTooltip(tip);
 	}
 	
@@ -200,17 +198,20 @@ public class ResearchNode
 				
 				GL11.glColor4d(1, 1, 1, 1);
 				
-			} else if (parent != null && parent.discovered || parent == null)
+			}
+			else if (parent != null && parent.discovered || parent == null)
 			{
 				double highligh = Math.sin((System.currentTimeMillis() % 500) * Math.PI * 2 / 500f) * 0.3;
 				GL11.glColor4d(0.7 + highligh, 0.7 + highligh, 0.7 + highligh, 1);
-			} else
+			}
+			else
 			{
 				GL11.glColor4d(0.5, 0.5, 0.5, 1);
 			}
 			
 			Gui.func_146110_a(renderx, rendery, startx, starty, w, h, 16, 16);
-		} else
+		}
+		else
 		{
 			
 			printButton.enabled = false;
@@ -221,8 +222,8 @@ public class ResearchNode
 		int vertStartX = clamp(nodePosX + 8 - 3, guiLeft + 5, maxX);
 		if (childrens.size() > 0)
 		{
-			Gui.drawRect(vertStartX, clamp(nodePosY + 16, guiTop + 5, maxY), clamp(nodePosX + 8 + 3, guiLeft + 5, maxX),
-					clamp(nodePosY + 16 + 10, guiTop + 5, maxY), 0xFFAAAAAA);
+			Gui.drawRect(vertStartX, clamp(nodePosY + 16, guiTop + 5, maxY),
+					clamp(nodePosX + 8 + 3, guiLeft + 5, maxX), clamp(nodePosY + 16 + 10, guiTop + 5, maxY), 0xFFAAAAAA);
 		}
 		
 		for (ResearchNode node : childrens)
