@@ -23,13 +23,15 @@ public class BShieldPylonBase extends BTileEntityDEM
 		((TEShieldPylonBase) world.getTileEntity(x, y, z)).hit(player.getLookVec());
 	}
 	
+	
+	
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TEShieldPylonBase();
 	}
 	
-	@Override
+	/*	@Override
 	public int getRenderType()
 	{
 		return -1;
@@ -41,7 +43,7 @@ public class BShieldPylonBase extends BTileEntityDEM
 		return false;
 	}
 	
-	/*	@Override
+	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
