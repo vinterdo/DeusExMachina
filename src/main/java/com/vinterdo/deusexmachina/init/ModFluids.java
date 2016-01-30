@@ -3,9 +3,11 @@ package com.vinterdo.deusexmachina.init;
 import com.vinterdo.deusexmachina.fluids.BFluidGrayMatter;
 import com.vinterdo.deusexmachina.fluids.BLifeFluid;
 import com.vinterdo.deusexmachina.fluids.BMatterFluid;
+import com.vinterdo.deusexmachina.fluids.BMetalFluid;
 import com.vinterdo.deusexmachina.fluids.FluidGrayMatter;
 import com.vinterdo.deusexmachina.fluids.LifeFluid;
 import com.vinterdo.deusexmachina.fluids.MatterFluid;
+import com.vinterdo.deusexmachina.fluids.MetalFluid;
 import com.vinterdo.deusexmachina.reference.Reference;
 import com.vinterdo.deusexmachina.utility.LogHelper;
 
@@ -23,10 +25,12 @@ public class ModFluids
 	public static Fluid grayMatter = new FluidGrayMatter();
 	public static Fluid lifeFluid = new LifeFluid();
 	public static Fluid matterFluid = new MatterFluid();
+	public static Fluid metalFluid = new MetalFluid();
 	
 	public static Block grayMatterBlock;
 	public static Block lifeFluidBlock;
 	public static Block matterFluidBlock;
+	public static Block metalFluidBlock;
 	
 	public static void init()
 	{
@@ -47,6 +51,12 @@ public class ModFluids
 		GameRegistry.registerBlock(matterFluidBlock,
 				Reference.MOD_ID + "_" + matterFluidBlock.getUnlocalizedName().substring(5));
 		matterFluid.setUnlocalizedName(matterFluid.getUnlocalizedName());
+		
+		FluidRegistry.registerFluid(metalFluid);
+		metalFluidBlock = new BMetalFluid();
+		GameRegistry.registerBlock(metalFluidBlock,
+				Reference.MOD_ID + "_" + metalFluidBlock.getUnlocalizedName().substring(5));
+		metalFluid.setUnlocalizedName(metalFluid.getUnlocalizedName());
 	}
 	
 	public static class TextureHook
@@ -61,6 +71,10 @@ public class ModFluids
 						grayMatterBlock.getBlockTextureFromSide(2));
 				lifeFluid.setIcons(lifeFluidBlock.getBlockTextureFromSide(1),
 						lifeFluidBlock.getBlockTextureFromSide(2));
+				matterFluid.setIcons(matterFluidBlock.getBlockTextureFromSide(1),
+						matterFluidBlock.getBlockTextureFromSide(2));
+				metalFluid.setIcons((metalFluidBlock).getBlockTextureFromSide(1),
+						metalFluidBlock.getBlockTextureFromSide(2));
 				LogHelper.info("register fluid icons");
 			}
 		}
