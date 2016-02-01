@@ -21,9 +21,9 @@ public class BEtherFluid extends BlockFluidClassic {
 	
 	public BEtherFluid()
 	{
-		super(ModFluids.metalFluid, Material.water);
+		super(ModFluids.etherFluid, Material.water);
 		setCreativeTab(CreativeTabDEM.DEM_TAB);
-		setBlockName("metalFluid");
+		setBlockName("etherFluid");
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class BEtherFluid extends BlockFluidClassic {
 	@Override
 	public void registerBlockIcons(IIconRegister register)
 	{
-		stillIcon = register.registerIcon(Reference.MOD_ID + ":metalFluidStill");
+		stillIcon = register.registerIcon(Reference.MOD_ID + ":etherFluidStill");
 	}
 	
 	@Override

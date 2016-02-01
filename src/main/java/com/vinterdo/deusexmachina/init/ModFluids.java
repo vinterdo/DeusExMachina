@@ -1,10 +1,12 @@
 package com.vinterdo.deusexmachina.init;
 
+import com.vinterdo.deusexmachina.fluids.BEtherFluid;
 import com.vinterdo.deusexmachina.fluids.BFluidGrayMatter;
 import com.vinterdo.deusexmachina.fluids.BLifeFluid;
 import com.vinterdo.deusexmachina.fluids.BMatterFluid;
 import com.vinterdo.deusexmachina.fluids.BMetalFluid;
 import com.vinterdo.deusexmachina.fluids.FluidGrayMatter;
+import com.vinterdo.deusexmachina.fluids.EtherFluid;
 import com.vinterdo.deusexmachina.fluids.LifeFluid;
 import com.vinterdo.deusexmachina.fluids.MatterFluid;
 import com.vinterdo.deusexmachina.fluids.MetalFluid;
@@ -26,11 +28,13 @@ public class ModFluids
 	public static Fluid lifeFluid = new LifeFluid();
 	public static Fluid matterFluid = new MatterFluid();
 	public static Fluid metalFluid = new MetalFluid();
+	public static Fluid etherFluid = new EtherFluid();
 	
 	public static Block grayMatterBlock;
 	public static Block lifeFluidBlock;
 	public static Block matterFluidBlock;
 	public static Block metalFluidBlock;
+	public static Block etherFluidBlock;
 	
 	public static void init()
 	{
@@ -57,6 +61,12 @@ public class ModFluids
 		GameRegistry.registerBlock(metalFluidBlock,
 				Reference.MOD_ID + "_" + metalFluidBlock.getUnlocalizedName().substring(5));
 		metalFluid.setUnlocalizedName(metalFluid.getUnlocalizedName());
+		
+		FluidRegistry.registerFluid(etherFluid);
+		etherFluidBlock = new BEtherFluid();
+		GameRegistry.registerBlock(etherFluidBlock,
+				Reference.MOD_ID + "_" + etherFluidBlock.getUnlocalizedName().substring(5));
+		etherFluid.setUnlocalizedName(etherFluid.getUnlocalizedName());
 	}
 	
 	public static class TextureHook
@@ -75,6 +85,8 @@ public class ModFluids
 						matterFluidBlock.getBlockTextureFromSide(2));
 				metalFluid.setIcons((metalFluidBlock).getBlockTextureFromSide(1),
 						metalFluidBlock.getBlockTextureFromSide(2));
+				etherFluid.setIcons((etherFluidBlock).getBlockTextureFromSide(1),
+						etherFluidBlock.getBlockTextureFromSide(2));
 				LogHelper.info("register fluid icons");
 			}
 		}
