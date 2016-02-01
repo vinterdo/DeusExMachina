@@ -1,15 +1,15 @@
 package com.vinterdo.deusexmachina.block;
 
 import com.vinterdo.deusexmachina.creativetab.CreativeTabDEM;
-import com.vinterdo.deusexmachina.tileentity.TEShieldPylon;
+import com.vinterdo.deusexmachina.tileentity.TEShieldPylonBlock;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BShieldPylon extends BTileEntityDEM
+public class BShieldPylonBlock extends BTileEntityDEM
 {
-	public BShieldPylon()
+	public BShieldPylonBlock()
 	{
 		super();
 		this.setBlockName("shieldPylon");
@@ -20,16 +20,16 @@ public class BShieldPylon extends BTileEntityDEM
 	@Override
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
 	{
-		((TEShieldPylon) world.getTileEntity(x, y, z)).hit(player.getLookVec());
+		((TEShieldPylonBlock) world.getTileEntity(x, y, z)).hit(player.getLookVec());
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
-		return new TEShieldPylon();
+		return new TEShieldPylonBlock();
 	}
 	
-	@Override
+	/*@Override
 	public int getRenderType()
 	{
 		return -1;
@@ -41,9 +41,9 @@ public class BShieldPylon extends BTileEntityDEM
 		return false;
 	}
 	
-	@Override
+		@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
-	}
+	}*/
 }

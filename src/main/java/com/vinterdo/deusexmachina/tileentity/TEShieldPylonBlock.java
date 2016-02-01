@@ -3,7 +3,7 @@ package com.vinterdo.deusexmachina.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 
-public class TEShieldPylon extends TileEntity
+public class TEShieldPylonBlock extends TileEntity
 {
 	public float	hitStr	= 0;
 	public Vec3		hitPoint;

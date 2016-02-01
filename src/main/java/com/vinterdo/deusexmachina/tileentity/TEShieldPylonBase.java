@@ -1,12 +1,21 @@
 package com.vinterdo.deusexmachina.tileentity;
 
+import com.vinterdo.deusexmachina.init.ModBlocks;
+import com.vinterdo.deusexmachina.tileentity.base.TEI;
+
+import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 
-public class TEShieldPylonBase extends TileEntity
+public class TEShieldPylonBase extends TEI
 {
 	public float	hitStr	= 0;
 	public Vec3		hitPoint;
+	
+	public TEShieldPylonBase()
+	{
+	 super.setNumOfStacks(4);
+	}
 	
 	@Override
 	public void updateEntity()
@@ -17,6 +26,16 @@ public class TEShieldPylonBase extends TileEntity
 			{
 				hitStr -= 0.01f;
 			}
+		
+		}
+		else
+		{
+			if(stacks.get(0)== null) return;
+			if(stacks.get(0).stackTagCompound.getInteger("side")==2)
+				{
+				if(getWorldObj().getBlock(xCoord+1, yCoord+1, zCoord+1).isAir(getWorldObj(), xCoord+1, yCoord+1, zCoord+1)) 
+					getWorldObj().setBlock(xCoord+1, yCoord+1, zCoord+1, ModBlocks.shield);
+				}
 		}
 	}
 	

@@ -19,9 +19,11 @@ import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorEnergyPort;
 import com.vinterdo.deusexmachina.block.BGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.block.BHeater;
 import com.vinterdo.deusexmachina.block.BShield;
-import com.vinterdo.deusexmachina.block.BShieldPylon;
+import com.vinterdo.deusexmachina.block.BShieldPylonBlock;
 import com.vinterdo.deusexmachina.block.BShieldPylonBase;
 import com.vinterdo.deusexmachina.block.BShieldPylonEnding;
+import com.vinterdo.deusexmachina.block.BShieldPylonMaster;
+import com.vinterdo.deusexmachina.block.BShieldPylonSlave;
 import com.vinterdo.deusexmachina.block.BTeleportGate;
 import com.vinterdo.deusexmachina.block.BTeleportGateMaster;
 import com.vinterdo.deusexmachina.block.BTeleportMaster;
@@ -63,9 +65,11 @@ public class ModBlocks
 	public static final BTileEntityDEM	deusMaster						= new BDeusMaster();
 																		
 	public static final BTileEntityDEM	shield							= new BShield();
-	public static final BTileEntityDEM	shieldPylon						= new BShieldPylon();
+	public static final BTileEntityDEM	shieldPylon						= new BShieldPylonBlock();
 	public static final BTileEntityDEM	shieldPylonBase					= new BShieldPylonBase();
 	public static final BTileEntityDEM	shieldPylonEnding				= new BShieldPylonEnding();
+	public static final BTileEntityDEM	shieldPylonMaster				= new BShieldPylonMaster();
+	public static final BTileEntityDEM	shieldPylonSlave				= new BShieldPylonSlave();
 	public static final BTileEntityDEM	dataBank						= new BDataBank();
 																		
 	public static final BTileEntityDEM	teleportMaster					= new BTeleportMaster();
@@ -107,6 +111,12 @@ public class ModBlocks
 		GameRegistry.registerBlock(teleportGateMaster, "teleportGateMaster");
 		
 		GameRegistry.registerBlock(shield, "shield");
+		GameRegistry.registerBlock(shieldPylon, "shieldPylon");
+		GameRegistry.registerBlock(shieldPylonBase, "shieldPylonBase");
+		GameRegistry.registerBlock(shieldPylonEnding, "shieldPylonEnding");
+		GameRegistry.registerBlock(shieldPylonMaster, "shieldPylonMaster");
+		GameRegistry.registerBlock(shieldPylonSlave, "shieldPylonSlave");
+		
 		GameRegistry.registerBlock(dataBank, "dataBank");
 		
 		OreDictionary.registerOre("oreCopper", copperOre);
