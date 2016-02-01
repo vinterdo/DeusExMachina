@@ -31,6 +31,7 @@ public class ItemMachineCard extends ItemDEM
 		stack.stackTagCompound.setInteger("x", x);
 		stack.stackTagCompound.setInteger("y", y);
 		stack.stackTagCompound.setInteger("z", z);
+		stack.stackTagCompound.setInteger("side", side);
 		stack.stackTagCompound.setInteger("world", world.provider.dimensionId);
 		stack.stackTagCompound.setString("name", world.getBlock(x, y, z).getLocalizedName());
 		return false;
@@ -49,7 +50,8 @@ public class ItemMachineCard extends ItemDEM
 		{
 			list.add(
 					"[" + itemStack.stackTagCompound.getInteger("x") + ", " + itemStack.stackTagCompound.getInteger("y")
-							+ ", " + itemStack.stackTagCompound.getInteger("z") + "]");
+							+ ", " + itemStack.stackTagCompound.getInteger("z") + ", side: " 
+							+ itemStack.stackTagCompound.getInteger("side")+ "]");
 			list.add(itemStack.stackTagCompound.getString("name"));
 		}
 	}
@@ -61,6 +63,7 @@ public class ItemMachineCard extends ItemDEM
 			int x = stack.stackTagCompound.getInteger("x");
 			int y = stack.stackTagCompound.getInteger("y");
 			int z = stack.stackTagCompound.getInteger("z");
+			int side = stack.stackTagCompound.getInteger("side");
 			int worldId = stack.stackTagCompound.getInteger("world");
 			
 			return DimensionManager.getWorld(worldId).getTileEntity(x, y, z);
