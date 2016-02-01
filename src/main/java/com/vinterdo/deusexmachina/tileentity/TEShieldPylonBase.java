@@ -30,8 +30,13 @@ public class TEShieldPylonBase extends TEI
 		}
 		else
 		{
-			if(getWorldObj().getBlock(xCoord+1, yCoord+1, zCoord+1).isAir(getWorldObj(), xCoord+1, yCoord+1, zCoord+1)) 
-			getWorldObj().setBlock(xCoord+1, yCoord+1, zCoord+1, ModBlocks.shield);}
+			if(stacks.get(0)== null) return;
+			if(stacks.get(0).stackTagCompound.getInteger("side")==2)
+				{
+				if(getWorldObj().getBlock(xCoord+1, yCoord+1, zCoord+1).isAir(getWorldObj(), xCoord+1, yCoord+1, zCoord+1)) 
+					getWorldObj().setBlock(xCoord+1, yCoord+1, zCoord+1, ModBlocks.shield);
+				}
+		}
 	}
 	
 	public void hit(Vec3 hitPoint)

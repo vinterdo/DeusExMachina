@@ -7,6 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
+import com.vinterdo.deusexmachina.init.ModItems;
+import com.vinterdo.deusexmachina.item.ItemMachineCard;
+
 public class ContainerShieldBase extends ContainerDEM<TEShieldPylonBase>
 {
 	public ContainerShieldBase(InventoryPlayer playerInv, TEShieldPylonBase te)
@@ -17,7 +20,7 @@ public class ContainerShieldBase extends ContainerDEM<TEShieldPylonBase>
 		{
 			for (int j = 0; j < 2; j++)
 			{
-				this.addSlotToContainer(new SlotFuel(te, j + i * 2, 7 + j * 19, 14 + i * 19));
+				this.addSlotToContainer(new SlotItemOnly(te, j + i * 2, 7 + j * 19, 14 + i * 19, ModItems.machineCard ));
 			}
 		}
 		
