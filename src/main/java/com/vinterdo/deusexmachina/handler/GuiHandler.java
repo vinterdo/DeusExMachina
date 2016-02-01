@@ -8,6 +8,7 @@ import com.vinterdo.deusexmachina.client.gui.GuiEssenceProcessor;
 import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterCrafter;
 import com.vinterdo.deusexmachina.client.gui.GuiGrayMatterFabricator;
 import com.vinterdo.deusexmachina.client.gui.GuiHeater;
+import com.vinterdo.deusexmachina.client.gui.GuiShieldBase;
 import com.vinterdo.deusexmachina.client.gui.GuiTeleportGate;
 import com.vinterdo.deusexmachina.client.gui.GuiTeleportMaster;
 import com.vinterdo.deusexmachina.client.gui.GuiTerminal;
@@ -19,6 +20,7 @@ import com.vinterdo.deusexmachina.inventory.ContainerEssenceProcessor;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterCrafter;
 import com.vinterdo.deusexmachina.inventory.ContainerGrayMatterFabricator;
 import com.vinterdo.deusexmachina.inventory.ContainerHeater;
+import com.vinterdo.deusexmachina.inventory.ContainerShieldBase;
 import com.vinterdo.deusexmachina.inventory.ContainerTeleportGate;
 import com.vinterdo.deusexmachina.inventory.ContainerTeleportMaster;
 import com.vinterdo.deusexmachina.inventory.ContainerTerminal;
@@ -32,6 +34,7 @@ import com.vinterdo.deusexmachina.tileentity.TEGrayMatterFabricatorMaster;
 import com.vinterdo.deusexmachina.tileentity.TEHeater;
 import com.vinterdo.deusexmachina.tileentity.TETeleportGateMaster;
 import com.vinterdo.deusexmachina.tileentity.TETeleportMasterMaster;
+import com.vinterdo.deusexmachina.tileentity.TEShieldPylonBase;
 import com.vinterdo.deusexmachina.tileentity.TETerminal;
 import com.vinterdo.deusexmachina.tileentity.base.TEDEM;
 
@@ -43,7 +46,7 @@ public class GuiHandler implements IGuiHandler
 {
 	public enum GuiIDs
 	{
-		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER, DATA_BANK, TELEPORT_MASTER, TELEPORT_GATE;
+		TERMINAL, ESSENCE_PROCESSOR, HEATER, ESSENCE_MACERATOR, BLAST_FURNACE, GRAY_MATTER_FABRICATOR, DEUS, GRAY_MATTER_CRAFTER, DATA_BANK, TELEPORT_MASTER, TELEPORT_GATE, SHIELD_BASE;
 	}
 	
 	@Override
@@ -78,6 +81,11 @@ public class GuiHandler implements IGuiHandler
 						(TETeleportMasterMaster) world.getTileEntity(x, y, z));
 			case TELEPORT_GATE:
 				return new ContainerTeleportGate(player.inventory, (TETeleportGateMaster) world.getTileEntity(x, y, z));
+		case SHIELD_BASE:
+			return new ContainerShieldBase(player.inventory, (TEShieldPylonBase) world.getTileEntity(x, y, z));
+		
+		default:
+			break;
 		}
 		
 		throw new IllegalArgumentException("No gui with id " + ID);
@@ -110,7 +118,8 @@ public class GuiHandler implements IGuiHandler
 				return new GuiTeleportMaster(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
 			case TELEPORT_GATE:
 				return new GuiTeleportGate(player.inventory, (TEDEM) world.getTileEntity(x, y, z));
-				
+			case SHIELD_BASE:
+				return new GuiShieldBase(player.inventory, (TEDEM) world.getTileEntity(x, y, z));				
 		}
 		
 		throw new IllegalArgumentException("No gui with id " + ID);

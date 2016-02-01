@@ -29,7 +29,7 @@ public class BShieldPylonBlock extends BTileEntityDEM
 		return new TEShieldPylonBlock();
 	}
 	
-	@Override
+	/*@Override
 	public int getRenderType()
 	{
 		return -1;
@@ -41,7 +41,7 @@ public class BShieldPylonBlock extends BTileEntityDEM
 		return false;
 	}
 	
-	/*	@Override
+		@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
