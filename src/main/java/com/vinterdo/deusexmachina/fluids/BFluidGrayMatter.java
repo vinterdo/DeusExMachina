@@ -12,7 +12,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 
 public class BFluidGrayMatter extends BlockFluidClassic
 {
@@ -53,5 +52,17 @@ public class BFluidGrayMatter extends BlockFluidClassic
 		if (world.getBlock(x, y, z).getMaterial().isLiquid())
 			return false;
 		return super.displaceIfPossible(world, x, y, z);
+	}
+	
+	@Override
+	public String getUnlocalizedName()
+	{
+		return String.format("tile.%s%s", Reference.MOD_ID.toLowerCase() + ":",
+				getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+	}
+	
+	protected String getUnwrappedUnlocalizedName(String unlocalizedName)
+	{
+		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
 	}
 }

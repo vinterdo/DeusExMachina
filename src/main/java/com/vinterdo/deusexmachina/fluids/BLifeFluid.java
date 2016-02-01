@@ -12,10 +12,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 
-public class BLifeFluid extends BlockFluidClassic {
-
+public class BLifeFluid extends BlockFluidClassic
+{
+	
 	@SideOnly(Side.CLIENT)
 	protected IIcon stillIcon;
 	
@@ -54,5 +54,16 @@ public class BLifeFluid extends BlockFluidClassic {
 			return false;
 		return super.displaceIfPossible(world, x, y, z);
 	}
-
+	
+	@Override
+	public String getUnlocalizedName()
+	{
+		return String.format("tile.%s%s", Reference.MOD_ID.toLowerCase() + ":",
+				getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+	}
+	
+	protected String getUnwrappedUnlocalizedName(String unlocalizedName)
+	{
+		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
+	}
 }
