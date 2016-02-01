@@ -3,6 +3,7 @@ package com.vinterdo.deusexmachina.client.gui;
 import java.util.ArrayList;
 
 import com.vinterdo.deusexmachina.client.gui.generic.Point;
+import com.vinterdo.deusexmachina.client.gui.widget.CanvasScrollableY;
 //import com.vinterdo.deusexmachina.client.gui.widget.CanvasScrollableY;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetRF;
 import com.vinterdo.deusexmachina.client.gui.widget.WidgetTeleportButton;
@@ -20,7 +21,7 @@ public class GuiTeleportMaster extends GuiDEM
 											
 	private ArrayList<WidgetTeleportButton>	teleports	= new ArrayList<WidgetTeleportButton>();
 														
-	//private CanvasScrollableY				buttonsCanvas;
+	private CanvasScrollableY				buttonsCanvas;
 											
 	public GuiTeleportMaster(InventoryPlayer playerInv, TEDEM te)
 	{
@@ -35,10 +36,10 @@ public class GuiTeleportMaster extends GuiDEM
 	{
 		super.initGui();
 		//widgetEnergy = new WidgetRF(this.te.energy, guiLeft + 134, guiTop + 19, 58, 16, canvas);
-	//	resetTeleports();
+		resetTeleports();
 	}
 	
-/*	private void resetTeleports()
+	private void resetTeleports()
 	{
 		int offsetY = buttonsCanvas != null ? buttonsCanvas.getOffsetY() : 0;
 		canvas.removeWidget(buttonsCanvas);
@@ -64,11 +65,11 @@ public class GuiTeleportMaster extends GuiDEM
 			}
 		}
 		i = 0;
-	}*/
+	}
 	
 	@Override
 	public void refresh()
 	{
-	//	resetTeleports();
+		resetTeleports();
 	}
 }
